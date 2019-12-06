@@ -1,4 +1,4 @@
-package cn.dr.car.entity;
+package cn.tedu.ttms.car.entity;
 
 import java.util.Date;
 
@@ -180,8 +180,14 @@ public class UserCar {
     */
     private Integer status;
 
+    /**
+    * 排量
+    */
     private String carOut;
 
+    /**
+    * 公里数
+    */
     private String carMileage;
 
     /**
@@ -203,6 +209,21 @@ public class UserCar {
     * 1:未打印 1:已打印
     */
     private Integer printStatus;
+
+    /**
+    * 录入人员ID
+    */
+    private Integer inputUserId;
+
+    /**
+    * 录入时间
+    */
+    private Date inputDate;
+
+    /**
+    * 1:未录入 2:录入中 3:录入结束
+    */
+    private Integer inputStatus;
 
     public Integer getId() {
         return id;
@@ -538,5 +559,29 @@ public class UserCar {
 
     public void setPrintStatus(Integer printStatus) {
         this.printStatus = printStatus;
+    }
+
+    public Integer getInputUserId() {
+        return inputUserId;
+    }
+
+    public void setInputUserId(Integer inputUserId) {
+        this.inputUserId = inputUserId;
+    }
+
+    public Date getInputDate() {
+        return inputDate;
+    }
+
+    public void setInputDate(Date inputDate) {
+        this.inputDate = inputDate;
+    }
+
+    public Integer getInputStatus() {
+        return inputStatus;
+    }
+
+    public void setInputStatus(Integer inputStatus) {
+        this.inputStatus = inputStatus;
     }
 }

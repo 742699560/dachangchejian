@@ -1,8 +1,10 @@
-package cn.dr.car.dao;
+package cn.tedu.ttms.car.service;
 
-import cn.dr.car.entity.UserCar;
+import cn.tedu.ttms.car.entity.UserCar;
 
-public interface UserCarMapper {
+import java.util.List;
+
+public interface UserCarService {
     int deleteByPrimaryKey(Integer id);
 
     int insert(UserCar record);
@@ -14,4 +16,6 @@ public interface UserCarMapper {
     int updateByPrimaryKeySelective(UserCar record);
 
     int updateByPrimaryKey(UserCar record);
+
+    List<UserCar> selectByAll(UserCar record);
 }

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.ttms.car.dao.CUserMapper">
+  <resultMap id="BaseResultMap" type="cn.tedu.ttms.car.entity.CUser">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="right_power" jdbcType="VARCHAR" property="rightPower" />
+    <result column="power" jdbcType="VARCHAR" property="power" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, right_power, `power`, `password`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.tedu.ttms.car.entity.CUser" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into user (`name`, right_power, `power`, 
+      `password`)
+    values (#{name,jdbcType=VARCHAR}, #{rightPower,jdbcType=VARCHAR}, #{power,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.tedu.ttms.car.entity.CUser" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="rightPower != null">
+        right_power,
+      </if>
+      <if test="power != null">
+        `power`,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="rightPower != null">
+        #{rightPower,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null">
+        #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tedu.ttms.car.entity.CUser">
+    <!--@mbg.generated-->
+    update user
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="rightPower != null">
+        right_power = #{rightPower,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null">
+        `power` = #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tedu.ttms.car.entity.CUser">
+    <!--@mbg.generated-->
+    update user
+    set `name` = #{name,jdbcType=VARCHAR},
+      right_power = #{rightPower,jdbcType=VARCHAR},
+      `power` = #{power,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
