@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.ttms.system.dao.RoleDao">
+	<select id="findObjects" resultType="map">
+		select
+			id,
+			name,
+			note
+		from
+			sys_roles
+		<where>
+			<if test="entity!=null and entity.name!=null and entity.name!=''">
+				name LIKE CONCAT('%',#{entity.name},'%')
+			</if>
+		</where>
+		<if test="pageObject!=null and pageObject.pageSize != 0">
+			LIMIT #{pageObject.startIndex},#{pageObject.pageSize}
+		</if>
+	</select>
+	<select id="getRowCounts" resultType="java.lang.Integer">
+		select count(*) from sys_roles
+		<where>
+			<if test="entity!=null and entity.name!=null and entity.name!=''">
+				name LIKE CONCAT('%',#{entity.name},'%')
+			</if>
+		</where>
+	</select>
+	<insert id="save" parameterType="cn.tedu.ttms.system.entity.Role" useGeneratedKeys="true" keyProperty="entity.id">
+		insert into
+			sys_roles(name,note,createdTime,modifiedTime)
+		values
+			(#{entity.name}, #{entity.note}, NOW(), NOW())
+	</insert>
+	<select id="findObjectById" resultType="map">
+		select
+			name,
+			note
+		from
+			sys_roles
+		where
+			id = #{id}
+	</select>
+	<update id="updateObject" parameterType="cn.tedu.ttms.system.entity.Role">
+		update
+			sys_roles
+		set
+			name = #{entity.name},
+			note = #{entity.note},
+			modifiedTime = NOW()
+		where
+			id = #{entity.id}
+	</update>
+	<delete id="deletObject" parameterType="java.lang.Integer">
+		delete from sys_roles where id = #{id}
+	</delete>
+	<select id="findRoleList" resultType="map">
+		select
+			id,
+			name
+		from
+		 	sys_roles
+	</select>
+</mapper>

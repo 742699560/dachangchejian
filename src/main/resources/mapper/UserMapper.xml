@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.ttms.system.dao.UserDao">
+	<select id="findObjects" resultType="map">
+		select
+			id,
+			username,
+			utype,
+			company,
+			performer,
+			pernumber,
+			realname,
+			valid
+		from
+			sys_users
+		<where>
+			<if test="entity!=null and entity.username!=null and entity.username!=''">
+				username LIKE CONCAT('%',#{entity.username},'%')
+			</if>
+			<if test="entity!=null and entity.utype!=null and entity.utype!=''">
+				utype LIKE CONCAT('%',#{entity.utype},'%')
+			</if>
+			<if test="entity!=null and entity.company!=null and entity.company!=''">
+				company LIKE CONCAT('%',#{entity.company},'%')
+			</if>
+		</where>
+		<if test="pageObject!=null and pageObject.pageSize != 0">
+			LIMIT #{pageObject.startIndex},#{pageObject.pageSize}
+		</if>
+	</select>
+	<select id="getRowCounts" parameterType="cn.tedu.ttms.system.entity.User" resultType="java.lang.Integer">
+		select count(*) from sys_users
+		<where>
+			<if test="entity!=null and entity.username!=null and entity.username!=''">
+				username LIKE CONCAT('%',#{entity.username},'%')
+			</if>
+			<if test="entity!=null and entity.utype!=null and entity.utype!=''">
+				utype LIKE CONCAT('%',#{entity.utype},'%')
+			</if>
+			<if test="entity!=null and entity.company!=null and entity.company!=''">
+				company LIKE CONCAT('%',#{entity.company},'%')
+			</if>
+		</where>
+	</select>
+	<insert id="save" parameterType="cn.tedu.ttms.system.entity.User" useGeneratedKeys="true" keyProperty="entity.id">
+		insert into
+			sys_users
+			(username,password,salt,utype,company,valid,createdTime,modifiedTime,performer,
+			pernumber,createdUser,modifiedUser,realname)
+		values
+			(#{entity.username},#{entity.password},#{entity.salt},#{entity.utype},#{entity.company},
+			1,NOW(),NOW(),#{entity.performer},#{entity.pernumber},#{entity.createdUser},#{entity.modifiedUser},#{entity.realname});
+	</insert>
+	<select id="findObjectById" parameterType="java.lang.Integer" resultType="map">
+		select
+			username,
+			password,
+			utype,
+			performer,
+			pernumber,
+			realname,
+			company
+		from
+			sys_users
+		where
+			id = #{id}
+	</select>
+	<update id="updateObject" parameterType="cn.tedu.ttms.system.entity.User">
+		update
+			sys_users
+		set
+			username = #{entity.username},
+			password = #{entity.password},
+			salt = #{entity.salt},
+			utype = #{entity.utype},
+			company = #{entity.company},
+			performer = #{entity.performer},
+			pernumber = #{entity.pernumber},
+			modifiedTime = NOW(),
+			modifiedUser = #{entity.modifiedUser},
+			realname = #{entity.realname}
+		where
+			id = #{entity.id}
+	</update>
+	<update id="changeState">
+		update
+			sys_users
+		set
+			valid = #{valid}
+		where
+			id = #{id}
+	</update>
+	<select id="isExist" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from sys_users where valid=1 and username = #{username}
+	</select>
+	<select id="findObjectByName" parameterType="java.lang.String" resultType="cn.tedu.ttms.system.entity.User">
+		select
+			id,
+			username,
+			password,
+			salt,
+			utype,
+			performer,
+			pernumber,
+			company,
+			realname
+		from
+			sys_users
+		where
+			valid = 1 
+		and
+			username = #{username}
+	</select>
+	<select id="findPermission" parameterType="java.lang.Integer" resultType="java.lang.String">
+		select 
+			m.permission 
+		from 
+			sys_user_roles ur,sys_role_menus rm ,sys_menus m
+		where
+			ur.role_id = rm.role_id 
+		and
+			rm.menu_id = m.id 
+		and
+			ur.user_id = #{userId}
+	</select>
+	<select id="menuList" parameterType="java.lang.Integer" resultType="map">
+		select 
+			m.id,
+			m.name,
+			m.url,
+			m.parentId
+		from 
+			sys_user_roles ur,sys_role_menus rm ,sys_menus m
+		where
+			ur.role_id = rm.role_id 
+		and
+			rm.menu_id = m.id 
+		and
+			ur.user_id = #{id}
+		and 
+			type = 1
+	</select>
+</mapper>

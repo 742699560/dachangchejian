@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.ttms.frontend.dao.FrontendDao">
+	
+	<select id="getlxsData" resultType="map">
+		select tname name,lng,lat from travel
+	</select>
+	
+	<select id="getCompanyData" resultType="map">
+		select cname name,lng,lat,type from company
+	</select> 
+	
+	<select id="getWarnNumByYM" resultType="java.lang.Integer" >
+		select count(tid) from travleurgent where date_format(ttime,'%Y-%m') = date_format(#{date},'%Y-%m') and type = #{type}
+	</select>
+	
+	
+</mapper>

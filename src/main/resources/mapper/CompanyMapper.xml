@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- classpath:mapper/ProjectMapper.xml -->
+<mapper namespace="cn.tedu.ttms.company.dao.CompanyDao">
+
+
+	<select id="findPageObjects"
+		resultType="cn.tedu.ttms.company.entity.CompanyEntity">
+		select * from company p
+		<where>
+			1=1
+			<if test="entity.cname!=null and entity.cname!=''">
+				AND p.cname like CONCAT
+				("%",#{entity.cname},"%")
+			</if>
+			<if test="entity.type!=null and entity.type!=''">
+				AND p.type = #{entity.type}
+			</if>
+			<if test="entity.serialnumber!=null and entity.serialnumber!=''">
+				AND p.serialnumber like CONCAT
+				("%",#{entity.serialnumber},"%")
+			</if>
+			<if test="entity.contats!=null and entity.contats!=''">
+				AND p.contats like CONCAT
+				("%",#{entity.contats},"%")
+			</if>
+		</where>
+		<if
+			test="pageObj!=null and pageObj.pageSize != 0 and pageObj.pageSize != null">
+			LIMIT #{pageObj.startIndex},#{pageObj.pageSize}
+		</if>
+	</select>
+
+	<!-- 获得记录总数 -->
+	<select id="getRowCount" resultType="java.lang.Integer">
+		select count(*) from company p
+		<where>
+			1=1
+			<if test="entity.cname!=null and entity.cname!=''">
+				and p.cname like CONCAT ("%",#{entity.cname},"%")
+			</if>
+			<if test="entity.type!=null and entity.type!=''">
+				AND p.type = #{entity.type}
+			</if>
+			<if test="entity.serialnumber!=null and entity.serialnumber!=''">
+				AND p.serialnumber like CONCAT
+				("%",#{entity.serialnumber},"%")
+			</if>
+			<if test="entity.contats!=null and entity.contats!=''">
+				AND p.contats like CONCAT
+				("%",#{entity.contats},"%")
+			</if>
+		</where>
+	</select>
+	<select id="findObjectById" parameterType="java.lang.Integer"
+		resultType="map">
+		select *
+		from
+		company
+		where
+		cid = #{cid}
+	</select>
+	<insert id="insertObject"
+		parameterType="cn.tedu.ttms.company.entity.CompanyEntity">
+
+		INSERT INTO company
+		(
+		cid,
+		cname,
+		legal,
+		contats,
+		contactnumber,
+		type,
+		serialnumber,
+		site,
+		lng,
+		lat
+		)
+		values(
+		#{cid},
+		#{cname},
+		#{legal},
+		#{contats},
+		#{contactnumber},
+		#{type},
+		#{serialnumber},
+		#{site},
+		#{lng},
+		#{lat}
+		)
+	</insert>
+	<update id="updateObject"
+		parameterType="cn.tedu.ttms.company.entity.CompanyEntity">
+		update company
+		set
+		cname=#{entity.cname},
+		legal=#{entity.legal},
+		contats=#{ entity.contats},
+		contactnumber=#{entity.contactnumber},
+		type=#{entity.type},
+		serialnumber=#{entity.serialnumber},
+		site=#{entity.site},
+		lng=#{entity.lng},
+		lat=#{entity.lat}
+		where cid=#{entity.cid};
+	</update>
+	<delete id="deletObject" parameterType="java.lang.Integer">
+		delete from company where
+		cid = #{cid}
+	</delete>
+
+	<!-- 企业检查 -->
+		<insert id="insertexamineforcom" parameterType="cn.tedu.ttms.company.entity.ExamineForcomEntity">
+
+		INSERT INTO examineforcom
+		(
+		cid,
+		examinetime,
+		content,
+		result,
+		exaname
+		)
+		values(
+		#{cid},
+		#{examinetime},
+		#{content},
+		#{result},
+		#{exaname}
+		)
+	</insert>
+	<select id="findCompanyRecord"
+		resultType="cn.tedu.ttms.company.entity.ExamineForcomEntity">
+		select p.cid,p.eid,p.examinetime,p.content,p.result,p.exaname,b.cname as cname,b.type,b.serialnumber
+		from examineforcom as p left join company as b on p.cid = b.cid 
+		<where>
+			1=1
+			<if test="entity.cname!=null and entity.cname!=''">
+				AND b.cname like CONCAT
+				("%",#{entity.cname},"%")
+			</if>
+			<if test="entity.result!=null and entity.result!=''">
+				 and p.result=#{entity.result}
+			</if>
+			<if test="entity.exaname!=null and entity.exaname!=''">
+				AND p.exaname like CONCAT
+				("%",#{entity.exaname},"%")
+			</if>
+			<if test="entity.examinetime!=null and entity.examinetime!=''">
+				 and p.examinetime=#{entity.examinetime}
+			</if>
+		</where>
+		<if
+			test="pageObj!=null and pageObj.pageSize != 0 and pageObj.pageSize != null">
+			LIMIT #{pageObj.startIndex},#{pageObj.pageSize}
+		</if>
+	</select>
+	<select id="getRowCompanyRecord" resultType="java.lang.Integer">
+		select count(*) from examineforcom as p left join company as b on p.cid = b.cid 
+		<where>
+			1=1
+			<if test="entity.cname!=null and entity.cname!=''">
+				AND b.cname like CONCAT
+				("%",#{entity.cname},"%")
+			</if>
+			<if test="entity.result!=null and entity.result!=''">
+				 and p.result=#{entity.result}
+			</if>
+			<if test="entity.exaname!=null and entity.exaname!=''">
+				AND p.exaname like CONCAT
+				("%",#{entity.exaname},"%")
+			</if>
+			<if test="entity.examinetime!=null and entity.examinetime!=''">
+				 and p.examinetime=#{entity.examinetime}
+			</if>
+		</where>
+	</select>
+	<select id="findrecordCompanyById" parameterType="java.lang.Integer" resultType="map">
+		select *
+		from
+		examineforcom
+		where
+		eid = #{eid}
+	</select>
+	
+	<select id="serchrCompanyPam" resultType="cn.tedu.ttms.company.entity.CompanyPamEntity">
+		select count(*)as comnumber from company p where type = 2
+	</select>
+	<select id="serchrTPam" resultType="cn.tedu.ttms.company.entity.CompanyPamEntity">
+		select count(*)as tnumber from company p where type = 1
+	</select>
+	
+	
+</mapper> 

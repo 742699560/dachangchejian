@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- classpath:mapper/ProjectMapper.xml -->
+<mapper namespace="cn.tedu.ttms.homeMessage.dao.HomeMessageDao">
+
+
+	<select id="findDueapprove" resultType="cn.tedu.ttms.homeMessage.entity.HomeMessageEntity">
+		select p.tname as name,p.expire from travel as p
+		where unix_timestamp(now()) - unix_timestamp(p.expire) &gt;0
+	</select>
+	<select id="findAboutprove" resultType="cn.tedu.ttms.homeMessage.entity.HomeMessageEntity">
+		select p.tname as name,p.expire from travel as p
+		where unix_timestamp(p.expire) - unix_timestamp(now()) &gt;0 and unix_timestamp(p.expire) - unix_timestamp(now()) &lt;= '604800'
+	</select>
+	<select id="findDueapproveNumber" resultType="java.lang.Integer">
+		select count(*)as
+		dueapprove from travel as p
+		where unix_timestamp(now()) - unix_timestamp(p.expire)  &gt;0
+	</select>
+	<select id="findAboutproveNumber" resultType="java.lang.Integer">
+		select count(*)as
+		aboutprove from travel as p
+		where unix_timestamp(p.expire) - unix_timestamp(now()) &gt;0 and unix_timestamp(p.expire) - unix_timestamp(now()) &lt;= '604800'
+	</select>
+	<select id="findComnumner" resultType="java.lang.Integer">
+		select count(*)as
+		comnumner from company
+	</select>
+	<select id="findTalnumner" resultType="java.lang.Integer">
+		select count(*)as
+		talnumner from travel
+	</select>
+
+</mapper> 

@@ -1,0 +1,95 @@
+@CHARSET "UTF-8";
+
+*{
+	padding: 0px;
+	margin: 0px;
+	font-family:微软雅黑;
+	text-decoration: none;
+	list-style-type: none;
+}
+
+/* 滑动条  */
+
+   /* 整个滑动条 */
+	::-webkit-scrollbar {
+		  width:8px;
+		  height:8px;
+	} 
+		
+	/* 滚动条的滑轨背景颜色 */
+::-webkit-scrollbar-track {
+	background-color: rgba(207,207,209,1);
+
+	} 
+	
+
+/* 滑块颜色 */
+	::-webkit-scrollbar-thumb {
+	  background-color: rgba(132,132,132,0.3);
+	  
+	} 
+	
+	/* 悬浮在滑块 */
+	::-webkit-scrollbar-thumb:hover {
+	background-color: rgba(33,133,208,1);
+	}
+	
+	/* 滑轨两头的监听按钮颜色 */	
+	::-webkit-scrollbar-button {
+	  background-color: rgba(207,207,209,1);
+
+	} 
+	
+	/* 横向滚动条和纵向滚动条相交处尖角的颜色 */
+	::-webkit-scrollbar-corner {
+		  background-color: rgba(207,207,209,1);
+	} 
+	
+	
+	
+.noSelectTxt{
+	moz-user-select: -moz-none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.imgrotate {
+	-webkit-transition: -webkit-transform 0.5s ease-out;
+	-moz-transition: -moz-transform 0.5s ease-out;
+	-o-transition: -o-transform 0.5s ease-out;
+	-ms-transition: -ms-transform 0.5s ease-out;
+	transition: transform 0.5s ease-out;
+}
+
+.imgrotate:hover {
+	-webkit-transform: rotateZ(360deg);
+	-moz-transform: rotateZ(360deg);
+	-o-transform: rotateZ(360deg);
+	-ms-transform: rotateZ(360deg);
+	transform: rotateZ(360deg);
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: white !important;
+    background-image: none !important;
+    color: black !important;    
+    -moz-box-shadow: 0 0 0 1000px white inset !important;
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    box-shadow: 0 0 0 1000px white inset !important;
+}
+
+.textflowHandle{
+	text-overflow:ellipsis;
+	white-space:nowrap; 
+	overflow:hidden; 
+}
+
+.textflowHandle:hover
+{
+	text-overflow:inherit;
+	overflow:visible;
+}
