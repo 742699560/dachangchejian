@@ -708,4 +708,8 @@
         </if>
         order by create_time desc;
     </select>
+
+    <select id="selectSubTimes" resultType="java.util.Map" parameterType="java.lang.Integer">
+        select * from type where id = #{id,jdbcType=INTEGER}
+    </select>
 </mapper>

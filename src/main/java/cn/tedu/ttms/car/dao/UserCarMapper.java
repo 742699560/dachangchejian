@@ -1,5 +1,6 @@
 package cn.tedu.ttms.car.dao;
 import java.util.List;
+import java.util.Map;
 
 import cn.tedu.ttms.car.entity.UserCar;
 
@@ -18,5 +19,5 @@ public interface UserCarMapper {
 
     List<UserCar> selectByAll(UserCar userCar);
 
-
+    Map<String,Object>  selectSubTimes(Integer id);
 }

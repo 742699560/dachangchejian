@@ -7,6 +7,7 @@ import cn.tedu.ttms.car.dao.UserCarMapper;
 import cn.tedu.ttms.car.entity.UserCar;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserCarServiceImpl implements UserCarService {
@@ -47,6 +48,11 @@ public class UserCarServiceImpl implements UserCarService {
     @Override
     public List<UserCar> selectByAll(UserCar record) {
             return userCarMapper.selectByAll(record);
+    }
+
+    @Override
+    public Map<String, Object> selectSubTimes(Integer id) {
+        return userCarMapper.selectSubTimes(id);
     }
 
 }
