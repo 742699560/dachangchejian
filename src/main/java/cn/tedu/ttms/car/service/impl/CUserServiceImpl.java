@@ -32,6 +32,11 @@ public class CUserServiceImpl implements CUserService{
     }
 
     @Override
+    public CUser selectByName(String name) {
+        return cUserMapper.selectByName(name);
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(CUser record) {
         return cUserMapper.updateByPrimaryKeySelective(record);
     }

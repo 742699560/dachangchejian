@@ -704,7 +704,8 @@
             and input_date=#{inputDate,jdbcType=TIMESTAMP}
         </if>
         <if test="inputStatus != null">
-            and input_status=#{inputStatus,jdbcType=INTEGER}
+            and input_status &lt;=#{inputStatus,jdbcType=INTEGER}
         </if>
+        order by create_time desc;
     </select>
 </mapper>

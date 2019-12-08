@@ -12,6 +12,8 @@ public interface CUserService{
 
     CUser selectByPrimaryKey(Integer id);
 
+    CUser selectByName(String name);
+
     int updateByPrimaryKeySelective(CUser record);
 
     int updateByPrimaryKey(CUser record);

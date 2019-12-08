@@ -11,6 +11,8 @@ public interface CUserMapper {
 
     CUser selectByPrimaryKey(Integer id);
 
+    CUser selectByName(String name);
+
     int updateByPrimaryKeySelective(CUser record);
 
     int updateByPrimaryKey(CUser record);

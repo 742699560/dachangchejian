@@ -70,9 +70,9 @@
 		<property name="filters" value="${jdbc.druid.filters}" />
 		<!--<property name="connectionProperties" value="password=${username}"/>-->
 		<property name="testWhileIdle" value="true" />
-		<property name="testOnBorrow" value="false" />
+		<property name="testOnBorrow" value="true" />
 		<property name="testOnReturn" value="false" />
 		<property name="validationQuery" value="SELECT 1 from DUAL" />
-		<property name="timeBetweenLogStatsMillis" value="${jdbc.timeBetweenLogStatsMillis}" />
+		<property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" />
 </bean>
 </beans>
