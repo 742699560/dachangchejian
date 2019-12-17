@@ -49,7 +49,7 @@ public class CarWeixinController extends BaseController {
     @ResponseBody
     public Map<String, Object> inputBeginData(@RequestParam Integer id, @RequestParam Integer userId) {
         UserCar userCar = userCarService.selectByPrimaryKey(id);
-        if (userId != userCar.getInputUserId()) {
+        if (userId != userCar.getInputUserId() && userCar.getInputUserId() != null) {
             CUser cUser = cUserService.selectByPrimaryKey(userCar.getInputUserId());
             throw new AppException("该数据已被用户【" + cUser.getName() + "】拉取录入中");
         }
@@ -117,6 +117,7 @@ public class CarWeixinController extends BaseController {
                 userCar.setCarAtType("其他");
                 break;
         }
+        userCar.setTimeSub(userCar.getId()+"");
         ObjectUtil.nullToEmpty(userCar);
         Map<String, Object> map = new HashMap();
         map.put("state", 1);
