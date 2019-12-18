@@ -1,11 +1,13 @@
 package cn.tedu.ttms.car.service.impl;
 
 import cn.tedu.ttms.car.service.UserCarService;
+import cn.tedu.ttms.common.web.PageObject;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import cn.tedu.ttms.car.dao.UserCarMapper;
 import cn.tedu.ttms.car.entity.UserCar;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +49,7 @@ public class UserCarServiceImpl implements UserCarService {
 
     @Override
     public List<UserCar> selectByAll(UserCar record) {
-            return userCarMapper.selectByAll(record);
+        return userCarMapper.selectByAll(record);
     }
 
     @Override
@@ -55,4 +57,16 @@ public class UserCarServiceImpl implements UserCarService {
         return userCarMapper.selectSubTimes(id);
     }
 
+    @Override
+    public Map<String, Object> selectByAllByPage(UserCar userCar, PageObject pageObject) {
+        List<UserCar> list = userCarMapper.selectByAllByPage(userCar,pageObject);
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("rows", list);
+        map.put("page",pageObject.getStartIndex());
+        map.put("Result", true);
+        return map;
+    }
+
 }
+
+

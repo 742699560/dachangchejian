@@ -7,6 +7,7 @@ import cn.tedu.ttms.car.service.UserCarService;
 import cn.tedu.ttms.base.controller.BaseController;
 import cn.tedu.ttms.common.exception.AppException;
 import cn.tedu.ttms.common.util.ObjectUtil;
+import cn.tedu.ttms.common.web.PageObject;
 import cn.tedu.ttms.system.service.UserService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,7 @@ public class CarWeixinController extends BaseController {
         UserCar param = new UserCar();
         param.setStatus(2);
         param.setInputStatus(2);
+        param.setInputAjStatus(2);
         List<UserCar> list = userCarService.selectByAll(param);
         Map<String, Object> map = new HashMap();
         map.put("state", 1);
@@ -47,15 +49,27 @@ public class CarWeixinController extends BaseController {
     @RequestMapping("/inputBeginData")
     @CrossOrigin(origins = "*")
     @ResponseBody
-    public Map<String, Object> inputBeginData(@RequestParam Integer id, @RequestParam Integer userId) {
+    public Map<String, Object> inputBeginData(@RequestParam Integer id, @RequestParam Integer userId,@RequestParam Integer type) {
         UserCar userCar = userCarService.selectByPrimaryKey(id);
-        if (userId != userCar.getInputUserId() && userCar.getInputUserId() != null) {
+
+
+        if (userId != userCar.getInputUserId() && type == 1 && userCar.getInputUserId() != null) {
             CUser cUser = cUserService.selectByPrimaryKey(userCar.getInputUserId());
-            throw new AppException("该数据已被用户【" + cUser.getName() + "】拉取录入中");
+            throw new AppException("该数据已被用户【" + cUser.getName() + "】环保录入中");
         }
-        userCar.setInputStatus(2);
-        userCar.setInputUserId(userId);
-        userCar.setInputDate(new Date());
+        if (userId != userCar.getInputAjId() && type == 2 && userCar.getInputAjId() != null) {
+            CUser cUser = cUserService.selectByPrimaryKey(userCar.getInputAjId());
+            throw new AppException("该数据已被用户【" + cUser.getName() + "】安检录入中");
+        }
+        if(type == 1) {
+            userCar.setInputStatus(2);
+            userCar.setInputUserId(userId);
+            userCar.setInputDate(new Date());
+        }else if(type == 2){
+            userCar.setInputAjId(userId);
+            userCar.setInputAjStatus(2);
+            userCar.setIntputAjDate(new Date());
+        }
         userCarService.updateByPrimaryKey(userCar);
         switch (userCar.getCarColor()) {
             case "1":
@@ -130,20 +144,61 @@ public class CarWeixinController extends BaseController {
     @RequestMapping("/inputOverData")
     @CrossOrigin(origins = "*")
     @ResponseBody
-    public Map<String, Object> inputOverData(@RequestParam Integer id, @RequestParam Integer userId) {
+    public Map<String, Object> inputOverData(@RequestParam Integer id, @RequestParam Integer userId,@RequestParam Integer type) {
         UserCar userCar = userCarService.selectByPrimaryKey(id);
         CUser cUser = cUserService.selectByPrimaryKey(userId);
-        if (userId != userCar.getInputUserId())
-            throw new AppException("当前数据正在被用户【" + cUser.getName() + "】拉取录入中");
-        userCar.setInputStatus(3);
-        userCar.setInputUserId(userId);
-        userCar.setInputDate(new Date());
+        if (userId != userCar.getInputUserId() && type == 1)
+            throw new AppException("当前数据正在被用户【" + cUser.getName() + "】环保录入中");
+        if (userId != userCar.getInputAjId() && type == 2)
+            throw new AppException("当前数据正在被用户【" + cUser.getName() + "】安检录入中");
+        if(type == 1) {
+            userCar.setInputStatus(3);
+            userCar.setInputUserId(userId);
+            userCar.setInputDate(new Date());
+        }else if(type == 2){
+            userCar.setInputAjId(userId);
+            userCar.setInputAjStatus(3);
+            userCar.setIntputAjDate(new Date());
+        }
 
         userCarService.updateByPrimaryKey(userCar);
 
         Map<String, Object> map = new HashMap();
         map.put("state", 1);
         map.put("data", userCar);
+        map.put("message", "查询成功!");
+        return map;
+    }
+
+    @RequestMapping("/queryDetail")
+    @CrossOrigin(origins = "*")
+    @ResponseBody
+    public Map<String, Object> queryDetail(@RequestParam Integer id) {
+        UserCar userCar = userCarService.selectByPrimaryKey(id);
+        Map<String, Object> map = new HashMap();
+        map.put("state", 1);
+        map.put("data", userCar);
+        map.put("message", "查询成功!");
+        return map;
+    }
+
+
+    @RequestMapping("/queryInputData")
+    @CrossOrigin(origins = "*")
+    @ResponseBody
+    public Map<String, Object> queryInputData(@RequestParam Integer userId,@RequestParam(defaultValue = "0") Integer pageNum,@RequestParam(defaultValue = "10") Integer pageSize,@RequestParam Integer type) {
+         PageObject pageObject = new PageObject();
+        pageObject.setStartIndex(pageNum);
+        pageObject.setPageSize(pageSize);
+        UserCar param = new UserCar();
+        if(type == 1)
+            param.setInputUserId(userId);
+        else
+            param.setInputAjId(userId);
+        Map<String, Object> dataMap =userCarService.selectByAllByPage(param,pageObject);
+        Map<String, Object> map = new HashMap();
+        map.put("state", 1);
+        map.put("data", dataMap);
         map.put("message", "查询成功!");
         return map;
     }

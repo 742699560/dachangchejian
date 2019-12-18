@@ -17,7 +17,7 @@ public class PageObject implements Serializable {
 	
 	/**根据当前页计算当前页记录的开始位置*/
 	public int getStartIndex(){
-		return (pageCurrent-1)*pageSize;
+		return startIndex;
 	}
 	/**方法的返回值为总页数*/
 	public int getPageCount(){

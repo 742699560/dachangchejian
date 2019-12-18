@@ -1,572 +1,609 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.tedu.ttms.car.dao.UserCarMapper">
-  <resultMap id="BaseResultMap" type="cn.tedu.ttms.car.entity.UserCar">
-    <!--@mbg.generated-->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="open_id" jdbcType="VARCHAR" property="openId" />
-    <result column="number" jdbcType="VARCHAR" property="number" />
-    <result column="comment" jdbcType="VARCHAR" property="comment" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="car_num" jdbcType="VARCHAR" property="carNum" />
-    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="times" jdbcType="VARCHAR" property="times" />
-    <result column="prices" jdbcType="VARCHAR" property="prices" />
-    <result column="time_sub" jdbcType="VARCHAR" property="timeSub" />
-    <result column="car_brand_num" jdbcType="VARCHAR" property="carBrandNum" />
-    <result column="car_begin_date" jdbcType="VARCHAR" property="carBeginDate" />
-    <result column="car_use" jdbcType="VARCHAR" property="carUse" />
-    <result column="car_drive_num" jdbcType="VARCHAR" property="carDriveNum" />
-    <result column="car_people" jdbcType="VARCHAR" property="carPeople" />
-    <result column="car_address" jdbcType="VARCHAR" property="carAddress" />
-    <result column="car_reg_num" jdbcType="VARCHAR" property="carRegNum" />
-    <result column="car_id_num" jdbcType="VARCHAR" property="carIdNum" />
-    <result column="car_type" jdbcType="VARCHAR" property="carType" />
-    <result column="car_weight" jdbcType="VARCHAR" property="carWeight" />
-    <result column="car_tow_weight" jdbcType="VARCHAR" property="carTowWeight" />
-    <result column="car_load_people" jdbcType="VARCHAR" property="carLoadPeople" />
-    <result column="car_size" jdbcType="VARCHAR" property="carSize" />
-    <result column="car_total_weight" jdbcType="VARCHAR" property="carTotalWeight" />
-    <result column="car_record_num" jdbcType="VARCHAR" property="carRecordNum" />
-    <result column="car_check_log" jdbcType="VARCHAR" property="carCheckLog" />
-    <result column="car_fuel" jdbcType="VARCHAR" property="carFuel" />
-    <result column="car_load_approved" jdbcType="VARCHAR" property="carLoadApproved" />
-    <result column="car_remark" jdbcType="VARCHAR" property="carRemark" />
-    <result column="car_img_front" jdbcType="VARCHAR" property="carImgFront" />
-    <result column="car_img_back" jdbcType="VARCHAR" property="carImgBack" />
-    <result column="car_at_type" jdbcType="VARCHAR" property="carAtType" />
-    <result column="car_color" jdbcType="VARCHAR" property="carColor" />
-    <result column="car_drive_type" jdbcType="VARCHAR" property="carDriveType" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="car_out" jdbcType="VARCHAR" property="carOut" />
-    <result column="car_mileage" jdbcType="VARCHAR" property="carMileage" />
-    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
-    <result column="pay_data" jdbcType="VARCHAR" property="payData" />
-    <result column="type" jdbcType="INTEGER" property="type" />
-    <result column="print_status" jdbcType="INTEGER" property="printStatus" />
-    <result column="input_user_id" jdbcType="INTEGER" property="inputUserId" />
-    <result column="input_date" jdbcType="TIMESTAMP" property="inputDate" />
-    <result column="input_status" jdbcType="INTEGER" property="inputStatus" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    id, open_id, `number`, `comment`, username, car_num, mobile, times, prices, time_sub, 
-    car_brand_num, car_begin_date, car_use, car_drive_num, car_people, car_address, car_reg_num, 
-    car_id_num, car_type, car_weight, car_tow_weight, car_load_people, car_size, car_total_weight, 
-    car_record_num, car_check_log, car_fuel, car_load_approved, car_remark, car_img_front, 
-    car_img_back, car_at_type, car_color, car_drive_type, create_time, `status`, car_out, 
-    car_mileage, pay_time, pay_data, `type`, print_status, input_user_id, input_date, 
-    input_status
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from user_car
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--@mbg.generated-->
-    delete from user_car
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.tedu.ttms.car.entity.UserCar" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into user_car (open_id, `number`, `comment`, 
-      username, car_num, mobile, 
-      times, prices, time_sub, 
-      car_brand_num, car_begin_date, car_use, 
-      car_drive_num, car_people, car_address, 
-      car_reg_num, car_id_num, car_type, 
-      car_weight, car_tow_weight, car_load_people, 
-      car_size, car_total_weight, car_record_num, 
-      car_check_log, car_fuel, car_load_approved, 
-      car_remark, car_img_front, car_img_back, 
-      car_at_type, car_color, car_drive_type, 
-      create_time, `status`, car_out, 
-      car_mileage, pay_time, pay_data, 
-      `type`, print_status, input_user_id, 
-      input_date, input_status)
-    values (#{openId,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
-      #{username,jdbcType=VARCHAR}, #{carNum,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
-      #{times,jdbcType=VARCHAR}, #{prices,jdbcType=VARCHAR}, #{timeSub,jdbcType=VARCHAR}, 
-      #{carBrandNum,jdbcType=VARCHAR}, #{carBeginDate,jdbcType=VARCHAR}, #{carUse,jdbcType=VARCHAR}, 
-      #{carDriveNum,jdbcType=VARCHAR}, #{carPeople,jdbcType=VARCHAR}, #{carAddress,jdbcType=VARCHAR}, 
-      #{carRegNum,jdbcType=VARCHAR}, #{carIdNum,jdbcType=VARCHAR}, #{carType,jdbcType=VARCHAR}, 
-      #{carWeight,jdbcType=VARCHAR}, #{carTowWeight,jdbcType=VARCHAR}, #{carLoadPeople,jdbcType=VARCHAR}, 
-      #{carSize,jdbcType=VARCHAR}, #{carTotalWeight,jdbcType=VARCHAR}, #{carRecordNum,jdbcType=VARCHAR}, 
-      #{carCheckLog,jdbcType=VARCHAR}, #{carFuel,jdbcType=VARCHAR}, #{carLoadApproved,jdbcType=VARCHAR}, 
-      #{carRemark,jdbcType=VARCHAR}, #{carImgFront,jdbcType=VARCHAR}, #{carImgBack,jdbcType=VARCHAR}, 
-      #{carAtType,jdbcType=VARCHAR}, #{carColor,jdbcType=VARCHAR}, #{carDriveType,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{carOut,jdbcType=VARCHAR}, 
-      #{carMileage,jdbcType=VARCHAR}, #{payTime,jdbcType=TIMESTAMP}, #{payData,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER}, #{printStatus,jdbcType=INTEGER}, #{inputUserId,jdbcType=INTEGER}, 
-      #{inputDate,jdbcType=TIMESTAMP}, #{inputStatus,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.tedu.ttms.car.entity.UserCar" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into user_car
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="openId != null">
-        open_id,
-      </if>
-      <if test="number != null">
-        `number`,
-      </if>
-      <if test="comment != null">
-        `comment`,
-      </if>
-      <if test="username != null">
-        username,
-      </if>
-      <if test="carNum != null">
-        car_num,
-      </if>
-      <if test="mobile != null">
-        mobile,
-      </if>
-      <if test="times != null">
-        times,
-      </if>
-      <if test="prices != null">
-        prices,
-      </if>
-      <if test="timeSub != null">
-        time_sub,
-      </if>
-      <if test="carBrandNum != null">
-        car_brand_num,
-      </if>
-      <if test="carBeginDate != null">
-        car_begin_date,
-      </if>
-      <if test="carUse != null">
-        car_use,
-      </if>
-      <if test="carDriveNum != null">
-        car_drive_num,
-      </if>
-      <if test="carPeople != null">
-        car_people,
-      </if>
-      <if test="carAddress != null">
-        car_address,
-      </if>
-      <if test="carRegNum != null">
-        car_reg_num,
-      </if>
-      <if test="carIdNum != null">
-        car_id_num,
-      </if>
-      <if test="carType != null">
-        car_type,
-      </if>
-      <if test="carWeight != null">
-        car_weight,
-      </if>
-      <if test="carTowWeight != null">
-        car_tow_weight,
-      </if>
-      <if test="carLoadPeople != null">
-        car_load_people,
-      </if>
-      <if test="carSize != null">
-        car_size,
-      </if>
-      <if test="carTotalWeight != null">
-        car_total_weight,
-      </if>
-      <if test="carRecordNum != null">
-        car_record_num,
-      </if>
-      <if test="carCheckLog != null">
-        car_check_log,
-      </if>
-      <if test="carFuel != null">
-        car_fuel,
-      </if>
-      <if test="carLoadApproved != null">
-        car_load_approved,
-      </if>
-      <if test="carRemark != null">
-        car_remark,
-      </if>
-      <if test="carImgFront != null">
-        car_img_front,
-      </if>
-      <if test="carImgBack != null">
-        car_img_back,
-      </if>
-      <if test="carAtType != null">
-        car_at_type,
-      </if>
-      <if test="carColor != null">
-        car_color,
-      </if>
-      <if test="carDriveType != null">
-        car_drive_type,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="status != null">
-        `status`,
-      </if>
-      <if test="carOut != null">
-        car_out,
-      </if>
-      <if test="carMileage != null">
-        car_mileage,
-      </if>
-      <if test="payTime != null">
-        pay_time,
-      </if>
-      <if test="payData != null">
-        pay_data,
-      </if>
-      <if test="type != null">
-        `type`,
-      </if>
-      <if test="printStatus != null">
-        print_status,
-      </if>
-      <if test="inputUserId != null">
-        input_user_id,
-      </if>
-      <if test="inputDate != null">
-        input_date,
-      </if>
-      <if test="inputStatus != null">
-        input_status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="openId != null">
-        #{openId,jdbcType=VARCHAR},
-      </if>
-      <if test="number != null">
-        #{number,jdbcType=VARCHAR},
-      </if>
-      <if test="comment != null">
-        #{comment,jdbcType=VARCHAR},
-      </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="carNum != null">
-        #{carNum,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
-        #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="times != null">
-        #{times,jdbcType=VARCHAR},
-      </if>
-      <if test="prices != null">
-        #{prices,jdbcType=VARCHAR},
-      </if>
-      <if test="timeSub != null">
-        #{timeSub,jdbcType=VARCHAR},
-      </if>
-      <if test="carBrandNum != null">
-        #{carBrandNum,jdbcType=VARCHAR},
-      </if>
-      <if test="carBeginDate != null">
-        #{carBeginDate,jdbcType=VARCHAR},
-      </if>
-      <if test="carUse != null">
-        #{carUse,jdbcType=VARCHAR},
-      </if>
-      <if test="carDriveNum != null">
-        #{carDriveNum,jdbcType=VARCHAR},
-      </if>
-      <if test="carPeople != null">
-        #{carPeople,jdbcType=VARCHAR},
-      </if>
-      <if test="carAddress != null">
-        #{carAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="carRegNum != null">
-        #{carRegNum,jdbcType=VARCHAR},
-      </if>
-      <if test="carIdNum != null">
-        #{carIdNum,jdbcType=VARCHAR},
-      </if>
-      <if test="carType != null">
-        #{carType,jdbcType=VARCHAR},
-      </if>
-      <if test="carWeight != null">
-        #{carWeight,jdbcType=VARCHAR},
-      </if>
-      <if test="carTowWeight != null">
-        #{carTowWeight,jdbcType=VARCHAR},
-      </if>
-      <if test="carLoadPeople != null">
-        #{carLoadPeople,jdbcType=VARCHAR},
-      </if>
-      <if test="carSize != null">
-        #{carSize,jdbcType=VARCHAR},
-      </if>
-      <if test="carTotalWeight != null">
-        #{carTotalWeight,jdbcType=VARCHAR},
-      </if>
-      <if test="carRecordNum != null">
-        #{carRecordNum,jdbcType=VARCHAR},
-      </if>
-      <if test="carCheckLog != null">
-        #{carCheckLog,jdbcType=VARCHAR},
-      </if>
-      <if test="carFuel != null">
-        #{carFuel,jdbcType=VARCHAR},
-      </if>
-      <if test="carLoadApproved != null">
-        #{carLoadApproved,jdbcType=VARCHAR},
-      </if>
-      <if test="carRemark != null">
-        #{carRemark,jdbcType=VARCHAR},
-      </if>
-      <if test="carImgFront != null">
-        #{carImgFront,jdbcType=VARCHAR},
-      </if>
-      <if test="carImgBack != null">
-        #{carImgBack,jdbcType=VARCHAR},
-      </if>
-      <if test="carAtType != null">
-        #{carAtType,jdbcType=VARCHAR},
-      </if>
-      <if test="carColor != null">
-        #{carColor,jdbcType=VARCHAR},
-      </if>
-      <if test="carDriveType != null">
-        #{carDriveType,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="carOut != null">
-        #{carOut,jdbcType=VARCHAR},
-      </if>
-      <if test="carMileage != null">
-        #{carMileage,jdbcType=VARCHAR},
-      </if>
-      <if test="payTime != null">
-        #{payTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="payData != null">
-        #{payData,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=INTEGER},
-      </if>
-      <if test="printStatus != null">
-        #{printStatus,jdbcType=INTEGER},
-      </if>
-      <if test="inputUserId != null">
-        #{inputUserId,jdbcType=INTEGER},
-      </if>
-      <if test="inputDate != null">
-        #{inputDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="inputStatus != null">
-        #{inputStatus,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.tedu.ttms.car.entity.UserCar">
-    <!--@mbg.generated-->
-    update user_car
-    <set>
-      <if test="openId != null">
-        open_id = #{openId,jdbcType=VARCHAR},
-      </if>
-      <if test="number != null">
+    <resultMap id="BaseResultMap" type="cn.tedu.ttms.car.entity.UserCar">
+        <!--@mbg.generated-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="open_id" jdbcType="VARCHAR" property="openId"/>
+        <result column="number" jdbcType="VARCHAR" property="number"/>
+        <result column="comment" jdbcType="VARCHAR" property="comment"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="car_num" jdbcType="VARCHAR" property="carNum"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="times" jdbcType="VARCHAR" property="times"/>
+        <result column="prices" jdbcType="VARCHAR" property="prices"/>
+        <result column="time_sub" jdbcType="VARCHAR" property="timeSub"/>
+        <result column="car_brand_num" jdbcType="VARCHAR" property="carBrandNum"/>
+        <result column="car_begin_date" jdbcType="VARCHAR" property="carBeginDate"/>
+        <result column="car_use" jdbcType="VARCHAR" property="carUse"/>
+        <result column="car_drive_num" jdbcType="VARCHAR" property="carDriveNum"/>
+        <result column="car_people" jdbcType="VARCHAR" property="carPeople"/>
+        <result column="car_address" jdbcType="VARCHAR" property="carAddress"/>
+        <result column="car_reg_num" jdbcType="VARCHAR" property="carRegNum"/>
+        <result column="car_id_num" jdbcType="VARCHAR" property="carIdNum"/>
+        <result column="car_type" jdbcType="VARCHAR" property="carType"/>
+        <result column="car_weight" jdbcType="VARCHAR" property="carWeight"/>
+        <result column="car_tow_weight" jdbcType="VARCHAR" property="carTowWeight"/>
+        <result column="car_load_people" jdbcType="VARCHAR" property="carLoadPeople"/>
+        <result column="car_size" jdbcType="VARCHAR" property="carSize"/>
+        <result column="car_total_weight" jdbcType="VARCHAR" property="carTotalWeight"/>
+        <result column="car_record_num" jdbcType="VARCHAR" property="carRecordNum"/>
+        <result column="car_check_log" jdbcType="VARCHAR" property="carCheckLog"/>
+        <result column="car_fuel" jdbcType="VARCHAR" property="carFuel"/>
+        <result column="car_load_approved" jdbcType="VARCHAR" property="carLoadApproved"/>
+        <result column="car_remark" jdbcType="VARCHAR" property="carRemark"/>
+        <result column="car_img_front" jdbcType="VARCHAR" property="carImgFront"/>
+        <result column="car_img_back" jdbcType="VARCHAR" property="carImgBack"/>
+        <result column="car_at_type" jdbcType="VARCHAR" property="carAtType"/>
+        <result column="car_color" jdbcType="VARCHAR" property="carColor"/>
+        <result column="car_drive_type" jdbcType="VARCHAR" property="carDriveType"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="car_out" jdbcType="VARCHAR" property="carOut"/>
+        <result column="car_mileage" jdbcType="VARCHAR" property="carMileage"/>
+        <result column="pay_time" jdbcType="TIMESTAMP" property="payTime"/>
+        <result column="pay_data" jdbcType="VARCHAR" property="payData"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="print_status" jdbcType="INTEGER" property="printStatus"/>
+        <result column="input_user_id" jdbcType="INTEGER" property="inputUserId"/>
+        <result column="input_date" jdbcType="TIMESTAMP" property="inputDate"/>
+        <result column="input_status" jdbcType="INTEGER" property="inputStatus"/>
+        <result column="input_aj_id" jdbcType="INTEGER" property="inputAjId"/>
+        <result column="intput_aj_date" jdbcType="TIMESTAMP" property="intputAjDate"/>
+        <result column="input_aj_status" jdbcType="INTEGER" property="inputAjStatus"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, open_id, `number`, `comment`, username, car_num, mobile, times, prices, time_sub,
+        car_brand_num, car_begin_date, car_use, car_drive_num, car_people, car_address, car_reg_num,
+        car_id_num, car_type, car_weight, car_tow_weight, car_load_people, car_size, car_total_weight,
+        car_record_num, car_check_log, car_fuel, car_load_approved, car_remark, car_img_front,
+        car_img_back, car_at_type, car_color, car_drive_type, create_time, `status`, car_out,
+        car_mileage, pay_time, pay_data, `type`, print_status, input_user_id, input_date,
+        input_status, input_aj_id, intput_aj_date, input_aj_status
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from user_car
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from user_car
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.tedu.ttms.car.entity.UserCar"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_car (open_id, `number`, `comment`,
+        username, car_num, mobile,
+        times, prices, time_sub,
+        car_brand_num, car_begin_date, car_use,
+        car_drive_num, car_people, car_address,
+        car_reg_num, car_id_num, car_type,
+        car_weight, car_tow_weight, car_load_people,
+        car_size, car_total_weight, car_record_num,
+        car_check_log, car_fuel, car_load_approved,
+        car_remark, car_img_front, car_img_back,
+        car_at_type, car_color, car_drive_type,
+        create_time, `status`, car_out,
+        car_mileage, pay_time, pay_data,
+        `type`, print_status, input_user_id,
+        input_date, input_status, input_aj_id,
+        intput_aj_date, input_aj_status)
+        values (#{openId,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR},
+        #{username,jdbcType=VARCHAR}, #{carNum,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+        #{times,jdbcType=VARCHAR}, #{prices,jdbcType=VARCHAR}, #{timeSub,jdbcType=VARCHAR},
+        #{carBrandNum,jdbcType=VARCHAR}, #{carBeginDate,jdbcType=VARCHAR}, #{carUse,jdbcType=VARCHAR},
+        #{carDriveNum,jdbcType=VARCHAR}, #{carPeople,jdbcType=VARCHAR}, #{carAddress,jdbcType=VARCHAR},
+        #{carRegNum,jdbcType=VARCHAR}, #{carIdNum,jdbcType=VARCHAR}, #{carType,jdbcType=VARCHAR},
+        #{carWeight,jdbcType=VARCHAR}, #{carTowWeight,jdbcType=VARCHAR}, #{carLoadPeople,jdbcType=VARCHAR},
+        #{carSize,jdbcType=VARCHAR}, #{carTotalWeight,jdbcType=VARCHAR}, #{carRecordNum,jdbcType=VARCHAR},
+        #{carCheckLog,jdbcType=VARCHAR}, #{carFuel,jdbcType=VARCHAR}, #{carLoadApproved,jdbcType=VARCHAR},
+        #{carRemark,jdbcType=VARCHAR}, #{carImgFront,jdbcType=VARCHAR}, #{carImgBack,jdbcType=VARCHAR},
+        #{carAtType,jdbcType=VARCHAR}, #{carColor,jdbcType=VARCHAR}, #{carDriveType,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{carOut,jdbcType=VARCHAR},
+        #{carMileage,jdbcType=VARCHAR}, #{payTime,jdbcType=TIMESTAMP}, #{payData,jdbcType=VARCHAR},
+        #{type,jdbcType=INTEGER}, #{printStatus,jdbcType=INTEGER}, #{inputUserId,jdbcType=INTEGER},
+        #{inputDate,jdbcType=TIMESTAMP}, #{inputStatus,jdbcType=INTEGER}, #{inputAjId,jdbcType=INTEGER},
+        #{intputAjDate,jdbcType=TIMESTAMP}, #{inputAjStatus,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.tedu.ttms.car.entity.UserCar"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_car
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="openId != null">
+                open_id,
+            </if>
+            <if test="number != null">
+                `number`,
+            </if>
+            <if test="comment != null">
+                `comment`,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="carNum != null">
+                car_num,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="times != null">
+                times,
+            </if>
+            <if test="prices != null">
+                prices,
+            </if>
+            <if test="timeSub != null">
+                time_sub,
+            </if>
+            <if test="carBrandNum != null">
+                car_brand_num,
+            </if>
+            <if test="carBeginDate != null">
+                car_begin_date,
+            </if>
+            <if test="carUse != null">
+                car_use,
+            </if>
+            <if test="carDriveNum != null">
+                car_drive_num,
+            </if>
+            <if test="carPeople != null">
+                car_people,
+            </if>
+            <if test="carAddress != null">
+                car_address,
+            </if>
+            <if test="carRegNum != null">
+                car_reg_num,
+            </if>
+            <if test="carIdNum != null">
+                car_id_num,
+            </if>
+            <if test="carType != null">
+                car_type,
+            </if>
+            <if test="carWeight != null">
+                car_weight,
+            </if>
+            <if test="carTowWeight != null">
+                car_tow_weight,
+            </if>
+            <if test="carLoadPeople != null">
+                car_load_people,
+            </if>
+            <if test="carSize != null">
+                car_size,
+            </if>
+            <if test="carTotalWeight != null">
+                car_total_weight,
+            </if>
+            <if test="carRecordNum != null">
+                car_record_num,
+            </if>
+            <if test="carCheckLog != null">
+                car_check_log,
+            </if>
+            <if test="carFuel != null">
+                car_fuel,
+            </if>
+            <if test="carLoadApproved != null">
+                car_load_approved,
+            </if>
+            <if test="carRemark != null">
+                car_remark,
+            </if>
+            <if test="carImgFront != null">
+                car_img_front,
+            </if>
+            <if test="carImgBack != null">
+                car_img_back,
+            </if>
+            <if test="carAtType != null">
+                car_at_type,
+            </if>
+            <if test="carColor != null">
+                car_color,
+            </if>
+            <if test="carDriveType != null">
+                car_drive_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="carOut != null">
+                car_out,
+            </if>
+            <if test="carMileage != null">
+                car_mileage,
+            </if>
+            <if test="payTime != null">
+                pay_time,
+            </if>
+            <if test="payData != null">
+                pay_data,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="printStatus != null">
+                print_status,
+            </if>
+            <if test="inputUserId != null">
+                input_user_id,
+            </if>
+            <if test="inputDate != null">
+                input_date,
+            </if>
+            <if test="inputStatus != null">
+                input_status,
+            </if>
+            <if test="inputAjId != null">
+                input_aj_id,
+            </if>
+            <if test="intputAjDate != null">
+                intput_aj_date,
+            </if>
+            <if test="inputAjStatus != null">
+                input_aj_status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="openId != null">
+                #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="number != null">
+                #{number,jdbcType=VARCHAR},
+            </if>
+            <if test="comment != null">
+                #{comment,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="carNum != null">
+                #{carNum,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="times != null">
+                #{times,jdbcType=VARCHAR},
+            </if>
+            <if test="prices != null">
+                #{prices,jdbcType=VARCHAR},
+            </if>
+            <if test="timeSub != null">
+                #{timeSub,jdbcType=VARCHAR},
+            </if>
+            <if test="carBrandNum != null">
+                #{carBrandNum,jdbcType=VARCHAR},
+            </if>
+            <if test="carBeginDate != null">
+                #{carBeginDate,jdbcType=VARCHAR},
+            </if>
+            <if test="carUse != null">
+                #{carUse,jdbcType=VARCHAR},
+            </if>
+            <if test="carDriveNum != null">
+                #{carDriveNum,jdbcType=VARCHAR},
+            </if>
+            <if test="carPeople != null">
+                #{carPeople,jdbcType=VARCHAR},
+            </if>
+            <if test="carAddress != null">
+                #{carAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="carRegNum != null">
+                #{carRegNum,jdbcType=VARCHAR},
+            </if>
+            <if test="carIdNum != null">
+                #{carIdNum,jdbcType=VARCHAR},
+            </if>
+            <if test="carType != null">
+                #{carType,jdbcType=VARCHAR},
+            </if>
+            <if test="carWeight != null">
+                #{carWeight,jdbcType=VARCHAR},
+            </if>
+            <if test="carTowWeight != null">
+                #{carTowWeight,jdbcType=VARCHAR},
+            </if>
+            <if test="carLoadPeople != null">
+                #{carLoadPeople,jdbcType=VARCHAR},
+            </if>
+            <if test="carSize != null">
+                #{carSize,jdbcType=VARCHAR},
+            </if>
+            <if test="carTotalWeight != null">
+                #{carTotalWeight,jdbcType=VARCHAR},
+            </if>
+            <if test="carRecordNum != null">
+                #{carRecordNum,jdbcType=VARCHAR},
+            </if>
+            <if test="carCheckLog != null">
+                #{carCheckLog,jdbcType=VARCHAR},
+            </if>
+            <if test="carFuel != null">
+                #{carFuel,jdbcType=VARCHAR},
+            </if>
+            <if test="carLoadApproved != null">
+                #{carLoadApproved,jdbcType=VARCHAR},
+            </if>
+            <if test="carRemark != null">
+                #{carRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="carImgFront != null">
+                #{carImgFront,jdbcType=VARCHAR},
+            </if>
+            <if test="carImgBack != null">
+                #{carImgBack,jdbcType=VARCHAR},
+            </if>
+            <if test="carAtType != null">
+                #{carAtType,jdbcType=VARCHAR},
+            </if>
+            <if test="carColor != null">
+                #{carColor,jdbcType=VARCHAR},
+            </if>
+            <if test="carDriveType != null">
+                #{carDriveType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="carOut != null">
+                #{carOut,jdbcType=VARCHAR},
+            </if>
+            <if test="carMileage != null">
+                #{carMileage,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null">
+                #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payData != null">
+                #{payData,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="printStatus != null">
+                #{printStatus,jdbcType=INTEGER},
+            </if>
+            <if test="inputUserId != null">
+                #{inputUserId,jdbcType=INTEGER},
+            </if>
+            <if test="inputDate != null">
+                #{inputDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="inputStatus != null">
+                #{inputStatus,jdbcType=INTEGER},
+            </if>
+            <if test="inputAjId != null">
+                #{inputAjId,jdbcType=INTEGER},
+            </if>
+            <if test="intputAjDate != null">
+                #{intputAjDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="inputAjStatus != null">
+                #{inputAjStatus,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.tedu.ttms.car.entity.UserCar">
+        <!--@mbg.generated-->
+        update user_car
+        <set>
+            <if test="openId != null">
+                open_id = #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="number != null">
+                `number` = #{number,jdbcType=VARCHAR},
+            </if>
+            <if test="comment != null">
+                `comment` = #{comment,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="carNum != null">
+                car_num = #{carNum,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="times != null">
+                times = #{times,jdbcType=VARCHAR},
+            </if>
+            <if test="prices != null">
+                prices = #{prices,jdbcType=VARCHAR},
+            </if>
+            <if test="timeSub != null">
+                time_sub = #{timeSub,jdbcType=VARCHAR},
+            </if>
+            <if test="carBrandNum != null">
+                car_brand_num = #{carBrandNum,jdbcType=VARCHAR},
+            </if>
+            <if test="carBeginDate != null">
+                car_begin_date = #{carBeginDate,jdbcType=VARCHAR},
+            </if>
+            <if test="carUse != null">
+                car_use = #{carUse,jdbcType=VARCHAR},
+            </if>
+            <if test="carDriveNum != null">
+                car_drive_num = #{carDriveNum,jdbcType=VARCHAR},
+            </if>
+            <if test="carPeople != null">
+                car_people = #{carPeople,jdbcType=VARCHAR},
+            </if>
+            <if test="carAddress != null">
+                car_address = #{carAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="carRegNum != null">
+                car_reg_num = #{carRegNum,jdbcType=VARCHAR},
+            </if>
+            <if test="carIdNum != null">
+                car_id_num = #{carIdNum,jdbcType=VARCHAR},
+            </if>
+            <if test="carType != null">
+                car_type = #{carType,jdbcType=VARCHAR},
+            </if>
+            <if test="carWeight != null">
+                car_weight = #{carWeight,jdbcType=VARCHAR},
+            </if>
+            <if test="carTowWeight != null">
+                car_tow_weight = #{carTowWeight,jdbcType=VARCHAR},
+            </if>
+            <if test="carLoadPeople != null">
+                car_load_people = #{carLoadPeople,jdbcType=VARCHAR},
+            </if>
+            <if test="carSize != null">
+                car_size = #{carSize,jdbcType=VARCHAR},
+            </if>
+            <if test="carTotalWeight != null">
+                car_total_weight = #{carTotalWeight,jdbcType=VARCHAR},
+            </if>
+            <if test="carRecordNum != null">
+                car_record_num = #{carRecordNum,jdbcType=VARCHAR},
+            </if>
+            <if test="carCheckLog != null">
+                car_check_log = #{carCheckLog,jdbcType=VARCHAR},
+            </if>
+            <if test="carFuel != null">
+                car_fuel = #{carFuel,jdbcType=VARCHAR},
+            </if>
+            <if test="carLoadApproved != null">
+                car_load_approved = #{carLoadApproved,jdbcType=VARCHAR},
+            </if>
+            <if test="carRemark != null">
+                car_remark = #{carRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="carImgFront != null">
+                car_img_front = #{carImgFront,jdbcType=VARCHAR},
+            </if>
+            <if test="carImgBack != null">
+                car_img_back = #{carImgBack,jdbcType=VARCHAR},
+            </if>
+            <if test="carAtType != null">
+                car_at_type = #{carAtType,jdbcType=VARCHAR},
+            </if>
+            <if test="carColor != null">
+                car_color = #{carColor,jdbcType=VARCHAR},
+            </if>
+            <if test="carDriveType != null">
+                car_drive_type = #{carDriveType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="carOut != null">
+                car_out = #{carOut,jdbcType=VARCHAR},
+            </if>
+            <if test="carMileage != null">
+                car_mileage = #{carMileage,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payData != null">
+                pay_data = #{payData,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="printStatus != null">
+                print_status = #{printStatus,jdbcType=INTEGER},
+            </if>
+            <if test="inputUserId != null">
+                input_user_id = #{inputUserId,jdbcType=INTEGER},
+            </if>
+            <if test="inputDate != null">
+                input_date = #{inputDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="inputStatus != null">
+                input_status = #{inputStatus,jdbcType=INTEGER},
+            </if>
+            <if test="inputAjId != null">
+                input_aj_id = #{inputAjId,jdbcType=INTEGER},
+            </if>
+            <if test="intputAjDate != null">
+                intput_aj_date = #{intputAjDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="inputAjStatus != null">
+                input_aj_status = #{inputAjStatus,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.tedu.ttms.car.entity.UserCar">
+        <!--@mbg.generated-->
+        update user_car
+        set open_id = #{openId,jdbcType=VARCHAR},
         `number` = #{number,jdbcType=VARCHAR},
-      </if>
-      <if test="comment != null">
         `comment` = #{comment,jdbcType=VARCHAR},
-      </if>
-      <if test="username != null">
         username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="carNum != null">
         car_num = #{carNum,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
         mobile = #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="times != null">
         times = #{times,jdbcType=VARCHAR},
-      </if>
-      <if test="prices != null">
         prices = #{prices,jdbcType=VARCHAR},
-      </if>
-      <if test="timeSub != null">
         time_sub = #{timeSub,jdbcType=VARCHAR},
-      </if>
-      <if test="carBrandNum != null">
         car_brand_num = #{carBrandNum,jdbcType=VARCHAR},
-      </if>
-      <if test="carBeginDate != null">
         car_begin_date = #{carBeginDate,jdbcType=VARCHAR},
-      </if>
-      <if test="carUse != null">
         car_use = #{carUse,jdbcType=VARCHAR},
-      </if>
-      <if test="carDriveNum != null">
         car_drive_num = #{carDriveNum,jdbcType=VARCHAR},
-      </if>
-      <if test="carPeople != null">
         car_people = #{carPeople,jdbcType=VARCHAR},
-      </if>
-      <if test="carAddress != null">
         car_address = #{carAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="carRegNum != null">
         car_reg_num = #{carRegNum,jdbcType=VARCHAR},
-      </if>
-      <if test="carIdNum != null">
         car_id_num = #{carIdNum,jdbcType=VARCHAR},
-      </if>
-      <if test="carType != null">
         car_type = #{carType,jdbcType=VARCHAR},
-      </if>
-      <if test="carWeight != null">
         car_weight = #{carWeight,jdbcType=VARCHAR},
-      </if>
-      <if test="carTowWeight != null">
         car_tow_weight = #{carTowWeight,jdbcType=VARCHAR},
-      </if>
-      <if test="carLoadPeople != null">
         car_load_people = #{carLoadPeople,jdbcType=VARCHAR},
-      </if>
-      <if test="carSize != null">
         car_size = #{carSize,jdbcType=VARCHAR},
-      </if>
-      <if test="carTotalWeight != null">
         car_total_weight = #{carTotalWeight,jdbcType=VARCHAR},
-      </if>
-      <if test="carRecordNum != null">
         car_record_num = #{carRecordNum,jdbcType=VARCHAR},
-      </if>
-      <if test="carCheckLog != null">
         car_check_log = #{carCheckLog,jdbcType=VARCHAR},
-      </if>
-      <if test="carFuel != null">
         car_fuel = #{carFuel,jdbcType=VARCHAR},
-      </if>
-      <if test="carLoadApproved != null">
         car_load_approved = #{carLoadApproved,jdbcType=VARCHAR},
-      </if>
-      <if test="carRemark != null">
         car_remark = #{carRemark,jdbcType=VARCHAR},
-      </if>
-      <if test="carImgFront != null">
         car_img_front = #{carImgFront,jdbcType=VARCHAR},
-      </if>
-      <if test="carImgBack != null">
         car_img_back = #{carImgBack,jdbcType=VARCHAR},
-      </if>
-      <if test="carAtType != null">
         car_at_type = #{carAtType,jdbcType=VARCHAR},
-      </if>
-      <if test="carColor != null">
         car_color = #{carColor,jdbcType=VARCHAR},
-      </if>
-      <if test="carDriveType != null">
         car_drive_type = #{carDriveType,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
         `status` = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="carOut != null">
         car_out = #{carOut,jdbcType=VARCHAR},
-      </if>
-      <if test="carMileage != null">
         car_mileage = #{carMileage,jdbcType=VARCHAR},
-      </if>
-      <if test="payTime != null">
         pay_time = #{payTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="payData != null">
         pay_data = #{payData,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
         `type` = #{type,jdbcType=INTEGER},
-      </if>
-      <if test="printStatus != null">
         print_status = #{printStatus,jdbcType=INTEGER},
-      </if>
-      <if test="inputUserId != null">
         input_user_id = #{inputUserId,jdbcType=INTEGER},
-      </if>
-      <if test="inputDate != null">
         input_date = #{inputDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="inputStatus != null">
         input_status = #{inputStatus,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.tedu.ttms.car.entity.UserCar">
-    <!--@mbg.generated-->
-    update user_car
-    set open_id = #{openId,jdbcType=VARCHAR},
-      `number` = #{number,jdbcType=VARCHAR},
-      `comment` = #{comment,jdbcType=VARCHAR},
-      username = #{username,jdbcType=VARCHAR},
-      car_num = #{carNum,jdbcType=VARCHAR},
-      mobile = #{mobile,jdbcType=VARCHAR},
-      times = #{times,jdbcType=VARCHAR},
-      prices = #{prices,jdbcType=VARCHAR},
-      time_sub = #{timeSub,jdbcType=VARCHAR},
-      car_brand_num = #{carBrandNum,jdbcType=VARCHAR},
-      car_begin_date = #{carBeginDate,jdbcType=VARCHAR},
-      car_use = #{carUse,jdbcType=VARCHAR},
-      car_drive_num = #{carDriveNum,jdbcType=VARCHAR},
-      car_people = #{carPeople,jdbcType=VARCHAR},
-      car_address = #{carAddress,jdbcType=VARCHAR},
-      car_reg_num = #{carRegNum,jdbcType=VARCHAR},
-      car_id_num = #{carIdNum,jdbcType=VARCHAR},
-      car_type = #{carType,jdbcType=VARCHAR},
-      car_weight = #{carWeight,jdbcType=VARCHAR},
-      car_tow_weight = #{carTowWeight,jdbcType=VARCHAR},
-      car_load_people = #{carLoadPeople,jdbcType=VARCHAR},
-      car_size = #{carSize,jdbcType=VARCHAR},
-      car_total_weight = #{carTotalWeight,jdbcType=VARCHAR},
-      car_record_num = #{carRecordNum,jdbcType=VARCHAR},
-      car_check_log = #{carCheckLog,jdbcType=VARCHAR},
-      car_fuel = #{carFuel,jdbcType=VARCHAR},
-      car_load_approved = #{carLoadApproved,jdbcType=VARCHAR},
-      car_remark = #{carRemark,jdbcType=VARCHAR},
-      car_img_front = #{carImgFront,jdbcType=VARCHAR},
-      car_img_back = #{carImgBack,jdbcType=VARCHAR},
-      car_at_type = #{carAtType,jdbcType=VARCHAR},
-      car_color = #{carColor,jdbcType=VARCHAR},
-      car_drive_type = #{carDriveType,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      `status` = #{status,jdbcType=INTEGER},
-      car_out = #{carOut,jdbcType=VARCHAR},
-      car_mileage = #{carMileage,jdbcType=VARCHAR},
-      pay_time = #{payTime,jdbcType=TIMESTAMP},
-      pay_data = #{payData,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=INTEGER},
-      print_status = #{printStatus,jdbcType=INTEGER},
-      input_user_id = #{inputUserId,jdbcType=INTEGER},
-      input_date = #{inputDate,jdbcType=TIMESTAMP},
-      input_status = #{inputStatus,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        input_aj_id = #{inputAjId,jdbcType=INTEGER},
+        intput_aj_date = #{intputAjDate,jdbcType=TIMESTAMP},
+        input_aj_status = #{inputAjStatus,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 
-<!--auto generated by MybatisCodeHelper on 2019-12-06-->
-  <select id="selectByAll" resultMap="BaseResultMap">
+    <!--auto generated by MybatisCodeHelper on 2019-12-06-->
+    <select id="selectByAll" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from user_car
@@ -704,12 +741,34 @@
             and input_date=#{inputDate,jdbcType=TIMESTAMP}
         </if>
         <if test="inputStatus != null">
-            and input_status &lt;=#{inputStatus,jdbcType=INTEGER}
+            and ( input_status &lt;=#{inputStatus,jdbcType=INTEGER} or input_status &lt;=#{inputAjStatus,jdbcType=INTEGER}
+            )
         </if>
         order by create_time desc;
     </select>
 
-    <select id="selectSubTimes" resultType="java.util.Map" parameterType="java.lang.Integer">
+    <select id="selectSubTimes" parameterType="java.lang.Integer" resultType="java.util.Map">
         select * from type where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByAllByPage"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_car
+        <where>
+            1=1
+            <if test="entity.inputUserId!=null and entity.inputUserId!=''">
+                and input_user_id = #{entity.inputUserId}
+            </if>
+            <if test="entity.inputAjId!=null and entity.inputAjId!=''">
+                and input_aj_id=#{entity.inputAjId}
+            </if>
+        </where>
+        order by create_time desc
+        <if
+                test="pageObj!=null and pageObj.pageSize != 0 and pageObj.pageSize != null">
+            LIMIT #{pageObj.startIndex},#{pageObj.pageSize}
+        </if>
     </select>
 </mapper>

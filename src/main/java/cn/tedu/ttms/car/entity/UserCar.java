@@ -6,224 +6,239 @@ public class UserCar {
     private Integer id;
 
     /**
-    * wx open_id
-    */
+     * wx open_id
+     */
     private String openId;
 
     /**
-    * 预约单号
-    */
+     * 预约单号
+     */
     private String number;
 
     /**
-    * 备注
-    */
+     * 备注
+     */
     private String comment;
 
     /**
-    * 姓名
-    */
+     * 姓名
+     */
     private String username;
 
     /**
-    * 车牌号
-    */
+     * 车牌号
+     */
     private String carNum;
 
     /**
-    * 联系方式
-    */
+     * 联系方式
+     */
     private String mobile;
 
     /**
-    * 预约日期
-    */
+     * 预约日期
+     */
     private String times;
 
     /**
-    * 付费金额
-    */
+     * 付费金额
+     */
     private String prices;
 
     /**
-    * 预约时间端
-    */
+     * 预约时间端
+     */
     private String timeSub;
 
     /**
-    * 品牌型号
-    */
+     * 品牌型号
+     */
     private String carBrandNum;
 
     /**
-    * 发证日期
-    */
+     * 发证日期
+     */
     private String carBeginDate;
 
     /**
-    * 使用性质
-    */
+     * 使用性质
+     */
     private String carUse;
 
     /**
-    * 发动机号码
-    */
+     * 发动机号码
+     */
     private String carDriveNum;
 
     /**
-    * 所有人
-    */
+     * 所有人
+     */
     private String carPeople;
 
     /**
-    * 住址
-    */
+     * 住址
+     */
     private String carAddress;
 
     /**
-    * 注册日期
-    */
+     * 注册日期
+     */
     private String carRegNum;
 
     /**
-    * 车辆识别代号
-    */
+     * 车辆识别代号
+     */
     private String carIdNum;
 
     /**
-    * 车辆类型
-    */
+     * 车辆类型
+     */
     private String carType;
 
     /**
-    * 整备质量
-    */
+     * 整备质量
+     */
     private String carWeight;
 
     /**
-    * 准牵引总质量
-    */
+     * 准牵引总质量
+     */
     private String carTowWeight;
 
     /**
-    * 核定载人数
-    */
+     * 核定载人数
+     */
     private String carLoadPeople;
 
     /**
-    * 外廓尺寸
-    */
+     * 外廓尺寸
+     */
     private String carSize;
 
     /**
-    * 总质量
-    */
+     * 总质量
+     */
     private String carTotalWeight;
 
     /**
-    * 档案编号
-    */
+     * 档案编号
+     */
     private String carRecordNum;
 
     /**
-    * 检验记录
-    */
+     * 检验记录
+     */
     private String carCheckLog;
 
     /**
-    * 燃油类型
-    */
+     * 燃油类型
+     */
     private String carFuel;
 
     /**
-    * 核定载质量
-    */
+     * 核定载质量
+     */
     private String carLoadApproved;
 
     /**
-    * 备注
-    */
+     * 备注
+     */
     private String carRemark;
 
     /**
-    * 行驶证正面
-    */
+     * 行驶证正面
+     */
     private String carImgFront;
 
     /**
-    * 行驶证背面
-    */
+     * 行驶证背面
+     */
     private String carImgBack;
 
     /**
-    * 变速箱类型 1:手动 2:自动 3手自一体
-    */
+     * 变速箱类型 1:手动 2:自动 3手自一体
+     */
     private String carAtType;
 
     /**
-    * 车身颜色 1:A-白 2:B-灰 3:C-黄 4:D-粉 5:E-红 6:F-紫 7:G-绿 8:H-蓝 9:I-棕 1:J-黑 1:Z-其他
-    */
+     * 车身颜色 1:A-白 2:B-灰 3:C-黄 4:D-粉 5:E-红 6:F-紫 7:G-绿 8:H-蓝 9:I-棕 1:J-黑 1:Z-其他
+     */
     private String carColor;
 
     /**
-    * 驱动形式 1:前驱 2:后驱 3:全时四驱 4:适时四驱 5:分时四驱
-    */
+     * 驱动形式 1:前驱 2:后驱 3:全时四驱 4:适时四驱 5:分时四驱
+     */
     private String carDriveType;
 
     /**
-    * 创建时间
-    */
+     * 创建时间
+     */
     private Date createTime;
 
     /**
-    * 状态  1:未支付 2:已支付 3:审核通过 4:已完成
-    */
+     * 状态  1:未支付 2:已支付 3:审核通过 4:已完成
+     */
     private Integer status;
 
     /**
-    * 排量
-    */
+     * 排量
+     */
     private String carOut;
 
     /**
-    * 公里数
-    */
+     * 公里数
+     */
     private String carMileage;
 
     /**
-    * 支付时间
-    */
+     * 支付时间
+     */
     private Date payTime;
 
     /**
-    * 支付数据包
-    */
+     * 支付数据包
+     */
     private String payData;
 
     /**
-    * 1: 现场 2: 预约
-    */
+     * 1: 现场 2: 预约
+     */
     private Integer type;
 
     /**
-    * 1:未打印 1:已打印
-    */
+     * 1:未打印 1:已打印
+     */
     private Integer printStatus;
 
     /**
-    * 录入人员ID
-    */
+     * 环保录入人员ID
+     */
     private Integer inputUserId;
 
     /**
-    * 录入时间
-    */
+     * 环保录入时间
+     */
     private Date inputDate;
 
     /**
-    * 1:未录入 2:录入中 3:录入结束
-    */
+     * 环保录入状态 1:未录入 2:录入中 3:录入结束
+     */
     private Integer inputStatus;
+
+    /**
+     * 安检录入人员ID
+     */
+    private Integer inputAjId;
+
+    /**
+     * 安检录入时间
+     */
+    private Date intputAjDate;
+
+    /**
+     * 安检录入状态 1:未录入 2:录入中 3:录入结束
+     */
+    private Integer inputAjStatus;
 
     public Integer getId() {
         return id;
@@ -583,5 +598,29 @@ public class UserCar {
 
     public void setInputStatus(Integer inputStatus) {
         this.inputStatus = inputStatus;
+    }
+
+    public Integer getInputAjId() {
+        return inputAjId;
+    }
+
+    public void setInputAjId(Integer inputAjId) {
+        this.inputAjId = inputAjId;
+    }
+
+    public Date getIntputAjDate() {
+        return intputAjDate;
+    }
+
+    public void setIntputAjDate(Date intputAjDate) {
+        this.intputAjDate = intputAjDate;
+    }
+
+    public Integer getInputAjStatus() {
+        return inputAjStatus;
+    }
+
+    public void setInputAjStatus(Integer inputAjStatus) {
+        this.inputAjStatus = inputAjStatus;
     }
 }
