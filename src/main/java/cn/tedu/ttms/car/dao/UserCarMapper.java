@@ -1,10 +1,6 @@
 package cn.tedu.ttms.car.dao;
 
-import cn.tedu.ttms.car.entity.UserCar;
-import cn.tedu.ttms.common.web.PageObject;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;import java.util.Map;
+import cn.tedu.ttms.car.entity.UserCar;import cn.tedu.ttms.common.web.PageObject;import org.apache.ibatis.annotations.Param;import java.util.List;import java.util.Map;
 
 public interface UserCarMapper {
     int deleteByPrimaryKey(Integer id);
@@ -23,5 +19,5 @@ public interface UserCarMapper {
 
     Map<String, Object> selectSubTimes(Integer id);
 
-    List<UserCar> selectByAllByPage(@Param("entity")UserCar userCar,@Param("pageObj") PageObject pageObject);
+    List<UserCar> selectByAllByPage(@Param("entity") UserCar userCar, @Param("pageObj") PageObject pageObject);
 }

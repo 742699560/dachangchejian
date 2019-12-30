@@ -166,7 +166,7 @@ public class UserCar {
     private String carColor;
 
     /**
-     * 驱动形式 1:前驱 2:后驱 3:全时四驱 4:适时四驱 5:分时四驱
+     * 驱动形式 1:前驱 2:后驱 3:四驱
      */
     private String carDriveType;
 
@@ -239,6 +239,21 @@ public class UserCar {
      * 安检录入状态 1:未录入 2:录入中 3:录入结束
      */
     private Integer inputAjStatus;
+
+    /**
+     * 附件图片1
+     */
+    private String attachment1;
+
+    /**
+     * 附件图片2
+     */
+    private String attachment2;
+
+    /**
+     * 附件图片3
+     */
+    private String attachment3;
 
     public Integer getId() {
         return id;
@@ -622,5 +637,29 @@ public class UserCar {
 
     public void setInputAjStatus(Integer inputAjStatus) {
         this.inputAjStatus = inputAjStatus;
+    }
+
+    public String getAttachment1() {
+        return attachment1;
+    }
+
+    public void setAttachment1(String attachment1) {
+        this.attachment1 = attachment1;
+    }
+
+    public String getAttachment2() {
+        return attachment2;
+    }
+
+    public void setAttachment2(String attachment2) {
+        this.attachment2 = attachment2;
+    }
+
+    public String getAttachment3() {
+        return attachment3;
+    }
+
+    public void setAttachment3(String attachment3) {
+        this.attachment3 = attachment3;
     }
 }
