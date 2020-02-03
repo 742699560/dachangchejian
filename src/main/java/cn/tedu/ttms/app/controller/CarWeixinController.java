@@ -33,15 +33,21 @@ public class CarWeixinController extends BaseController {
     @RequestMapping("/queryPayData")
     @CrossOrigin(origins = "*")
     @ResponseBody
-    public Map<String, Object> queryPayData() {
+    public Map<String, Object> queryPayData(@RequestParam(required = false,defaultValue = "0") Integer id) {
         UserCar param = new UserCar();
         param.setStatus(2);
         param.setInputStatus(2);
         param.setInputAjStatus(2);
+        boolean hasNew = false;
         List<UserCar> list = userCarService.selectByAll(param);
+        if (list.size() > 0 && id != 0) {
+            if (list.get(0).getId().compareTo(id) != 0)
+                hasNew = true;
+        }
         Map<String, Object> map = new HashMap();
         map.put("state", 1);
         map.put("data", list);
+        map.put("hasNew", hasNew);
         map.put("message", "查询成功!");
         return map;
     }
@@ -49,7 +55,7 @@ public class CarWeixinController extends BaseController {
     @RequestMapping("/inputBeginData")
     @CrossOrigin(origins = "*")
     @ResponseBody
-    public Map<String, Object> inputBeginData(@RequestParam Integer id, @RequestParam Integer userId,@RequestParam Integer type) {
+    public Map<String, Object> inputBeginData(@RequestParam Integer id, @RequestParam Integer userId, @RequestParam Integer type) {
         UserCar userCar = userCarService.selectByPrimaryKey(id);
 
 
@@ -61,11 +67,11 @@ public class CarWeixinController extends BaseController {
             CUser cUser = cUserService.selectByPrimaryKey(userCar.getInputAjId());
             throw new AppException("该数据已被用户【" + cUser.getName() + "】安检录入中");
         }
-        if(type == 1) {
+        if (type == 1) {
             userCar.setInputStatus(2);
             userCar.setInputUserId(userId);
             userCar.setInputDate(new Date());
-        }else if(type == 2){
+        } else if (type == 2) {
             userCar.setInputAjId(userId);
             userCar.setInputAjStatus(2);
             userCar.setIntputAjDate(new Date());
@@ -131,7 +137,7 @@ public class CarWeixinController extends BaseController {
                 userCar.setCarAtType("其他");
                 break;
         }
-        userCar.setTimeSub(userCar.getId()+"");
+        userCar.setTimeSub(userCar.getId() + "");
         ObjectUtil.nullToEmpty(userCar);
         Map<String, Object> map = new HashMap();
         map.put("state", 1);
@@ -144,18 +150,18 @@ public class CarWeixinController extends BaseController {
     @RequestMapping("/inputOverData")
     @CrossOrigin(origins = "*")
     @ResponseBody
-    public Map<String, Object> inputOverData(@RequestParam Integer id, @RequestParam Integer userId,@RequestParam Integer type) {
+    public Map<String, Object> inputOverData(@RequestParam Integer id, @RequestParam Integer userId, @RequestParam Integer type) {
         UserCar userCar = userCarService.selectByPrimaryKey(id);
         CUser cUser = cUserService.selectByPrimaryKey(userId);
         if (userId != userCar.getInputUserId() && type == 1)
             throw new AppException("当前数据正在被用户【" + cUser.getName() + "】环保录入中");
         if (userId != userCar.getInputAjId() && type == 2)
             throw new AppException("当前数据正在被用户【" + cUser.getName() + "】安检录入中");
-        if(type == 1) {
+        if (type == 1) {
             userCar.setInputStatus(3);
             userCar.setInputUserId(userId);
             userCar.setInputDate(new Date());
-        }else if(type == 2){
+        } else if (type == 2) {
             userCar.setInputAjId(userId);
             userCar.setInputAjStatus(3);
             userCar.setIntputAjDate(new Date());
@@ -186,16 +192,16 @@ public class CarWeixinController extends BaseController {
     @RequestMapping("/queryInputData")
     @CrossOrigin(origins = "*")
     @ResponseBody
-    public Map<String, Object> queryInputData(@RequestParam Integer userId,@RequestParam(defaultValue = "0") Integer pageNum,@RequestParam(defaultValue = "10") Integer pageSize,@RequestParam Integer type) {
-         PageObject pageObject = new PageObject();
+    public Map<String, Object> queryInputData(@RequestParam Integer userId, @RequestParam(defaultValue = "0") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize, @RequestParam Integer type) {
+        PageObject pageObject = new PageObject();
         pageObject.setStartIndex(pageNum);
         pageObject.setPageSize(pageSize);
         UserCar param = new UserCar();
-        if(type == 1)
+        if (type == 1)
             param.setInputUserId(userId);
         else
             param.setInputAjId(userId);
-        Map<String, Object> dataMap =userCarService.selectByAllByPage(param,pageObject);
+        Map<String, Object> dataMap = userCarService.selectByAllByPage(param, pageObject);
         Map<String, Object> map = new HashMap();
         map.put("state", 1);
         map.put("data", dataMap);
