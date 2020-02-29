@@ -1,6 +1,9 @@
 package com.dccj.service;
 
 import com.dccj.entity.CarCenter;
+
+import java.util.List;
+
 public interface CarCenterService{
 
 
@@ -16,4 +19,5 @@ public interface CarCenterService{
 
     int updateByPrimaryKey(CarCenter record);
 
+    List<CarCenter> selectAllByUserId(Integer userId);
 }

@@ -1,8 +1,10 @@
 package com.dccj.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,8 +58,7 @@ public class RespEntity implements java.io.Serializable {
             this.data = (JSONObject) data;
         } else if (data instanceof String) {
             this.data = JSON.parseObject((String) data);
-        }// else if (data instanceof JSONArray){}
-        else {
+        } else {
             this.data = (JSONObject) JSON.toJSON(data);
         }
     }

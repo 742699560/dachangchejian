@@ -1,24 +1,58 @@
 package com.dccj.controller;
 
+import com.dccj.entity.CarCenter;
+import com.dccj.entity.CompanyEntity;
 import com.dccj.entity.UserCar;
+import com.dccj.exception.AppException;
+import com.dccj.service.CarCenterService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/cars")
 public class CarManagerController extends BaseController {
 
-    @RequestMapping("/queryPayData")
+    @Resource
+    CarCenterService carCenterService;
+
+    @RequestMapping("/queryCars")
     @ResponseBody
-    public RespEntity queryPayData(@RequestParam String userId) {
-        UserCar param = new UserCar();
-        param.setStatus(2);
-        param.setInputStatus(2);
-        param.setInputAjStatus(2);
-        RespEntity respEntity= new RespEntity();
+    public RespEntity queryCars(@RequestParam Integer userId) {
+        List<CarCenter> list = carCenterService.selectAllByUserId(userId);
+        RespEntity respEntity = new RespEntity();
+        respEntity.putListData(list);
         return respEntity;
     }
+
+    @RequestMapping("/updateCars")
+    @ResponseBody
+    public RespEntity updateCars(CarCenter carCenter) {
+        RespEntity respEntity = new RespEntity();
+        if (carCenter.getId() == null)
+            throw new AppException("参数错误");
+        carCenterService.updateByPrimaryKeySelective(carCenter);
+        respEntity.setData(carCenter);
+        return respEntity;
+    }
+
+    @RequestMapping("/delCars")
+    @ResponseBody
+    public RespEntity delCars(@RequestParam Integer id) {
+        carCenterService.deleteByPrimaryKey(id);
+        RespEntity respEntity = new RespEntity();
+        return respEntity;
+    }
+
+
+    @RequestMapping("/readCarInfo")
+    @ResponseBody
+    public RespEntity readCarInfo(@RequestParam Integer id) {
+        carCenterService.deleteByPrimaryKey(id);
+        RespEntity respEntity = new RespEntity();
+        return respEntity;
+    }
+
+
 }

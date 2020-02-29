@@ -1,6 +1,8 @@
 package com.dccj.dao;
+import java.util.List;
 
 import com.dccj.entity.CarCenter;
+import org.apache.ibatis.annotations.Param;
 
 public interface CarCenterMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +16,7 @@ public interface CarCenterMapper {
     int updateByPrimaryKeySelective(CarCenter record);
 
     int updateByPrimaryKey(CarCenter record);
+
+    List<CarCenter> selectAllByUserId(@Param("userId")Integer userId);
+
 }

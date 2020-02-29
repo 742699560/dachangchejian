@@ -5,6 +5,9 @@ import javax.annotation.Resource;
 import com.dccj.entity.CarCenter;
 import com.dccj.dao.CarCenterMapper;
 import com.dccj.service.CarCenterService;
+
+import java.util.List;
+
 @Service
 public class CarCenterServiceImpl implements CarCenterService{
 
@@ -41,4 +44,8 @@ public class CarCenterServiceImpl implements CarCenterService{
         return carCenterMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public List<CarCenter> selectAllByUserId(Integer userId) {
+        return carCenterMapper.selectAllByUserId(userId);
+    }
 }
