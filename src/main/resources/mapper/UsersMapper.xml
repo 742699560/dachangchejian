@@ -36,7 +36,7 @@
     delete from users
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.dccj.entity.Users">
+  <insert id="insert" parameterType="com.dccj.entity.Users"  keyColumn="id" keyProperty="id"  useGeneratedKeys="true" >
     <!--@mbg.generated-->
     insert into users (id, open_id, nick_name, 
       sex, city, country, 
@@ -51,7 +51,7 @@
       #{groupId,jdbcType=INTEGER}, #{tagidList,jdbcType=VARCHAR}, #{appId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.dccj.entity.Users">
+  <insert id="insertSelective" parameterType="com.dccj.entity.Users" keyColumn="id" keyProperty="id"  useGeneratedKeys="true" >
     <!--@mbg.generated-->
     insert into users
     <trim prefix="(" suffix=")" suffixOverrides=",">

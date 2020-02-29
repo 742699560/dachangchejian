@@ -57,7 +57,7 @@
     delete from car_center
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.dccj.entity.CarCenter" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id"  useGeneratedKeys="true" parameterType="com.dccj.entity.CarCenter">
     <!--@mbg.generated-->
     insert into car_center (user_id, car_num, car_brand_num, 
       car_begin_date, car_use, car_drive_num, 

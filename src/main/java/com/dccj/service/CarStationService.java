@@ -1,6 +1,9 @@
 package com.dccj.service;
 
 import com.dccj.entity.CarStation;
+
+import java.util.List;
+
 public interface CarStationService{
 
 
@@ -16,4 +19,6 @@ public interface CarStationService{
 
     int updateByPrimaryKey(CarStation record);
 
+
+    List<CarStation> selectAllByNameLike(String likeName);
 }

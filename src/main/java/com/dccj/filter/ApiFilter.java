@@ -5,6 +5,7 @@ import com.dccj.controller.RespEntity;
 import com.dccj.uitl.HttpResponseUtil;
 import com.dccj.uitl.MD5Util;
 import org.springframework.http.HttpRequest;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -35,5 +36,9 @@ public class ApiFilter implements Filter {
         }
 
         filterChain.doFilter(servletRequest,servletResponse);
+    }
+
+    public static void main(String[] args){
+        System.out.println(MD5Util.md5("1" + "35e5c1b47ce3"));
     }
 }

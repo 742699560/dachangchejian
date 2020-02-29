@@ -72,7 +72,6 @@ public class FileUploadController {
 	 * 
 	 * 单个文件上传 可通过formData异步上传
 	 * 
-	 * @param myfiles
 	 * @param request
 	 * @return
 	 */

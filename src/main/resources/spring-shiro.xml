@@ -32,6 +32,7 @@
                  /static/** = anon
                  /bootstrap/** = anon
                  /jquery/** = anon
+                 /api/** = anon
                   /home.html = anon
                  <!-- 默认放行前端页面需要 -->
                  /frontend/** = anon

@@ -5,6 +5,9 @@ import javax.annotation.Resource;
 import com.dccj.entity.CarStation;
 import com.dccj.dao.CarStationMapper;
 import com.dccj.service.CarStationService;
+
+import java.util.List;
+
 @Service
 public class CarStationServiceImpl implements CarStationService{
 
@@ -41,4 +44,8 @@ public class CarStationServiceImpl implements CarStationService{
         return carStationMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public List<CarStation> selectAllByNameLike(String likeName) {
+        return carStationMapper.selectAllByNameLike(likeName);
+    }
 }

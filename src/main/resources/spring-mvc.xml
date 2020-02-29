@@ -57,8 +57,8 @@
 		</property>
    </bean>
     <mvc:interceptors>
+        <bean class="com.dccj.interceptor.AccessLogInterceptor"/>
         <!-- 跨域访问拦截器 -->
         <bean class="com.dccj.interceptor.ProcessInterceptor"/>
-
     </mvc:interceptors>
 </beans>
