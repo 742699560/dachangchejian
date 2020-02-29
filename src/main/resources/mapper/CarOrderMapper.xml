@@ -5,6 +5,7 @@
     <!--@mbg.generated-->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="station_id" jdbcType="INTEGER" property="stationId" />
     <result column="car_id" jdbcType="INTEGER" property="carId" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
@@ -33,10 +34,10 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, order_number, car_id, user_id, `comment`, username, car_num, mobile, times, prices, 
-    time_sub, pay_time, pay_data, `type`, print_status, input_user_id, input_date, input_status, 
-    input_aj_id, intput_aj_date, input_aj_status, attachment_1, attachment_2, attachment_3, 
-    print_number, create_time, update_time
+    id, order_number, station_id, car_id, user_id, `comment`, username, car_num, mobile, 
+    times, prices, time_sub, pay_time, pay_data, `type`, print_status, input_user_id, 
+    input_date, input_status, input_aj_id, intput_aj_date, input_aj_status, attachment_1, 
+    attachment_2, attachment_3, print_number, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -52,24 +53,26 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.dccj.entity.CarOrder" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into car_order (order_number, car_id, user_id, 
-      `comment`, username, car_num, 
-      mobile, times, prices, 
-      time_sub, pay_time, pay_data, 
-      `type`, print_status, input_user_id, 
-      input_date, input_status, input_aj_id, 
-      intput_aj_date, input_aj_status, attachment_1, 
-      attachment_2, attachment_3, print_number, 
-      create_time, update_time)
-    values (#{orderNumber,jdbcType=VARCHAR}, #{carId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, 
-      #{comment,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{carNum,jdbcType=VARCHAR}, 
-      #{mobile,jdbcType=VARCHAR}, #{times,jdbcType=VARCHAR}, #{prices,jdbcType=VARCHAR}, 
-      #{timeSub,jdbcType=VARCHAR}, #{payTime,jdbcType=TIMESTAMP}, #{payData,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER}, #{printStatus,jdbcType=INTEGER}, #{inputUserId,jdbcType=INTEGER}, 
-      #{inputDate,jdbcType=TIMESTAMP}, #{inputStatus,jdbcType=INTEGER}, #{inputAjId,jdbcType=INTEGER}, 
-      #{intputAjDate,jdbcType=TIMESTAMP}, #{inputAjStatus,jdbcType=INTEGER}, #{attachment1,jdbcType=VARCHAR}, 
-      #{attachment2,jdbcType=VARCHAR}, #{attachment3,jdbcType=VARCHAR}, #{printNumber,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    insert into car_order (order_number, station_id, car_id, 
+      user_id, `comment`, username, 
+      car_num, mobile, times, 
+      prices, time_sub, pay_time, 
+      pay_data, `type`, print_status, 
+      input_user_id, input_date, input_status, 
+      input_aj_id, intput_aj_date, input_aj_status, 
+      attachment_1, attachment_2, attachment_3, 
+      print_number, create_time, update_time
+      )
+    values (#{orderNumber,jdbcType=VARCHAR}, #{stationId,jdbcType=INTEGER}, #{carId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{carNum,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{times,jdbcType=VARCHAR}, 
+      #{prices,jdbcType=VARCHAR}, #{timeSub,jdbcType=VARCHAR}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{payData,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{printStatus,jdbcType=INTEGER}, 
+      #{inputUserId,jdbcType=INTEGER}, #{inputDate,jdbcType=TIMESTAMP}, #{inputStatus,jdbcType=INTEGER}, 
+      #{inputAjId,jdbcType=INTEGER}, #{intputAjDate,jdbcType=TIMESTAMP}, #{inputAjStatus,jdbcType=INTEGER}, 
+      #{attachment1,jdbcType=VARCHAR}, #{attachment2,jdbcType=VARCHAR}, #{attachment3,jdbcType=VARCHAR}, 
+      #{printNumber,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.dccj.entity.CarOrder" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -77,6 +80,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="orderNumber != null">
         order_number,
+      </if>
+      <if test="stationId != null">
+        station_id,
       </if>
       <if test="carId != null">
         car_id,
@@ -157,6 +163,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderNumber != null">
         #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        #{stationId,jdbcType=INTEGER},
       </if>
       <if test="carId != null">
         #{carId,jdbcType=INTEGER},
@@ -242,6 +251,9 @@
       <if test="orderNumber != null">
         order_number = #{orderNumber,jdbcType=VARCHAR},
       </if>
+      <if test="stationId != null">
+        station_id = #{stationId,jdbcType=INTEGER},
+      </if>
       <if test="carId != null">
         car_id = #{carId,jdbcType=INTEGER},
       </if>
@@ -324,6 +336,7 @@
     <!--@mbg.generated-->
     update car_order
     set order_number = #{orderNumber,jdbcType=VARCHAR},
+      station_id = #{stationId,jdbcType=INTEGER},
       car_id = #{carId,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=VARCHAR},
       `comment` = #{comment,jdbcType=VARCHAR},

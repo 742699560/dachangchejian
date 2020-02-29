@@ -1,7 +1,8 @@
 package com.dccj.service;
 
 import com.dccj.entity.CarTime;
-public interface CarTimeService{
+
+public interface CarTimeService {
 
 
     int deleteByPrimaryKey(Integer id);
@@ -17,3 +18,4 @@ public interface CarTimeService{
     int updateByPrimaryKey(CarTime record);
 
 }
+

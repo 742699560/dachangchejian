@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.dccj.entity.CarTime">
     <!--@mbg.generated-->
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="station_id" jdbcType="INTEGER" property="stationId" />
     <result column="time_sub" jdbcType="VARCHAR" property="timeSub" />
     <result column="time_num" jdbcType="INTEGER" property="timeNum" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -11,7 +12,7 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, time_sub, time_num, create_time, update_time
+    id, station_id, time_sub, time_num, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -27,15 +28,18 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.dccj.entity.CarTime" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into car_time (time_sub, time_num, create_time, 
-      update_time)
-    values (#{timeSub,jdbcType=VARCHAR}, #{timeNum,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+    insert into car_time (station_id, time_sub, time_num, 
+      create_time, update_time)
+    values (#{stationId,jdbcType=INTEGER}, #{timeSub,jdbcType=VARCHAR}, #{timeNum,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.dccj.entity.CarTime" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into car_time
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stationId != null">
+        station_id,
+      </if>
       <if test="timeSub != null">
         time_sub,
       </if>
@@ -50,6 +54,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stationId != null">
+        #{stationId,jdbcType=INTEGER},
+      </if>
       <if test="timeSub != null">
         #{timeSub,jdbcType=VARCHAR},
       </if>
@@ -68,6 +75,9 @@
     <!--@mbg.generated-->
     update car_time
     <set>
+      <if test="stationId != null">
+        station_id = #{stationId,jdbcType=INTEGER},
+      </if>
       <if test="timeSub != null">
         time_sub = #{timeSub,jdbcType=VARCHAR},
       </if>
@@ -86,7 +96,8 @@
   <update id="updateByPrimaryKey" parameterType="com.dccj.entity.CarTime">
     <!--@mbg.generated-->
     update car_time
-    set time_sub = #{timeSub,jdbcType=VARCHAR},
+    set station_id = #{stationId,jdbcType=INTEGER},
+      time_sub = #{timeSub,jdbcType=VARCHAR},
       time_num = #{timeNum,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}

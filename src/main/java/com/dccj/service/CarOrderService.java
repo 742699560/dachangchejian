@@ -1,7 +1,8 @@
 package com.dccj.service;
 
 import com.dccj.entity.CarOrder;
-public interface CarOrderService{
+
+public interface CarOrderService {
 
 
     int deleteByPrimaryKey(Integer id);
@@ -17,3 +18,4 @@ public interface CarOrderService{
     int updateByPrimaryKey(CarOrder record);
 
 }
+

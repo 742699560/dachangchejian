@@ -5,8 +5,9 @@ import javax.annotation.Resource;
 import com.dccj.entity.CarOrder;
 import com.dccj.dao.CarOrderMapper;
 import com.dccj.service.CarOrderService;
+
 @Service
-public class CarOrderServiceImpl implements CarOrderService{
+public class CarOrderServiceImpl implements CarOrderService {
 
     @Resource
     private CarOrderMapper carOrderMapper;
@@ -42,3 +43,4 @@ public class CarOrderServiceImpl implements CarOrderService{
     }
 
 }
+

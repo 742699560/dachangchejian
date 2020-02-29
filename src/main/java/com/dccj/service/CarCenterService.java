@@ -4,7 +4,7 @@ import com.dccj.entity.CarCenter;
 
 import java.util.List;
 
-public interface CarCenterService{
+public interface CarCenterService {
 
 
     int deleteByPrimaryKey(Integer id);
@@ -21,3 +21,4 @@ public interface CarCenterService{
 
     List<CarCenter> selectAllByUserId(Integer userId);
 }
+

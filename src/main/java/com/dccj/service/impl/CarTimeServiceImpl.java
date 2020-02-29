@@ -5,8 +5,9 @@ import javax.annotation.Resource;
 import com.dccj.entity.CarTime;
 import com.dccj.dao.CarTimeMapper;
 import com.dccj.service.CarTimeService;
+
 @Service
-public class CarTimeServiceImpl implements CarTimeService{
+public class CarTimeServiceImpl implements CarTimeService {
 
     @Resource
     private CarTimeMapper carTimeMapper;
@@ -42,3 +43,4 @@ public class CarTimeServiceImpl implements CarTimeService{
     }
 
 }
+

@@ -9,7 +9,7 @@ import com.dccj.service.CarCenterService;
 import java.util.List;
 
 @Service
-public class CarCenterServiceImpl implements CarCenterService{
+public class CarCenterServiceImpl implements CarCenterService {
 
     @Resource
     private CarCenterMapper carCenterMapper;
@@ -49,3 +49,4 @@ public class CarCenterServiceImpl implements CarCenterService{
         return carCenterMapper.selectAllByUserId(userId);
     }
 }
+
