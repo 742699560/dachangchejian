@@ -5,8 +5,9 @@ import javax.annotation.Resource;
 import com.dccj.dao.UsersMapper;
 import com.dccj.entity.Users;
 import com.dccj.service.UsersService;
+
 @Service
-public class UsersServiceImpl implements UsersService{
+public class UsersServiceImpl implements UsersService {
 
     @Resource
     private UsersMapper usersMapper;
@@ -42,3 +43,5 @@ public class UsersServiceImpl implements UsersService{
     }
 
 }
+
+

@@ -1,7 +1,8 @@
 package com.dccj.service;
 
 import com.dccj.entity.Users;
-public interface UsersService{
+
+public interface UsersService {
 
 
     int deleteByPrimaryKey(Integer id);
@@ -17,3 +18,5 @@ public interface UsersService{
     int updateByPrimaryKey(Users record);
 
 }
+
+
