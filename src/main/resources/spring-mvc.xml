@@ -22,7 +22,7 @@
      3)controller(@Controller)
      4).....
      -->
-    <context:component-scan base-package="cn.tedu.ttms" />
+    <context:component-scan base-package="com.dccj" />
     <!-- spring mvc 注解及类型转换 -->
     <mvc:annotation-driven conversion-service="conversionService" />
     <bean id="conversionService"
@@ -56,5 +56,9 @@
 			</list>
 		</property>
    </bean>
-     
+    <mvc:interceptors>
+        <!-- 跨域访问拦截器 -->
+        <bean class="com.dccj.interceptor.ProcessInterceptor"/>
+
+    </mvc:interceptors>
 </beans>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- classpath:mapper/ProjectMapper.xml -->
-<mapper namespace="cn.tedu.ttms.project.dao.ProjectDao">
+<mapper namespace="com.dccj.dao.ProjectDao">
 
 
 	<!-- 查询项目信息 -->
 	<select id="findPageObjects"
-		resultType="cn.tedu.ttms.project.entity.Project">
+		resultType="com.dccj.entity.Project">
 		select
 		p.tid,p.tname,p.type,p.content,p.lng,p.lat,p.ttid,p.ttime,p.path,b.tname
 		as ttname from travleurgent as p left join travel as b on p.ttid =
@@ -52,7 +52,7 @@
 			</if>
 		</where>
 	</select>
-	<select id="findParameterTime" resultType="cn.tedu.ttms.project.entity.ParameterEntity">
+	<select id="findParameterTime" resultType="com.dccj.entity.ParameterEntity">
 		SELECT COUNT(*) AS jan,
 		(SELECT COUNT(*) FROM travleurgent tt
 		WHERE DATE_FORMAT(tt.ttime,'%Y-%m') = CONCAT(YEAR(NOW()),'-02')) AS feb,
@@ -79,7 +79,7 @@
 		FROM travleurgent tt
 		WHERE DATE_FORMAT(tt.ttime,'%Y-%m') = CONCAT(YEAR(NOW()),'-01')
 	</select>
-	<insert id="insertObject" parameterType="cn.tedu.ttms.project.entity.Project">
+	<insert id="insertObject" parameterType="com.dccj.entity.Project">
 
 		INSERT INTO travleurgent
 		(

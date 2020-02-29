@@ -51,7 +51,7 @@
      </bean>
      
      <!-- 自定义Realm -->
-    <bean id="userRealm" class="cn.tedu.ttms.common.realm.UserRealm">
+    <bean id="userRealm" class="com.dccj.realm.UserRealm">
     	<!-- 配置凭证算法匹配器 -->
     	<property name="credentialsMatcher">
     		<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
