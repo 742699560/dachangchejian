@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.tedu.ttms.frontend.dao.FrontendDao">
+<mapper namespace="com.dccj.dao.FrontendDao">
 	
 	<select id="getlxsData" resultType="map">
 		select tname name,lng,lat from travel

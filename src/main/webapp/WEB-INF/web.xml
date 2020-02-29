@@ -19,6 +19,14 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 	<filter>
+		<filter-name>apiFilter</filter-name>
+		<filter-class>com.dccj.filter.ApiFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>apiFilter</filter-name>
+		<url-pattern>/api/*</url-pattern>
+	</filter-mapping>
+	<filter>
 		<filter-name>DelegatingFilterProxy</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 		<init-param>

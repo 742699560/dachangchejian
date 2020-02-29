@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.tedu.ttms.system.dao.UserDao">
+<mapper namespace="com.dccj.dao.UserDao">
 	<select id="findObjects" resultType="map">
 		select
 			id,
@@ -28,7 +28,7 @@
 			LIMIT #{pageObject.startIndex},#{pageObject.pageSize}
 		</if>
 	</select>
-	<select id="getRowCounts" parameterType="cn.tedu.ttms.system.entity.User" resultType="java.lang.Integer">
+	<select id="getRowCounts" parameterType="com.dccj.entity.User" resultType="java.lang.Integer">
 		select count(*) from sys_users
 		<where>
 			<if test="entity!=null and entity.username!=null and entity.username!=''">
@@ -42,7 +42,7 @@
 			</if>
 		</where>
 	</select>
-	<insert id="save" parameterType="cn.tedu.ttms.system.entity.User" useGeneratedKeys="true" keyProperty="entity.id">
+	<insert id="save" parameterType="com.dccj.entity.User" useGeneratedKeys="true" keyProperty="entity.id">
 		insert into
 			sys_users
 			(username,password,salt,utype,company,valid,createdTime,modifiedTime,performer,
@@ -65,7 +65,7 @@
 		where
 			id = #{id}
 	</select>
-	<update id="updateObject" parameterType="cn.tedu.ttms.system.entity.User">
+	<update id="updateObject" parameterType="com.dccj.entity.User">
 		update
 			sys_users
 		set
@@ -93,7 +93,7 @@
 	<select id="isExist" parameterType="java.lang.String" resultType="java.lang.Integer">
 		select count(*) from sys_users where valid=1 and username = #{username}
 	</select>
-	<select id="findObjectByName" parameterType="java.lang.String" resultType="cn.tedu.ttms.system.entity.User">
+	<select id="findObjectByName" parameterType="java.lang.String" resultType="com.dccj.entity.User">
 		select
 			id,
 			username,

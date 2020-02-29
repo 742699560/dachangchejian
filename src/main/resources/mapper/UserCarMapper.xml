@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.tedu.ttms.car.dao.UserCarMapper">
-  <resultMap id="BaseResultMap" type="cn.tedu.ttms.car.entity.UserCar">
+<mapper namespace="com.dccj.dao.UserCarMapper">
+  <resultMap id="BaseResultMap" type="com.dccj.entity.UserCar">
     <!--@mbg.generated-->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="open_id" jdbcType="VARCHAR" property="openId" />
@@ -78,7 +78,7 @@
     delete from user_car
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.tedu.ttms.car.entity.UserCar" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.dccj.entity.UserCar" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into user_car (open_id, `number`, `comment`, 
       username, car_num, mobile, 
@@ -115,7 +115,7 @@
       #{intputAjDate,jdbcType=TIMESTAMP}, #{inputAjStatus,jdbcType=INTEGER}, #{attachment1,jdbcType=VARCHAR}, 
       #{attachment2,jdbcType=VARCHAR}, #{attachment3,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.tedu.ttms.car.entity.UserCar" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.dccj.entity.UserCar" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into user_car
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -423,7 +423,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.tedu.ttms.car.entity.UserCar">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dccj.entity.UserCar">
     <!--@mbg.generated-->
     update user_car
     <set>
@@ -580,7 +580,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.tedu.ttms.car.entity.UserCar">
+  <update id="updateByPrimaryKey" parameterType="com.dccj.entity.UserCar">
     <!--@mbg.generated-->
     update user_car
     set open_id = #{openId,jdbcType=VARCHAR},

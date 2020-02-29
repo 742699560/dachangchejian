@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- classpath:mapper/ProjectMapper.xml -->
-<mapper namespace="cn.tedu.ttms.company.dao.CompanyDao">
+<mapper namespace="com.dccj.dao.CompanyDao">
 
 
 	<select id="findPageObjects"
-		resultType="cn.tedu.ttms.company.entity.CompanyEntity">
+		resultType="com.dccj.entity.CompanyEntity">
 		select * from company p
 		<where>
 			1=1
@@ -61,7 +61,7 @@
 		cid = #{cid}
 	</select>
 	<insert id="insertObject"
-		parameterType="cn.tedu.ttms.company.entity.CompanyEntity">
+		parameterType="com.dccj.entity.CompanyEntity">
 
 		INSERT INTO company
 		(
@@ -90,7 +90,7 @@
 		)
 	</insert>
 	<update id="updateObject"
-		parameterType="cn.tedu.ttms.company.entity.CompanyEntity">
+		parameterType="com.dccj.entity.CompanyEntity">
 		update company
 		set
 		cname=#{entity.cname},
@@ -110,7 +110,7 @@
 	</delete>
 
 	<!-- 企业检查 -->
-		<insert id="insertexamineforcom" parameterType="cn.tedu.ttms.company.entity.ExamineForcomEntity">
+		<insert id="insertexamineforcom" parameterType="com.dccj.entity.ExamineForcomEntity">
 
 		INSERT INTO examineforcom
 		(
@@ -129,7 +129,7 @@
 		)
 	</insert>
 	<select id="findCompanyRecord"
-		resultType="cn.tedu.ttms.company.entity.ExamineForcomEntity">
+		resultType="com.dccj.entity.ExamineForcomEntity">
 		select p.cid,p.eid,p.examinetime,p.content,p.result,p.exaname,b.cname as cname,b.type,b.serialnumber
 		from examineforcom as p left join company as b on p.cid = b.cid 
 		<where>
@@ -182,10 +182,10 @@
 		eid = #{eid}
 	</select>
 	
-	<select id="serchrCompanyPam" resultType="cn.tedu.ttms.company.entity.CompanyPamEntity">
+	<select id="serchrCompanyPam" resultType="com.dccj.entity.CompanyPamEntity">
 		select count(*)as comnumber from company p where type = 2
 	</select>
-	<select id="serchrTPam" resultType="cn.tedu.ttms.company.entity.CompanyPamEntity">
+	<select id="serchrTPam" resultType="com.dccj.entity.CompanyPamEntity">
 		select count(*)as tnumber from company p where type = 1
 	</select>
 	

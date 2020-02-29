@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.tedu.ttms.system.dao.RoleDao">
+<mapper namespace="com.dccj.dao.RoleDao">
 	<select id="findObjects" resultType="map">
 		select
 			id,
@@ -25,7 +25,7 @@
 			</if>
 		</where>
 	</select>
-	<insert id="save" parameterType="cn.tedu.ttms.system.entity.Role" useGeneratedKeys="true" keyProperty="entity.id">
+	<insert id="save" parameterType="com.dccj.entity.Role" useGeneratedKeys="true" keyProperty="entity.id">
 		insert into
 			sys_roles(name,note,createdTime,modifiedTime)
 		values
@@ -40,7 +40,7 @@
 		where
 			id = #{id}
 	</select>
-	<update id="updateObject" parameterType="cn.tedu.ttms.system.entity.Role">
+	<update id="updateObject" parameterType="com.dccj.entity.Role">
 		update
 			sys_roles
 		set

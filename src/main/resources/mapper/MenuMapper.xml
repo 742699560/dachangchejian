@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.tedu.ttms.system.dao.MenuDao">
+<mapper namespace="com.dccj.dao.MenuDao">
 	<select id="findObjects" resultType="map">
 		select
 			m.*,
@@ -26,7 +26,7 @@
 		from
 			sys_menus
 	</select>
-	<insert id="save" parameterType="cn.tedu.ttms.system.entity.Menu">
+	<insert id="save" parameterType="com.dccj.entity.Menu">
 		insert into
 			sys_menus(name,url,type,sort,parentId,permission,createdTime,modifiedTime)
 		values
@@ -48,7 +48,7 @@
 		where
 			m.id = #{id}
 	</select>
-	<update id="updateObject" parameterType="cn.tedu.ttms.system.entity.Menu">
+	<update id="updateObject" parameterType="com.dccj.entity.Menu">
 		update
 			sys_menus
 		set
