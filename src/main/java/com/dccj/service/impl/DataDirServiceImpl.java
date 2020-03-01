@@ -5,6 +5,9 @@ import javax.annotation.Resource;
 import com.dccj.dao.DataDirMapper;
 import com.dccj.entity.DataDir;
 import com.dccj.service.DataDirService;
+
+import java.util.List;
+
 @Service
 public class DataDirServiceImpl implements DataDirService{
 
@@ -41,4 +44,8 @@ public class DataDirServiceImpl implements DataDirService{
         return dataDirMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public List<DataDir> selectByType(String type) {
+        return dataDirMapper.selectByType(type);
+    }
 }

@@ -42,6 +42,10 @@ public class UsersServiceImpl implements UsersService {
         return usersMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public Users selectByUnionIdAndOpenIdAndId(String unionId, String openId, Integer id) {
+        return usersMapper.selectByUnionIdAndOpenIdAndId(unionId, openId, id);
+    }
 }
 
 

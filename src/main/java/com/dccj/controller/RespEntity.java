@@ -3,6 +3,7 @@ package com.dccj.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -16,6 +17,10 @@ public class RespEntity implements java.io.Serializable {
     private String status; //错误码
     private String message; //错误信息
     private JSONObject data; //数据项目
+
+    public String toString(){
+        return JSON.toJSONStringWithDateFormat(this, "yyyy-MM-dd HH:mm:ss", SerializerFeature.WriteMapNullValue );
+    }
 
     public RespEntity() {
         this(CODE_SUCCESS);
@@ -83,11 +88,12 @@ public class RespEntity implements java.io.Serializable {
         private static final long serialVersionUID = -5999012532729550843L;
         {
             put(CODE_PARAM_ERROR, "参数错误");
-            put(CODE_SYSTEM_BUSY, "系统繁忙，请稍候再试");
+            put(CODE_ERROR, "系统繁忙，请稍候再试");
+            put(CODE_ERROR_IDX, "数据重复");
             put(CODE_SUCCESS, "操作成功");
             put(CODE_USER_NOT_EXISTS, "用户不存在");
             put(CODE_USER_REGISTED, "用户已注册");
-
+            put(CODE_SMS_SEND_FAILED, "发送验证码失败");
             put(CODE_SMS_SEND_FAILED, "发送验证码失败");
             put(CODE_SMS_CODE_TRY_TO_MCUH, "发送验证码尝试次数过多");
             put(CODE_SMS_CODE_LOSE_EFFICACY, "验证码失效");
@@ -114,17 +120,17 @@ public class RespEntity implements java.io.Serializable {
     /**
      * 参数错误
      */
-    public static final String CODE_PARAM_ERROR = "-1";
+    public static final String CODE_PARAM_ERROR = "400";
 
     /**
-     * 业务错误
+     * 操作成功
      */
-    public static final String CODE_ERROR = "999999";
-
-    public static final String NO_DEVICE_ERROR = "888888";
-
-    public static final String CODE_AD_TIMER_AGAIN_ERROR = "999990";
-
+    public static final String CODE_SUCCESS = "200";
+    /**
+     * 系统繁忙
+     */
+    public static final String CODE_ERROR = "500";
+    public static final String CODE_ERROR_IDX = "510";
 
     //预算超限月预算
     public static final String CODE_AD_BUDGET_MONTH = "999991";
@@ -135,14 +141,7 @@ public class RespEntity implements java.io.Serializable {
     //APK没有下载成功
     public static final String CODE_AD_DOWNAPK = "999993";
 
-    /**
-     * 操作成功
-     */
-    public static final String CODE_SUCCESS = "200";
-    /**
-     * 系统繁忙
-     */
-    public static final String CODE_SYSTEM_BUSY = "9999";
+
     /**
      * 失败
      */

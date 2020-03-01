@@ -1,4 +1,6 @@
 package com.dccj.dao;
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
 
 import com.dccj.entity.Users;
 
@@ -14,4 +16,7 @@ public interface UsersMapper {
     int updateByPrimaryKeySelective(Users record);
 
     int updateByPrimaryKey(Users record);
+
+    Users selectByUnionIdAndOpenIdAndId(@Param("unionId")String unionId,@Param("openId")String openId,@Param("id")Integer id);
+
 }

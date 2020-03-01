@@ -1,6 +1,9 @@
 package com.dccj.service;
 
 import com.dccj.entity.DataDir;
+
+import java.util.List;
+
 public interface DataDirService{
 
 
@@ -16,4 +19,5 @@ public interface DataDirService{
 
     int updateByPrimaryKey(DataDir record);
 
+    List<DataDir> selectByType(String type);
 }

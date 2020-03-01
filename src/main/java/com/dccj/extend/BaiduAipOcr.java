@@ -20,7 +20,7 @@ public class BaiduAipOcr {
     public static JSONObject readCarImgByBaidu(String file, HashMap<String,String> map){
         // 初始化一个AipOcr
         AipOcr client = getInstance();
-        JSONObject res = client.basicGeneral(file, map);
+        JSONObject res = client.vehicleLicense(file, map);
         return res;
     }
 }

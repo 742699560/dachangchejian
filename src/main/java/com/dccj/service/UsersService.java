@@ -17,6 +17,7 @@ public interface UsersService {
 
     int updateByPrimaryKey(Users record);
 
+    Users selectByUnionIdAndOpenIdAndId(String unionId, String openId, Integer id);
 }
 
 
