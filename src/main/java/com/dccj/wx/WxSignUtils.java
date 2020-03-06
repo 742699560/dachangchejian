@@ -8,7 +8,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.io.UnsupportedEncodingException;  
 
-class Sign {
+public class WxSignUtils {
     public static void main(String[] args) {
         String jsapi_ticket = "jsapi_ticket";
 

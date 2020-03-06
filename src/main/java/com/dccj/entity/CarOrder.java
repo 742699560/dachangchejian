@@ -58,9 +58,9 @@ public class CarOrder {
     private String prices;
 
     /**
-     * 预约时间端
+     * 预约时间
      */
-    private String timeSub;
+    private Integer timeId;
 
     /**
      * 支付时间

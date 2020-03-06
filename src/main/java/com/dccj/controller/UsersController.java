@@ -1,8 +1,11 @@
 package com.dccj.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dccj.entity.Users;
 import com.dccj.exception.AppException;
 import com.dccj.service.UsersService;
+import com.dccj.service.WxService;
+import com.dccj.service.impl.WxServiceImpl;
 import com.dccj.wx.HttpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Map;
 
 @RestController
@@ -23,6 +28,8 @@ public class UsersController {
 
     @Resource
     private UsersService usersService;
+    @Resource
+    private WxService wxService;
 
     @RequestMapping("/registerUsers")
     @ResponseBody
@@ -56,27 +63,33 @@ public class UsersController {
     }
 
 
-    @RequestMapping("/getWXInfo")
+    @RequestMapping("/getOpenId")
     @ResponseBody
-    public RespEntity getWXInfo(@RequestParam String code) {
+    public RespEntity getOpenId(@RequestParam String code) {
         RespEntity respEntity = new RespEntity();
         if (StringUtils.isEmpty(code))
             throw new AppException("参数错误");
-        String url = this.requestUrl + "?appid=" + appId + "&secret=" + appSecret + "&js_code=" + code + "&grant_type="
-                + grantType;
+        String openId = wxService.getOpenId(code);
         // 发送请求
-        String data = HttpUtil.get(url);
-        log.debug("请求地址：{}", url);
-        log.debug("请求结果：{}", data);
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> json = null;
+        JSONObject ret = new JSONObject();
+        ret.put("openId", openId);
+        respEntity.setData(ret);
+        return respEntity;
+    }
+
+    @RequestMapping("/getWxJsConfig")
+    @ResponseBody
+    public RespEntity getWxJsConfig(@RequestParam String url) {
+        RespEntity respEntity = new RespEntity();
+        if (StringUtils.isEmpty(url))
+            throw new AppException("参数错误");
         try {
-            json = mapper.readValue(data, Map.class);
-        } catch (Exception e) {
-            e.printStackTrace();
+            url = URLDecoder.decode(url, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new AppException("url解码错误");
         }
-        // 形如{"session_key":"6w7Br3JsRQzBiGZwvlZAiA==","openid":"oQO565cXXXXXEvc4Q_YChUE8PqB60Y"}的字符串
-        respEntity.setData(json);
+        // 发送请求
+        respEntity.setData(wxService.getWxJsSdkData(url));
         return respEntity;
     }
 }

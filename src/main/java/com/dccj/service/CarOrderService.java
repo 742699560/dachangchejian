@@ -17,5 +17,7 @@ public interface CarOrderService {
 
     int updateByPrimaryKey(CarOrder record);
 
+    CarOrder createOrder(CarOrder carOrder);
 }
+
 

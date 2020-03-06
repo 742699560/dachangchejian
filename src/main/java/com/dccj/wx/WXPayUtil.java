@@ -1,7 +1,5 @@
 package com.dccj.wx;
 
-import com.dccj.wx.WXPayConstants;
-import com.dccj.wx.WXPayXmlUtil;
 import com.dccj.wx.WXPayConstants.SignType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

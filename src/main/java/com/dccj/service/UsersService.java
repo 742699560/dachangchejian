@@ -4,7 +4,6 @@ import com.dccj.entity.Users;
 
 public interface UsersService {
 
-
     int deleteByPrimaryKey(Integer id);
 
     int insert(Users record);

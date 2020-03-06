@@ -6,6 +6,8 @@ import com.dccj.entity.CarTime;
 import com.dccj.dao.CarTimeMapper;
 import com.dccj.service.CarTimeService;
 
+import java.util.List;
+
 @Service
 public class CarTimeServiceImpl implements CarTimeService {
 
@@ -42,5 +44,9 @@ public class CarTimeServiceImpl implements CarTimeService {
         return carTimeMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public List<CarTime> selectByStationIdOrderByTimeSub(Integer stationId) {
+        return carTimeMapper.selectByStationIdOrderByTimeSub(stationId);
+    }
 }
 

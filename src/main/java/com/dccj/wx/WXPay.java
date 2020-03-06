@@ -1,7 +1,6 @@
 package com.dccj.wx;
 
 import com.dccj.wx.WXPayConstants.SignType;
-
 import java.util.HashMap;
 import java.util.Map;
 

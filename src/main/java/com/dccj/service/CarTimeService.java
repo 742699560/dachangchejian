@@ -2,6 +2,8 @@ package com.dccj.service;
 
 import com.dccj.entity.CarTime;
 
+import java.util.List;
+
 public interface CarTimeService {
 
 
@@ -17,5 +19,6 @@ public interface CarTimeService {
 
     int updateByPrimaryKey(CarTime record);
 
+    List<CarTime> selectByStationIdOrderByTimeSub(Integer stationId);
 }
 

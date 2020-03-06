@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dccj.dao.WxTokenMapper">
+  <resultMap id="BaseResultMap" type="com.dccj.entity.WxToken">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="access_token" jdbcType="VARCHAR" property="accessToken" />
+    <result column="jsapi_ticket" jdbcType="VARCHAR" property="jsapiTicket" />
+    <result column="token_time" jdbcType="TIMESTAMP" property="tokenTime" />
+    <result column="jspai_time" jdbcType="TIMESTAMP" property="jspaiTime" />
+    <result column="access_token_user" jdbcType="VARCHAR" property="accessTokenUser" />
+    <result column="token_user_time" jdbcType="TIMESTAMP" property="tokenUserTime" />
+    <result column="refresh_token_user" jdbcType="VARCHAR" property="refreshTokenUser" />
+    <result column="refresh_user_time" jdbcType="TIMESTAMP" property="refreshUserTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, access_token, jsapi_ticket, token_time, jspai_time, access_token_user, token_user_time, 
+    refresh_token_user, refresh_user_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from wx_token
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from wx_token
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.dccj.entity.WxToken" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into wx_token (access_token, jsapi_ticket, token_time, 
+      jspai_time, access_token_user, token_user_time, 
+      refresh_token_user, refresh_user_time)
+    values (#{accessToken,jdbcType=VARCHAR}, #{jsapiTicket,jdbcType=VARCHAR}, #{tokenTime,jdbcType=TIMESTAMP}, 
+      #{jspaiTime,jdbcType=TIMESTAMP}, #{accessTokenUser,jdbcType=VARCHAR}, #{tokenUserTime,jdbcType=TIMESTAMP}, 
+      #{refreshTokenUser,jdbcType=VARCHAR}, #{refreshUserTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.dccj.entity.WxToken" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into wx_token
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accessToken != null">
+        access_token,
+      </if>
+      <if test="jsapiTicket != null">
+        jsapi_ticket,
+      </if>
+      <if test="tokenTime != null">
+        token_time,
+      </if>
+      <if test="jspaiTime != null">
+        jspai_time,
+      </if>
+      <if test="accessTokenUser != null">
+        access_token_user,
+      </if>
+      <if test="tokenUserTime != null">
+        token_user_time,
+      </if>
+      <if test="refreshTokenUser != null">
+        refresh_token_user,
+      </if>
+      <if test="refreshUserTime != null">
+        refresh_user_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accessToken != null">
+        #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="jsapiTicket != null">
+        #{jsapiTicket,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenTime != null">
+        #{tokenTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jspaiTime != null">
+        #{jspaiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accessTokenUser != null">
+        #{accessTokenUser,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenUserTime != null">
+        #{tokenUserTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refreshTokenUser != null">
+        #{refreshTokenUser,jdbcType=VARCHAR},
+      </if>
+      <if test="refreshUserTime != null">
+        #{refreshUserTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dccj.entity.WxToken">
+    <!--@mbg.generated-->
+    update wx_token
+    <set>
+      <if test="accessToken != null">
+        access_token = #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="jsapiTicket != null">
+        jsapi_ticket = #{jsapiTicket,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenTime != null">
+        token_time = #{tokenTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jspaiTime != null">
+        jspai_time = #{jspaiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accessTokenUser != null">
+        access_token_user = #{accessTokenUser,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenUserTime != null">
+        token_user_time = #{tokenUserTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refreshTokenUser != null">
+        refresh_token_user = #{refreshTokenUser,jdbcType=VARCHAR},
+      </if>
+      <if test="refreshUserTime != null">
+        refresh_user_time = #{refreshUserTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dccj.entity.WxToken">
+    <!--@mbg.generated-->
+    update wx_token
+    set access_token = #{accessToken,jdbcType=VARCHAR},
+      jsapi_ticket = #{jsapiTicket,jdbcType=VARCHAR},
+      token_time = #{tokenTime,jdbcType=TIMESTAMP},
+      jspai_time = #{jspaiTime,jdbcType=TIMESTAMP},
+      access_token_user = #{accessTokenUser,jdbcType=VARCHAR},
+      token_user_time = #{tokenUserTime,jdbcType=TIMESTAMP},
+      refresh_token_user = #{refreshTokenUser,jdbcType=VARCHAR},
+      refresh_user_time = #{refreshUserTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
