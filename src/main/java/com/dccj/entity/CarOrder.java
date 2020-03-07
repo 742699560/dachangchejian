@@ -1,5 +1,6 @@
 package com.dccj.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
 
@@ -53,9 +54,14 @@ public class CarOrder {
     private String times;
 
     /**
-     * 付费金额
+     * 订单金额
      */
-    private String prices;
+    private BigDecimal orderAmount;
+
+    /**
+     * 支付金额
+     */
+    private BigDecimal payAmount;
 
     /**
      * 预约时间
