@@ -79,6 +79,11 @@ public class CarOrder {
     private String payData;
 
     /**
+     * 订单状态
+     */
+    private Integer status;
+
+    /**
      * 1: 现场 2: 预约 3:其他
      */
     private Integer type;

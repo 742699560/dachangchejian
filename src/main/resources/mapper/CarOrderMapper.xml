@@ -18,6 +18,7 @@
     <result column="time_id" jdbcType="INTEGER" property="timeId" />
     <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
     <result column="pay_data" jdbcType="VARCHAR" property="payData" />
+    <result column="status" jdbcType="INTEGER" property="status" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="print_status" jdbcType="INTEGER" property="printStatus" />
     <result column="input_user_id" jdbcType="INTEGER" property="inputUserId" />
@@ -36,7 +37,7 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, order_number, station_id, car_id, user_id, `comment`, username, car_num, mobile, 
-    times, order_amount, pay_amount, time_id, pay_time, pay_data, `type`, print_status, 
+    times, order_amount, pay_amount, time_id, pay_time, pay_data, `status`, `type`, print_status, 
     input_user_id, input_date, input_status, input_aj_id, intput_aj_date, input_aj_status, 
     attachment_1, attachment_2, attachment_3, print_number, create_time, update_time
   </sql>
@@ -58,22 +59,22 @@
       user_id, `comment`, username, 
       car_num, mobile, times, 
       order_amount, pay_amount, time_id, 
-      pay_time, pay_data, `type`, 
-      print_status, input_user_id, input_date, 
-      input_status, input_aj_id, intput_aj_date, 
-      input_aj_status, attachment_1, attachment_2, 
-      attachment_3, print_number, create_time, 
-      update_time)
+      pay_time, pay_data, `status`, 
+      `type`, print_status, input_user_id, 
+      input_date, input_status, input_aj_id, 
+      intput_aj_date, input_aj_status, attachment_1, 
+      attachment_2, attachment_3, print_number, 
+      create_time, update_time)
     values (#{orderNumber,jdbcType=VARCHAR}, #{stationId,jdbcType=INTEGER}, #{carId,jdbcType=INTEGER}, 
       #{userId,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{carNum,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{times,jdbcType=VARCHAR}, 
       #{orderAmount,jdbcType=DECIMAL}, #{payAmount,jdbcType=DECIMAL}, #{timeId,jdbcType=INTEGER}, 
-      #{payTime,jdbcType=TIMESTAMP}, #{payData,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{printStatus,jdbcType=INTEGER}, #{inputUserId,jdbcType=INTEGER}, #{inputDate,jdbcType=TIMESTAMP}, 
-      #{inputStatus,jdbcType=INTEGER}, #{inputAjId,jdbcType=INTEGER}, #{intputAjDate,jdbcType=TIMESTAMP}, 
-      #{inputAjStatus,jdbcType=INTEGER}, #{attachment1,jdbcType=VARCHAR}, #{attachment2,jdbcType=VARCHAR}, 
-      #{attachment3,jdbcType=VARCHAR}, #{printNumber,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{payTime,jdbcType=TIMESTAMP}, #{payData,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{printStatus,jdbcType=INTEGER}, #{inputUserId,jdbcType=INTEGER}, 
+      #{inputDate,jdbcType=TIMESTAMP}, #{inputStatus,jdbcType=INTEGER}, #{inputAjId,jdbcType=INTEGER}, 
+      #{intputAjDate,jdbcType=TIMESTAMP}, #{inputAjStatus,jdbcType=INTEGER}, #{attachment1,jdbcType=VARCHAR}, 
+      #{attachment2,jdbcType=VARCHAR}, #{attachment3,jdbcType=VARCHAR}, #{printNumber,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.dccj.entity.CarOrder" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -120,6 +121,9 @@
       </if>
       <if test="payData != null">
         pay_data,
+      </if>
+      <if test="status != null">
+        `status`,
       </if>
       <if test="type != null">
         `type`,
@@ -206,6 +210,9 @@
       </if>
       <if test="payData != null">
         #{payData,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
@@ -297,6 +304,9 @@
       <if test="payData != null">
         pay_data = #{payData,jdbcType=VARCHAR},
       </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
       <if test="type != null">
         `type` = #{type,jdbcType=INTEGER},
       </if>
@@ -359,6 +369,7 @@
       time_id = #{timeId,jdbcType=INTEGER},
       pay_time = #{payTime,jdbcType=TIMESTAMP},
       pay_data = #{payData,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
       `type` = #{type,jdbcType=INTEGER},
       print_status = #{printStatus,jdbcType=INTEGER},
       input_user_id = #{inputUserId,jdbcType=INTEGER},
