@@ -1,10 +1,15 @@
 package com.dccj.service.impl;
 
+import com.dccj.entity.CarOrder;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
+
 import com.dccj.dao.CarOrderStepMapper;
 import com.dccj.entity.CarOrderStep;
 import com.dccj.service.CarOrderStepService;
+
+import java.util.List;
 
 @Service
 public class CarOrderStepServiceImpl implements CarOrderStepService {
@@ -42,5 +47,23 @@ public class CarOrderStepServiceImpl implements CarOrderStepService {
         return carOrderStepMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public CarOrderStep nextStep(CarOrder carOrder, Integer step, Integer sysUserId, Integer status) {
+        CarOrderStep carOrderStep = this.selectByOrderIdAndStep(carOrder.getId(), step);
+        carOrderStep.setSysUserId(sysUserId);
+        carOrderStep.setStatus(status);
+        carOrderStepMapper.updateByPrimaryKeySelective(carOrderStep);
+        return carOrderStep;
+    }
+
+    @Override
+    public CarOrderStep selectByOrderIdAndStep(Integer orderId, Integer step) {
+        return carOrderStepMapper.selectByOrderIdAndStep(orderId, step);
+    }
+
+    @Override
+    public List<CarOrderStep> selectByOrderId(Integer orderId) {
+        return carOrderStepMapper.selectByOrderId(orderId);
+    }
 }
 

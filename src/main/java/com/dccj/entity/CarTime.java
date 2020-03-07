@@ -1,6 +1,7 @@
 package com.dccj.entity;
 
 import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -22,4 +23,6 @@ public class CarTime {
     private Date createTime;
 
     private Date updateTime;
+
+    private Integer useNum;
 }

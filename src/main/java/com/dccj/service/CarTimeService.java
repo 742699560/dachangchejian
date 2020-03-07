@@ -19,6 +19,6 @@ public interface CarTimeService {
 
     int updateByPrimaryKey(CarTime record);
 
-    List<CarTime> selectByStationIdOrderByTimeSub(Integer stationId);
+    List<CarTime> selectByStationIdOrderByTimeSub(Integer stationId,String date);
 }
 

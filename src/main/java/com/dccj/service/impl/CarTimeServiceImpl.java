@@ -45,8 +45,8 @@ public class CarTimeServiceImpl implements CarTimeService {
     }
 
     @Override
-    public List<CarTime> selectByStationIdOrderByTimeSub(Integer stationId) {
-        return carTimeMapper.selectByStationIdOrderByTimeSub(stationId);
+    public List<CarTime> selectByStationIdOrderByTimeSub(Integer stationId,String date) {
+        return carTimeMapper.selectByStationIdOrderByTimeSub(stationId,date);
     }
 }
 

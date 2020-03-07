@@ -16,4 +16,5 @@ public interface SysSmsService{
 
     int updateByPrimaryKey(SysSms record);
 
+    SysSms selectByPhone(String phone);
 }

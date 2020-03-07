@@ -1,6 +1,12 @@
 package com.dccj.service;
 
+import com.dccj.entity.CarCenter;
 import com.dccj.entity.CarOrder;
+import com.dccj.entity.CarTime;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 
 public interface CarOrderService {
 
@@ -17,7 +23,15 @@ public interface CarOrderService {
 
     int updateByPrimaryKey(CarOrder record);
 
-    CarOrder createOrder(CarOrder carOrder);
+    CarOrder createOrder(CarOrder carOrder, CarCenter carCenter, CarTime carTime);
+
+    CarOrder selectByOrderNumber(String orderNumber);
+
+    CarOrder pay(CarOrder carOrder);
+
+    List<CarOrder> selectByUserIdOrderByCreateTimeDesc(String userId);
+
+    List<CarOrder> selectByCarId(Integer carId);
 }
 
 

@@ -41,4 +41,8 @@ public class SysSmsServiceImpl implements SysSmsService{
         return sysSmsMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public SysSms selectByPhone(String phone) {
+        return sysSmsMapper.selectByPhone(phone);
+    }
 }

@@ -17,6 +17,6 @@ public interface CarTimeMapper {
 
     int updateByPrimaryKey(CarTime record);
 
-    List<CarTime> selectByStationIdOrderByTimeSub(@Param("stationId")Integer stationId);
+    List<CarTime> selectByStationIdOrderByTimeSub(@Param("stationId")Integer stationId,@Param("date")String date);
 
 }

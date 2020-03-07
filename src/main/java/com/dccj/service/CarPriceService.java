@@ -2,6 +2,8 @@ package com.dccj.service;
 
 import com.dccj.entity.CarPrice;
 
+import java.math.BigDecimal;
+
 public interface CarPriceService {
 
 
@@ -17,5 +19,6 @@ public interface CarPriceService {
 
     int updateByPrimaryKey(CarPrice record);
 
+    CarPrice selectByTypeIdAndHeightFromAndHeightEnd(String carType, BigDecimal heightFrom, BigDecimal heightEnd);
 }
 

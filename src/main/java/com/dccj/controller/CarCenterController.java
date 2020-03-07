@@ -1,13 +1,11 @@
 package com.dccj.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.dccj.entity.CarCenter;
-import com.dccj.entity.CompanyEntity;
-import com.dccj.entity.DataDir;
-import com.dccj.entity.UserCar;
+import com.dccj.entity.*;
 import com.dccj.exception.AppException;
 import com.dccj.extend.BaiduAipOcr;
 import com.dccj.service.CarCenterService;
+import com.dccj.service.CarOrderService;
 import com.dccj.service.DataDirService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -39,6 +37,58 @@ public class CarCenterController extends BaseController {
     private String serverUrl;
     @Resource
     private DataDirService dataDirService;
+    @Resource
+    private CarOrderService carOrderService;
+
+    @RequestMapping("/addCars")
+    @ResponseBody
+    public RespEntity addCars(CarCenter carCenter) {
+        RespEntity respEntity = new RespEntity();
+        if (StringUtils.isEmpty(carCenter.getCarNum()))
+            throw new AppException("车牌号参数缺失");
+        if (StringUtils.isEmpty(carCenter.getCarIdNum()))
+            throw new AppException("车辆识别代号参数缺失");
+        if (StringUtils.isEmpty(carCenter.getCarPeople()))
+            throw new AppException("车辆所有人参数缺失");
+        if (StringUtils.isEmpty(carCenter.getCarDriveNum()))
+            throw new AppException("车辆发动机号码参数缺失");
+        if (StringUtils.isEmpty(carCenter.getCarType()))
+            throw new AppException("车辆类型参数缺失");
+        if (StringUtils.isEmpty(carCenter.getCarSize()))
+            throw new AppException("车辆外廓尺寸参数缺失");
+        if (StringUtils.isEmpty(carCenter.getCarFuel()))
+            throw new AppException("燃油类型参数缺失");
+        List<DataDir> carFuelTypeList = dataDirService.selectByType("carFuelType");
+        if (!carFuelTypeList.stream().filter(t -> t.getValue().equals(carCenter.getCarFuel())).findAny().isPresent())
+            throw new AppException("燃油类型参数错误");
+        if (StringUtils.isEmpty(carCenter.getCarImgFront()))
+            throw new AppException("车辆行驶证正面参数缺失");
+        if (StringUtils.isEmpty(carCenter.getCarImgBack()))
+            throw new AppException("车辆行驶证背面参数缺失");
+        if (StringUtils.isEmpty(carCenter.getCarAtType()))
+            throw new AppException("车辆变速箱类型参数缺失");
+        List<DataDir> carAtTypeList = dataDirService.selectByType("carAtType");
+        if (!carAtTypeList.stream().filter(t -> t.getValue().equals(carCenter.getCarAtType())).findAny().isPresent())
+            throw new AppException("车辆变速箱类型参数错误");
+        if (StringUtils.isEmpty(carCenter.getCarDriveType()))
+            throw new AppException("车辆驱动形式参数缺失");
+        List<DataDir> carDriverTypeList = dataDirService.selectByType("carDriverType");
+        if (!carDriverTypeList.stream().filter(t -> t.getValue().equals(carCenter.getCarDriveType())).findAny().isPresent())
+            throw new AppException("车辆驱动形式参数错误");
+        if (StringUtils.isEmpty(carCenter.getCarColor()))
+            throw new AppException("车辆车身颜色参数缺失");
+        List<DataDir> carColorTypeList = dataDirService.selectByType("carColorType");
+        if (!carColorTypeList.stream().filter(t -> t.getValue().equals(carCenter.getCarColor())).findAny().isPresent())
+            throw new AppException("车辆车身颜色参数错误");
+        if (StringUtils.isEmpty(carCenter.getCarOut()))
+            throw new AppException("车辆排量参数缺失");
+        List<DataDir> carOutTypeList = dataDirService.selectByType("carOutType");
+        if (!carOutTypeList.stream().filter(t -> t.getValue().equals(carCenter.getCarOut())).findAny().isPresent())
+            throw new AppException("车辆排量参数错误");
+        carCenterService.insertSelective(carCenter);
+        respEntity.setData(carCenter);
+        return respEntity;
+    }
 
     @RequestMapping("/queryCars")
     @ResponseBody
@@ -54,7 +104,7 @@ public class CarCenterController extends BaseController {
     public RespEntity updateCars(CarCenter carCenter) {
         RespEntity respEntity = new RespEntity();
         if (carCenter.getId() == null)
-            throw new AppException("参数错误");
+            throw new AppException("id参数错误");
         carCenterService.updateByPrimaryKeySelective(carCenter);
         respEntity.setData(carCenter);
         return respEntity;
@@ -63,6 +113,9 @@ public class CarCenterController extends BaseController {
     @RequestMapping("/delCars")
     @ResponseBody
     public RespEntity delCars(@RequestParam Integer id) {
+        List<CarOrder> list = carOrderService.selectByCarId(id);
+        if(list.size() > 0)
+            throw new AppException("该车辆已经提交过车检数据，无法删除");
         carCenterService.deleteByPrimaryKey(id);
         RespEntity respEntity = new RespEntity();
         return respEntity;
