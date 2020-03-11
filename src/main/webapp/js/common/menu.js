@@ -1,4 +1,4 @@
-var SUCCESS = 1;
+var SUCCESS = "200";
 function loadMenuList(){
 	//到controller请求菜单
 	var url = 'menuList.do';

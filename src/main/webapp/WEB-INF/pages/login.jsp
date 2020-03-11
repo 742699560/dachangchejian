@@ -44,7 +44,7 @@
 </body>
 </HTML>
 <script type="text/javascript">
- var SUCCESS = 1;
+ var SUCCESS = "200";
 $(function(){
 	//回车按钮
 	$(document).keyup(function(event) {

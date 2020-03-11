@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="utf-8" />
-<title>三河市旅游局管理平台</title>
+<title>大厂车检管理平台</title>
 
 <meta name="description"
 	content="Dynamic tables and grids using jqGrid plugin" />
@@ -54,7 +54,7 @@
 		<div class="navbar-container ace-save-state" id="navbar-container">
 			<div class="navbar-header pull-left">
 				<a href="indexUI.do" class="navbar-brand"> <small> <i
-						class="fa fa-leaf"></i> 旅游管理系统
+						class="fa fa-leaf"></i> 车检管理系统
 				</small>
 				</a>
 			</div>
@@ -64,7 +64,7 @@
 
 					<li class="light-blue dropdown-modal"><a
 						data-toggle="dropdown" href="#" class="dropdown-toggle"> <span
-							class="user-info"> <small>Welcome</small>
+							class="user-info"> <small>当前登录用户</small>
 								${currentUser.username }
 						</span> <i class="ace-icon fa fa-caret-down"></i>
 					</a>
@@ -72,7 +72,7 @@
 						<ul
 							class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 							<li><a href="logout.do"> <i
-									class="ace-icon fa fa-power-off"></i> Logout
+									class="ace-icon fa fa-power-off"></i> 退出
 							</a></li>
 						</ul></li>
 				</ul>

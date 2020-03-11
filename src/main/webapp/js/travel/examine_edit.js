@@ -1,4 +1,4 @@
-var SUCCESS = 1;
+var SUCCESS = 200;
 //设置按钮的文字,以及编辑框的标题
 setBtnVal();
 

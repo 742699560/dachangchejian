@@ -66,6 +66,9 @@ public class WxServiceImpl implements WxService {
     @Value("#{prop.wxTemplateUrl}")
     private String wxTemplateUrl;
 
+    @Value("#{prop.wxUserInfoUrl}")
+    private String wxUserInfoUrl;
+
     @Resource
     private CarOrderService carOrderService;
 
@@ -146,6 +149,9 @@ public class WxServiceImpl implements WxService {
     @Override
     public String getOpenId(String code) {
         Map<String, Object> data = getAccessUserData(code);
+        Map<String, Object> map = HttpUtil.get(wxUserInfoUrl + "?access_token=" + data.get("access_token").toString() + "&openid=" + data.get("openid").toString() + "&lang=zh_CN");
+        if (!map.containsKey("errcode"))
+            data.putAll(map);
         return data.get("openid").toString();
     }
 

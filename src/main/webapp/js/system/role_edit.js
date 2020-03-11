@@ -1,7 +1,7 @@
 /**
  * 点击修改，角色id绑定在container上
  */
-var ztree,SUCCESS=1; 
+var ztree,SUCCESS=200;
 var setting = {
 	data : {
 		simpleData : {

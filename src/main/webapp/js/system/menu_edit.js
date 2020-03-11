@@ -1,4 +1,4 @@
-var ztree,SUCCESS=1; 
+var ztree,SUCCESS=200;
 var setting = {
 	data : {
 		simpleData : {

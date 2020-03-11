@@ -1,4 +1,4 @@
-var SUCCESS = 1;
+var SUCCESS = 200;
 setBtnVal();
 $('#btn_return').click(gobackUserList);
 $('#btn_ok').click(commitUserForm);

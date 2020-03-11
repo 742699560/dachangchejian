@@ -8,7 +8,7 @@ import java.util.Map;
  * 便于对控制层返回数据进行统一格式化,
  * 友好性管理*/
 public class JsonJqgid {
-    public static final int SUCCESS=1;
+    public static final int SUCCESS=200;
     public static final int ERROR=0;
 	/**服务端的响应状态*/
 	private int state;

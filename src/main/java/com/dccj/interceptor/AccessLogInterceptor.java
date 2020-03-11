@@ -3,6 +3,7 @@ package com.dccj.interceptor;
 import com.alibaba.fastjson.JSONObject;
 import com.dccj.servlet.BodyCachingHttpServletResponseWrapper;
 import com.dccj.uitl.IpUtil;
+import com.dccj.uitl.Validation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.web.servlet.ShiroHttpServletResponse;
 import org.slf4j.Logger;
@@ -53,6 +54,8 @@ public class AccessLogInterceptor extends HandlerInterceptorAdapter {
         } else
             responseWrapper = (BodyCachingHttpServletResponseWrapper) response;
         String result = responseWrapper.getBody();
+        if(!"{".equals(result.charAt(0)))
+            result = "";
         if (result.length() > 200)
             result = result.substring(0, 200) + ".....";
         log.info("请求处理结束 requestURI【" + request.getRequestURI() + "】 method【" + request.getMethod() + "】 耗时【" + (endTime - beginTime) + "】毫秒  result【" + result + "】");
