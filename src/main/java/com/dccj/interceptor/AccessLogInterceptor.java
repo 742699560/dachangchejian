@@ -54,7 +54,7 @@ public class AccessLogInterceptor extends HandlerInterceptorAdapter {
         } else
             responseWrapper = (BodyCachingHttpServletResponseWrapper) response;
         String result = responseWrapper.getBody();
-        if(!"{".equals(result.charAt(0)))
+        if ('{' != (result.charAt(0)))
             result = "";
         if (result.length() > 200)
             result = result.substring(0, 200) + ".....";
