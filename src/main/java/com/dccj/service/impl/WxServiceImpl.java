@@ -147,12 +147,12 @@ public class WxServiceImpl implements WxService {
     }
 
     @Override
-    public String getOpenId(String code) {
+    public Map<String,Object> getOpenId(String code) {
         Map<String, Object> data = getAccessUserData(code);
         Map<String, Object> map = HttpUtil.get(wxUserInfoUrl + "?access_token=" + data.get("access_token").toString() + "&openid=" + data.get("openid").toString() + "&lang=zh_CN");
         if (!map.containsKey("errcode"))
             data.putAll(map);
-        return data.get("openid").toString();
+        return data;
     }
 
 

@@ -82,11 +82,8 @@ public class UsersController {
         RespEntity respEntity = new RespEntity();
         if (StringUtils.isEmpty(code))
             throw new AppException("参数错误");
-        String openId = wxService.getOpenId(code);
         // 发送请求
-        JSONObject ret = new JSONObject();
-        ret.put("openId", openId);
-        respEntity.setData(ret);
+        respEntity.setData( wxService.getOpenId(code));
         return respEntity;
     }
 

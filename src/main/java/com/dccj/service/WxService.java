@@ -12,7 +12,7 @@ public interface WxService {
 
     Map<String, String> getWxJsSdkData(String url);
 
-    String getOpenId(String code);
+    Map<String,Object> getOpenId(String code);
 
     Map<String, String> payBeforeByJSAPI(CarOrder order, BigDecimal amount) throws Exception;
 
