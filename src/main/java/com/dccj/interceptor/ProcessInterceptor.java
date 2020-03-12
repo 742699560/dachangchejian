@@ -11,7 +11,7 @@ public class ProcessInterceptor implements HandlerInterceptor {
   
     @Override  
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-  
+
         httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
   
         httpServletResponse.setHeader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");  
@@ -20,7 +20,7 @@ public class ProcessInterceptor implements HandlerInterceptor {
   
         httpServletResponse.setHeader("X-Powered-By","DCCJServer");
 
-  
+
         String method= httpServletRequest.getMethod();  
   
         if (method.equals("OPTIONS")){  

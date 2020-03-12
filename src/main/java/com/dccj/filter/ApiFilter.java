@@ -21,7 +21,9 @@ public class ApiFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse)servletResponse;
         String sign = httpRequest.getParameter("sign");
+
         String timestamp = httpRequest.getParameter("timestamp");
+
         if(StringUtils.isEmpty(sign) || StringUtils.isEmpty(timestamp)){
             RespEntity res = new RespEntity();
             res.setStatus(RespEntity.CODE_SIGN_ERROR);

@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +44,7 @@ public class CarCenterController extends BaseController {
 
     @RequestMapping("/addCars")
     @ResponseBody
-    public RespEntity addCars(CarCenter carCenter,@RequestParam String code) {
+    public RespEntity addCars(CarCenter carCenter, @RequestParam String code) {
         RespEntity respEntity = new RespEntity();
         if (StringUtils.isEmpty(carCenter.getUsername()))
             throw new AppException("用户姓名参数错误");
@@ -128,7 +129,7 @@ public class CarCenterController extends BaseController {
     @ResponseBody
     public RespEntity delCars(@RequestParam Integer id) {
         List<CarOrder> list = carOrderService.selectByCarId(id);
-        if(list.size() > 0)
+        if (list.size() > 0)
             throw new AppException("该车辆已经提交过车检数据，无法删除");
         carCenterService.deleteByPrimaryKey(id);
         RespEntity respEntity = new RespEntity();
@@ -141,8 +142,9 @@ public class CarCenterController extends BaseController {
      */
     @RequestMapping(value = "/readCarInfo")
     @ResponseBody
+    @CrossOrigin(origins = "*")
     public RespEntity readCarInfo(MultipartFile file, @RequestParam String type,
-                                  HttpServletRequest request) {
+                                  HttpServletRequest request, HttpServletResponse response) {
         if (StringUtils.isEmpty(type))
             throw new AppException("参数错误");
         String filePath = "", fileUrl = "", path = "carImg";
@@ -233,6 +235,7 @@ public class CarCenterController extends BaseController {
         map.put("urlData", fileUrl);
         map.put("pathData", filePath);
         respEntity.setData(map);
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return respEntity;
     }
 }

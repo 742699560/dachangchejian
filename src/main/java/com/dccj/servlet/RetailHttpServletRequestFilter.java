@@ -27,6 +27,13 @@ public class RetailHttpServletRequestFilter implements Filter {
         BodyCachingHttpServletResponseWrapper responseWrapper =
                 new BodyCachingHttpServletResponseWrapper((HttpServletResponse) servletResponse);
         String contentType = servletRequest.getContentType();
+        responseWrapper.setHeader("Access-Control-Allow-Origin", "*");
+
+        responseWrapper.setHeader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+
+        responseWrapper.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+
+        responseWrapper.setHeader("X-Powered-By","DCCJServer");
         if (resolver.isMultipart(request)) {
             request = resolver.resolveMultipart(request);
             filterChain.doFilter(request, responseWrapper);
