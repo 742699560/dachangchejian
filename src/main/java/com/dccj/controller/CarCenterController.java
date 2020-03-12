@@ -4,9 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.dccj.entity.*;
 import com.dccj.exception.AppException;
 import com.dccj.extend.BaiduAipOcr;
-import com.dccj.service.CarCenterService;
-import com.dccj.service.CarOrderService;
-import com.dccj.service.DataDirService;
+import com.dccj.service.*;
+import com.dccj.uitl.Validation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -39,11 +38,26 @@ public class CarCenterController extends BaseController {
     private DataDirService dataDirService;
     @Resource
     private CarOrderService carOrderService;
+    @Resource
+    private SysSmsService sysSmsService;
 
     @RequestMapping("/addCars")
     @ResponseBody
-    public RespEntity addCars(CarCenter carCenter) {
+    public RespEntity addCars(CarCenter carCenter,@RequestParam String code) {
         RespEntity respEntity = new RespEntity();
+        if (StringUtils.isEmpty(carCenter.getUsername()))
+            throw new AppException("用户姓名参数错误");
+        if (StringUtils.isEmpty(carCenter.getMobile()))
+            throw new AppException("手机号参数缺失");
+        if (!Validation.isMobile(carCenter.getMobile()))
+            throw new AppException("手机号参数错误");
+        if (StringUtils.isEmpty(code))
+            throw new AppException("验证码参数缺失");
+        SysSms sysSms = sysSmsService.selectByPhone(carCenter.getMobile());
+        if (!sysSms.getCode().equals(code))
+            throw new AppException("验证码错误");
+        if (System.currentTimeMillis() / 1000 - Long.parseLong(sysSms.getTime()) > 15 * 60)
+            throw new AppException("验证码已失效");
         if (StringUtils.isEmpty(carCenter.getCarNum()))
             throw new AppException("车牌号参数缺失");
         if (StringUtils.isEmpty(carCenter.getCarIdNum()))

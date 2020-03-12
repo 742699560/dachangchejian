@@ -96,7 +96,7 @@ public class OrderController {
 
     @RequestMapping("/createOrder")
     @ResponseBody
-    public RespEntity createOrder(CarOrder carOrder, @RequestParam String code) {
+    public RespEntity createOrder(CarOrder carOrder) {
         RespEntity respEntity = new RespEntity();
         if (carOrder.getStationId() == null)
             throw new AppException("车检单位参数缺失");
@@ -114,19 +114,6 @@ public class OrderController {
         List<DataDir> orderTypeList = dataDirService.selectByType("carOrderType");
         if (!orderTypeList.stream().filter(t -> t.getValue().equals(carOrder.getType().toString())).findAny().isPresent())
             throw new AppException("订单类型参数错误");
-        if (StringUtils.isEmpty(carOrder.getUsername()))
-            throw new AppException("用户姓名参数错误");
-        if (StringUtils.isEmpty(carOrder.getMobile()))
-            throw new AppException("手机号参数缺失");
-        if (!Validation.isMobile(carOrder.getMobile()))
-            throw new AppException("手机号参数错误");
-        if (StringUtils.isEmpty(code))
-            throw new AppException("验证码参数缺失");
-        SysSms sysSms = sysSmsService.selectByPhone(carOrder.getMobile());
-        if (!sysSms.getCode().equals(code))
-            throw new AppException("验证码错误");
-        if (System.currentTimeMillis() / 1000 - Long.parseLong(sysSms.getTime()) > 15 * 60)
-            throw new AppException("验证码已失效");
         CarTime carTime = null;
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         if (carOrder.getType() == 2) {

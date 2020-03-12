@@ -5,6 +5,8 @@
     <!--@mbg.generated-->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="car_num" jdbcType="VARCHAR" property="carNum" />
     <result column="car_brand_num" jdbcType="VARCHAR" property="carBrandNum" />
     <result column="car_begin_date" jdbcType="VARCHAR" property="carBeginDate" />
@@ -39,11 +41,12 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, user_id, car_num, car_brand_num, car_begin_date, car_use, car_drive_num, car_people, 
-    car_address, car_reg_num, car_id_num, car_type, car_weight, car_tow_weight, car_load_people, 
-    car_size, car_total_weight, car_record_num, car_check_log, car_fuel, car_load_approved, 
-    car_remark, car_img_front, car_img_back, car_at_type, car_color, car_drive_type, 
-    car_out, create_time, update_time, car_attachment_1, car_attachment_2, car_attachment_3
+    id, user_id, mobile, username, car_num, car_brand_num, car_begin_date, car_use, car_drive_num, 
+    car_people, car_address, car_reg_num, car_id_num, car_type, car_weight, car_tow_weight, 
+    car_load_people, car_size, car_total_weight, car_record_num, car_check_log, car_fuel, 
+    car_load_approved, car_remark, car_img_front, car_img_back, car_at_type, car_color, 
+    car_drive_type, car_out, create_time, update_time, car_attachment_1, car_attachment_2, 
+    car_attachment_3
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -57,30 +60,32 @@
     delete from car_center
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id"  useGeneratedKeys="true" parameterType="com.dccj.entity.CarCenter">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.dccj.entity.CarCenter" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into car_center (user_id, car_num, car_brand_num, 
-      car_begin_date, car_use, car_drive_num, 
-      car_people, car_address, car_reg_num, 
-      car_id_num, car_type, car_weight, 
-      car_tow_weight, car_load_people, car_size, 
-      car_total_weight, car_record_num, car_check_log, 
-      car_fuel, car_load_approved, car_remark, 
-      car_img_front, car_img_back, car_at_type, 
-      car_color, car_drive_type, car_out, 
-      create_time, update_time, car_attachment_1, 
-      car_attachment_2, car_attachment_3)
-    values (#{userId,jdbcType=INTEGER}, #{carNum,jdbcType=VARCHAR}, #{carBrandNum,jdbcType=VARCHAR}, 
-      #{carBeginDate,jdbcType=VARCHAR}, #{carUse,jdbcType=VARCHAR}, #{carDriveNum,jdbcType=VARCHAR}, 
-      #{carPeople,jdbcType=VARCHAR}, #{carAddress,jdbcType=VARCHAR}, #{carRegNum,jdbcType=VARCHAR}, 
-      #{carIdNum,jdbcType=VARCHAR}, #{carType,jdbcType=VARCHAR}, #{carWeight,jdbcType=VARCHAR}, 
-      #{carTowWeight,jdbcType=VARCHAR}, #{carLoadPeople,jdbcType=VARCHAR}, #{carSize,jdbcType=VARCHAR}, 
-      #{carTotalWeight,jdbcType=VARCHAR}, #{carRecordNum,jdbcType=VARCHAR}, #{carCheckLog,jdbcType=VARCHAR}, 
-      #{carFuel,jdbcType=VARCHAR}, #{carLoadApproved,jdbcType=VARCHAR}, #{carRemark,jdbcType=VARCHAR}, 
-      #{carImgFront,jdbcType=VARCHAR}, #{carImgBack,jdbcType=VARCHAR}, #{carAtType,jdbcType=VARCHAR}, 
-      #{carColor,jdbcType=VARCHAR}, #{carDriveType,jdbcType=VARCHAR}, #{carOut,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{carAttachment1,jdbcType=VARCHAR}, 
-      #{carAttachment2,jdbcType=VARCHAR}, #{carAttachment3,jdbcType=VARCHAR})
+    insert into car_center (user_id, mobile, username, 
+      car_num, car_brand_num, car_begin_date, 
+      car_use, car_drive_num, car_people, 
+      car_address, car_reg_num, car_id_num, 
+      car_type, car_weight, car_tow_weight, 
+      car_load_people, car_size, car_total_weight, 
+      car_record_num, car_check_log, car_fuel, 
+      car_load_approved, car_remark, car_img_front, 
+      car_img_back, car_at_type, car_color, 
+      car_drive_type, car_out, create_time, 
+      update_time, car_attachment_1, car_attachment_2, 
+      car_attachment_3)
+    values (#{userId,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{carNum,jdbcType=VARCHAR}, #{carBrandNum,jdbcType=VARCHAR}, #{carBeginDate,jdbcType=VARCHAR}, 
+      #{carUse,jdbcType=VARCHAR}, #{carDriveNum,jdbcType=VARCHAR}, #{carPeople,jdbcType=VARCHAR}, 
+      #{carAddress,jdbcType=VARCHAR}, #{carRegNum,jdbcType=VARCHAR}, #{carIdNum,jdbcType=VARCHAR}, 
+      #{carType,jdbcType=VARCHAR}, #{carWeight,jdbcType=VARCHAR}, #{carTowWeight,jdbcType=VARCHAR}, 
+      #{carLoadPeople,jdbcType=VARCHAR}, #{carSize,jdbcType=VARCHAR}, #{carTotalWeight,jdbcType=VARCHAR}, 
+      #{carRecordNum,jdbcType=VARCHAR}, #{carCheckLog,jdbcType=VARCHAR}, #{carFuel,jdbcType=VARCHAR}, 
+      #{carLoadApproved,jdbcType=VARCHAR}, #{carRemark,jdbcType=VARCHAR}, #{carImgFront,jdbcType=VARCHAR}, 
+      #{carImgBack,jdbcType=VARCHAR}, #{carAtType,jdbcType=VARCHAR}, #{carColor,jdbcType=VARCHAR}, 
+      #{carDriveType,jdbcType=VARCHAR}, #{carOut,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{carAttachment1,jdbcType=VARCHAR}, #{carAttachment2,jdbcType=VARCHAR}, 
+      #{carAttachment3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.dccj.entity.CarCenter" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -88,6 +93,12 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
         user_id,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="username != null">
+        username,
       </if>
       <if test="carNum != null">
         car_num,
@@ -186,6 +197,12 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
       </if>
       <if test="carNum != null">
         #{carNum,jdbcType=VARCHAR},
@@ -289,6 +306,12 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
       <if test="carNum != null">
         car_num = #{carNum,jdbcType=VARCHAR},
       </if>
@@ -389,6 +412,8 @@
     <!--@mbg.generated-->
     update car_center
     set user_id = #{userId,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
       car_num = #{carNum,jdbcType=VARCHAR},
       car_brand_num = #{carBrandNum,jdbcType=VARCHAR},
       car_begin_date = #{carBeginDate,jdbcType=VARCHAR},

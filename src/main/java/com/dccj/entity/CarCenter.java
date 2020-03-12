@@ -13,6 +13,16 @@ public class CarCenter {
     private Integer userId;
 
     /**
+     * 手机号
+     */
+    private String mobile;
+
+    /**
+     * 车检人员姓名
+     */
+    private String username;
+
+    /**
      * 车牌号
      */
     private String carNum;
