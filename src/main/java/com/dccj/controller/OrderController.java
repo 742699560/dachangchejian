@@ -144,6 +144,8 @@ public class OrderController {
         CarPrice carPrice = carPriceService.selectByTypeIdAndHeightFromAndHeightEnd(carCenter.getCarType(), new BigDecimal(par[0]), new BigDecimal(par[1]));
         if (carPrice == null)
             throw new AppException("未查询到相关价格信息");
+        carOrder.setMobile(carCenter.getMobile());
+        carOrder.setUsername(carCenter.getUsername());
         carOrder.setOrderAmount(carPrice.getPrice());
         carOrder.setStatus(10);
         carOrder.setCarNum(carCenter.getCarNum());
