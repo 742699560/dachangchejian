@@ -83,6 +83,8 @@ public class CarOrder {
      */
     private Integer status;
 
+    private String statusStr;
+
     /**
      * 1: 现场 2: 预约 3:其他
      */

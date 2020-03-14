@@ -151,6 +151,7 @@ public class OrderController {
         carOrder.setCarNum(carCenter.getCarNum());
         carOrder.setOrderNumber(new OrderNumberUtils(1, 3).nextId() + "");
         carOrderService.createOrder(carOrder, carCenter, carTime);
+        respEntity.setData(carOrder);
         return respEntity;
     }
 
