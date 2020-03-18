@@ -115,13 +115,11 @@ function findUserById(cid){
 
 //回显
 function loadEditUserForm(data){
-	$('#companyName').val(data.cname);
-	$('#companyLegal').val(data.legal);
-	$('#serialnumber').val(data.serialnumber);
+	$('#name').val(data.name);
+	$('#phone').val(data.phone);
+	$('#address').val(data.address);
 	$('#contats').val(data.contats);
-	$('#contactnumber').val(data.contactnumber);
-	$('#site').val(data.site);
-	$('#type').val(data.type);
+	$('#description').val(data.description);
 	$('#lng').val(data.lng);
 	$('#lat').val(data.lat);
 }

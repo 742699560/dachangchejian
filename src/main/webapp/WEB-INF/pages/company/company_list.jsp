@@ -91,7 +91,7 @@ $(function(){
 		colModel:[
 			{name:'id',index:'id', editable: false , hidden: true ,editoptions:{readonly:true}},
 			{label:'车检所名称',name:'name',index:'name',editable: true,sortable:true},
-			{label:'联系人',name:'contats',index:'contats',editable: false,formatter:userType},
+			{label:'联系人',name:'contats',index:'contats',editable: false},
 			{label:'联系电话',name:'phone',index:'phone',editable: true},
 			{label:'详细地址',name:'address',index:'address',editable: false},
 			{label:'经度',name:'lat',index:'lat',editable: false},
@@ -116,6 +116,13 @@ $(function(){
 		rownumbers:true,
 		shrinkToFit: true,
 		autowidth: true,
+		jsonReader : {
+			root: "data.list",    // json中代表实际模型数据的入口
+			page: "page",    // json中代表当前页码的数据
+			total: "pages",    // json中代表页码总数的数据
+			records: "total", // json中代表数据行总数的数据
+			repeatitems: false
+		}
 	});
 	$(grid_selector).closest(".ui-jqgrid-bdiv").css({ 'overflow-x': 'hidden' });
 	$(grid_selector).jqGrid('navGrid',pager_selector,
@@ -218,35 +225,13 @@ function showEditcompany(){
 	}
 	var rowData = $(grid_selector).jqGrid('getRowData',cid);
 	$('#container').data('cid',rowData.cid);
+	$('#container').data('rowData',rowData);
 	$('#container').load('company/editCompanyUI.do');
 }
 
 
 
 
-function lnglat(cellvalue, options, rowObject){
-	var str = rowObject.lng+","+rowObject.lat;	
-	return str;
-}
-function dateFromatter(cellvalue, options, rowObject){
-	var str = rowObject.ttime
-	var endstr = str.split(".")
-	var arr = endstr[0]
-	return arr;
-}
-
-function userType(cellvalue, options, rowObject){
-	var str = "";
-	switch(rowObject.type){
-		case "1": 
-		str = "<span class='label label-default'>酒店</span>";
-		break;	
-		case "2": 
-			str = "<span class='label label-warning'>景区</span>";
-			break;
-	}
-	return str;
-}
 function search(){
 	$(grid_selector).jqGrid('setGridParam',{ 
 		postData:{ 
@@ -254,58 +239,6 @@ function search(){
 		}
 	
 	}).trigger("reloadGrid"); //重新载入
-}
-
-
-function searchuser(){
-	//,'search_ugid':$('#s_gid').val()
-	$(grid_selector).jqGrid('setGridParam',{
-		url:'${pageContext.request.contextPath}/user/list',//你的搜索程序地址 
-		postData:{'search_uname':$('#search_uname').val(),
-					'search_uaccount':$('#search_uaccount').val()} //发送搜索条件 
-	}).trigger("reloadGrid"); //重新载入
-}
-function ajaxpost(){
-	var data = getFromToJson("#userform");
-	if(!$("#userform").valid()){
-		return;
-	}
-	
-	if(isEmptyObject(data)){
-		return;
-	}
-	var url="";
-	switch(type){
-		case "add":
-			if(data.upwd==""){
-				showbootbox("请输入密码");
-				return;
-			}
-			url="${pageContext.request.contextPath}/user/add";
-			break;
-		case "edit":url="${pageContext.request.contextPath}/user/updata";break;
-	}
-	if(url==""){
-		return;
-	}
-	$.ajax({
-	    url:url,
-	    type:"post",
-	    async:true,
-	    data:data,
-	    timeout:5000,
-	    dataType:'json',
-	    beforeSend:function(xhr){
-	    	
-	    },
-	    success:function(data){
-	    	if(data.Result){
-	    		$('#modal-finish').modal('hide');
-	    		$(grid_selector).trigger("reloadGrid");
-	    	}
-	    	showbootbox(data.ResultText);
-	    }
-	});
 }
 
 function updatePagerIcons(table) {
@@ -324,40 +257,4 @@ function updatePagerIcons(table) {
 	})
 }
 
-function opertionPeple(){
-	var sel_id = $(grid_selector).jqGrid('getGridParam', 'selrow');
-	if(sel_id==""||sel_id==null){
-		showbootbox("请选择一个人员");
-		return;
-	}
-    var value = $(grid_selector).jqGrid('getRowData',sel_id);
-    var data = {uid:value.uid};
-    var url="";
-    switch(type){
-		case "delete":url="${pageContext.request.contextPath}/user/del";break;
-		case "freeze":
-			url="${pageContext.request.contextPath}/user/freeze?type="+userustatus;
-			break;
-	}
-	$.ajax({
-	    url:url,
-	    type:"post",
-	    async:true,
-	    data:data,
-	    timeout:5000,
-	    dataType:'json',
-	    beforeSend:function(xhr){
-	    	
-	    },
-	    success:function(data){
-	    	if(data.Result){
-	    		$('#deleteModal').modal('hide');
-	    		$(grid_selector).trigger("reloadGrid");
-	    	}
-	    	showbootbox(data.ResultText);
-	    }
-	});
-
-
-}
 </script>

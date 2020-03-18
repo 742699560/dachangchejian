@@ -65,7 +65,7 @@ public class CompanyController {
 
     @RequestMapping("/findPageObjects")
     @ResponseBody
-    public RespEntity findPageObjects(@RequestParam(value = "name") String name, @RequestParam(value = "page") Integer page,
+    public RespEntity findPageObjects(@RequestParam(value = "name",defaultValue = "") String name, @RequestParam(value = "page") Integer page,
                                       @RequestParam(value = "pageSize") Integer pageSize) {
         RespEntity respEntity = new RespEntity();
         if (page != null && pageSize != null)
