@@ -7,7 +7,7 @@
 	<ul class="breadcrumb">
 		<li><i class="ace-icon fa fa-home home-icon"></i> <a
 			href="indexUI.do">主页</a></li>
-		<li class="active">企业管理</li>
+		<li class="active">车检所管理</li>
 	</ul>
 
 </div>
@@ -15,40 +15,19 @@
 <form class="form-horizontal col-md-12" id="searchform" style="padding-top: 20px;">
 	<div class="form-group">
 		<div class="col-md-12 col-lg-3">
-			<label class="col-md-2 col-lg-4">企业名称: </label> <input type="text"
+			<label class="col-md-2 col-lg-4">车检所名称: </label> <input type="text"
 				id="search_tcarcode" name="search_tcarcode" placeholder=""
 				style="height: 30px;" class="col-md-7">
 		</div>
 		<div class="col-md-12 col-lg-3">
-			<label class="col-md-2 col-lg-4">企业类型: </label> <select
-				id="search_type" name="search_type" class="col-md-7"
-				>
-				<option value="">全部</option>
-				<option value="1">酒店</option>
-				<option value="2">景区</option>
-			</select>
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-md-12 col-lg-3">
-			<label class="col-md-2 col-lg-4">企业编号: </label> <input type="text"
-				id="search_serialnumber" name="search_serialnumber" placeholder=""
-				style="height: 30px;" class="col-md-7">
-		</div>
-		<div class="col-md-12 col-lg-3">
-			<label class="col-md-2 col-lg-4">联系人: </label> <input type="text"
-				id="search_contats" name="search_contats" placeholder=""
-				style="height: 30px;" class="col-md-7">
-		</div>
-		<div class="col-md-12 col-lg-3">
 			<button type="button" onclick="search()"
-				class="btn btn-xs btn-primary"
-				style="margin-left: 5px; padding: 3px 5px; outline: 0">
+					class="btn btn-xs btn-primary"
+					style="margin-left: 5px; padding: 3px 5px; outline: 0">
 				<i class="ace-icon fa fa-search align-top bigger-125"></i>搜索
 			</button>
 			<button type="reset" onclick="searchRset()"
-				class="btn btn-xs btn-danger"
-				style="margin-left: 5px; padding: 3px 5px; outline: 0">
+					class="btn btn-xs btn-danger"
+					style="margin-left: 5px; padding: 3px 5px; outline: 0">
 				<i class="ace-icon fa fa-trash  align-top bigger-125"></i>清空
 			</button>
 		</div>
@@ -110,19 +89,16 @@ $(function(){
         datatype : "json",
         mtype : "post",
 		colModel:[
-			{name:'cid',index:'cid', editable: false , hidden: true ,editoptions:{readonly:true}},
-			{name:'urid',index:'urid', editable: false , hidden: true ,editoptions:{readonly:true}},
-			{name:'ugid',index:'ugid', editable: false , hidden: true ,sortable:false,editoptions:{readonly:true}},
-		
-			{label:'企业名称',name:'cname',index:'cname',editable: true,sortable:true},
-			{label:'企业类型',name:'type',index:'type',editable: false,formatter:userType},
-			{label:'企业地址',name:'site',index:'site',editable: true},
-			{label:'企业法人',name:'legal',editable: false},
-			{label:'企业联系人',name:'contats',index:'contats',editable: false},
-			{label:'联系电话',name:'contactnumber',index:'contactnumber',editable: true},
-			{label:'企业编号',name:'serialnumber',index:'serialnumber',editable: true,editrules:{required : false}},
+			{name:'id',index:'id', editable: false , hidden: true ,editoptions:{readonly:true}},
+			{label:'车检所名称',name:'name',index:'name',editable: true,sortable:true},
+			{label:'联系人',name:'contats',index:'contats',editable: false,formatter:userType},
+			{label:'联系电话',name:'phone',index:'phone',editable: true},
+			{label:'详细地址',name:'address',index:'address',editable: false},
+			{label:'经度',name:'lat',index:'lat',editable: false},
+			{label:'纬度',name:'lng',index:'lng',editable: true}
 			
-		], 
+		],
+		prmNames: {page:"page",rows:"pageSize"},
 		viewrecords : true,
 		rowNum: 20,
 		pager : pager_selector,
@@ -274,10 +250,7 @@ function userType(cellvalue, options, rowObject){
 function search(){
 	$(grid_selector).jqGrid('setGridParam',{ 
 		postData:{ 
-			'cname':$('#search_tcarcode').val(),
-			'type':$("#search_type").val(),
-			'serialnumber':$("#search_serialnumber").val(),
-			'contats':$("#search_contats").val()
+			'name':$('#search_tcarcode').val()
 		}
 	
 	}).trigger("reloadGrid"); //重新载入

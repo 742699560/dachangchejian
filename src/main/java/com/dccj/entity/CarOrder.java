@@ -49,7 +49,7 @@ public class CarOrder {
     private String mobile;
 
     /**
-     * 预约日期
+     * 订单日期
      */
     private String times;
 
@@ -82,8 +82,6 @@ public class CarOrder {
      * 订单状态
      */
     private Integer status;
-
-    private String statusStr;
 
     /**
      * 1: 现场 2: 预约 3:其他
@@ -124,6 +122,11 @@ public class CarOrder {
      * 安检录入状态 1:未录入 2:录入中 3:录入结束
      */
     private Integer inputAjStatus;
+
+    /**
+     * 用户签名
+     */
+    private String userSign;
 
     /**
      * 附件图片1
