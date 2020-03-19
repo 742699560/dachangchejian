@@ -149,6 +149,7 @@ public class OrderController {
         carOrder.setMobile(carCenter.getMobile());
         carOrder.setUsername(carCenter.getUsername());
         carOrder.setOrderAmount(carPrice.getPrice());
+        carOrder.setOrderAmount(new BigDecimal("0.01"));
         carOrder.setStatus(10);
         carOrder.setCarNum(carCenter.getCarNum());
         carOrder.setOrderNumber(new OrderNumberUtils(1, 3).nextId() + "");
