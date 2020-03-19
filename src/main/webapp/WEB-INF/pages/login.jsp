@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>TTMS管理系统</title>
+  <title>大厂车检所信息管理系统</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="${basePath}/bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="${basePath}/static/css/AdminLTE.min.css">
@@ -17,7 +17,8 @@
 <body class="hold-transition login-page">
 <div class="login-box" id="rrapp">
   <div class="login-logo">
-  	<img src="${basePath }/images/logo_login.png" alt="logo" />
+  	<img src="${basePath }/static/images/logo2.jpg" style="width:200px;" alt="logo" />
+      <br/>
     <b>管理系统</b>
   </div>
   <div class="login-box-body">

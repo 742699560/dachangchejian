@@ -117,6 +117,8 @@ public class OrderController {
         List<DataDir> orderTypeList = dataDirService.selectByType("carOrderType");
         if (!orderTypeList.stream().filter(t -> t.getValue().equals(carOrder.getType().toString())).findAny().isPresent())
             throw new AppException("订单类型参数错误");
+        if (StringUtils.isEmpty(carOrder.getUserSign()))
+            throw new AppException("用户签名参数缺失");
         CarTime carTime = null;
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         if (carOrder.getType() == 2) {
@@ -150,6 +152,7 @@ public class OrderController {
         carOrder.setMobile(carCenter.getMobile());
         carOrder.setUsername(carCenter.getUsername());
         carOrder.setOrderAmount(carPrice.getPrice());
+        carOrder.setOrderAmount(new BigDecimal("0.01"));
         carOrder.setStatus(10);
         carOrder.setCarNum(carCenter.getCarNum());
         carOrder.setOrderNumber(new OrderNumberUtils(1, 3).nextId() + "");

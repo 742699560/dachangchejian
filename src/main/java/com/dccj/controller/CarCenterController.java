@@ -227,7 +227,7 @@ public class CarCenterController extends BaseController {
                 log.info("==================识别行驶证内容完毕======================");
             }
         } catch (Exception e) {
-            throw new AppException("上传文件失败", e);
+            throw new AppException("请上传正确的行驶证图片", e);
         }
         RespEntity respEntity = new RespEntity();
         Map<String, Object> map = new HashMap<>();
@@ -235,7 +235,6 @@ public class CarCenterController extends BaseController {
         map.put("urlData", fileUrl);
         map.put("pathData", filePath);
         respEntity.setData(map);
-        response.setHeader("Access-Control-Allow-Origin", "*");
         return respEntity;
     }
 }

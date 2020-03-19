@@ -1,8 +1,6 @@
 package com.dccj.dao;
-import org.apache.ibatis.annotations.Param;
-import java.util.List;
 
-import com.dccj.entity.CarOrder;
+import com.dccj.entity.CarOrder;import org.apache.ibatis.annotations.Param;import java.util.List;
 
 public interface CarOrderMapper {
     int deleteByPrimaryKey(Integer id);
@@ -17,10 +15,9 @@ public interface CarOrderMapper {
 
     int updateByPrimaryKey(CarOrder record);
 
-    CarOrder selectByOrderNumber(@Param("orderNumber")String orderNumber);
+    CarOrder selectByOrderNumber(@Param("orderNumber") String orderNumber);
 
-    List<CarOrder> selectByUserIdOrderByCreateTimeDesc(@Param("userId")String userId);
+    List<CarOrder> selectByUserIdOrderByCreateTimeDesc(@Param("userId") String userId);
 
-    List<CarOrder> selectByCarId(@Param("carId")Integer carId);
-
+    List<CarOrder> selectByCarId(@Param("carId") Integer carId);
 }

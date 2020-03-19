@@ -15,20 +15,17 @@ var point;
 function commitUserForm() {
     if ($('#editCompanyForm').valid()) {
         var params = getFormParams();
-        if (params == 'nochoose') {
-            sweetAlert('请选择用户角色！');
-            return false;
-        }
-        var cid = $('#container').data('cid');
-        params.cid = cid;
-        var url = cid ? 'company/doUpdateCompany.do' : 'company/doSaveCompany.do';
+        var data = $('#container').data('rowData');
+        if(data)
+            params.id = data.id;
+        var url = params.id ? 'company/doUpdateCompany.do' : 'company/doSaveCompany.do';
         $.post(url, params, function (result) {
             if (result.state == SUCCESS) {
                 sweetAlert('操作成功！');
                 clearData();
                 $('#container').load('company/companyUI.do');
             } else {
-                alert(result.message);
+                sweetAlert(result.message);
             }
         })
     }
@@ -36,24 +33,20 @@ function commitUserForm() {
 
 //获取表单参数
 function getFormParams() {
-    var cname = $('#companyName').val();
-    var legal = $('#companyLegal').val();
-    var serialnumber = $('#serialnumber').val();
+    var name = $('#name').val();
+    var phone = $('#phone').val();
+    var address = $('#address').val();
     var contats = $('#contats').val();
-    var contactnumber = $('#contactnumber').val();
-    var site = $('#site').val();
-    var type = $('#type').val();
+    var description = $('#description').val();
     var lng = $('#lng').val();
     var lat = $('#lat').val();
 
     var params = {
-        'cname': cname,
-        'legal': legal,
-        'serialnumber': serialnumber,
+        'name': name,
+        'phone': phone,
+        'address': address,
+        'description':description,
         'contats': contats,
-        'site': site,
-        'contactnumber': contactnumber,
-        'type': type,
         'lng': lng,
         'lat': lat
     }
@@ -68,78 +61,41 @@ function gobackUserList() {
 
 //设置按钮文字
 function setBtnVal() {
-    var cid = $('#container').data('id');
-    if (cid) {
+    var data = $('#container').data('rowData');
+    if (data) {
         $('#btn_ok').val('修改');
         $('#editTitle').text('修改');
-        var data = $('#container').data('data');
         loadEditUserForm(data);
+        point = new BMap.Point(data.lng, data.lat);
     } else {
         $('#btn_ok').val('保存');
         $('#editTitle').text('新增');
-        point = new BMap.Point(117.123618, 39.980269);
+        point = new BMap.Point(116.905114, 39.921127);
     }
-
-}
-
-function findUserById(cid) {
-    var param = {'cid': cid};
-    var url = 'company/findCompanyById.do';
-    $.post(url, param, function (result) {
-        if (result.state == SUCCESS) {
-            loadEditUserForm(result.data);  //回显
-            alllng = $('#lng').val();
-            alllat = $('#lat').val();
-            var cname = $('#companyName').val();
-            var site = $('#site').val();
-            var point = new BMap.Point(alllng, alllat);
-            map.centerAndZoom(point, 12);
-            var marker = new BMap.Marker(point);  // 创建标注
-            map.addOverlay(marker);              // 将标注添加到地图中
-            map.centerAndZoom(point, 15);
-            var opts = {
-                width: 100,     // 信息窗口宽度
-                height: 50,     // 信息窗口高度
-                title: cname, // 信息窗口标题
-                enableMessage: true,//设置允许信息窗发送短息
-                message: ""
-            }
-
-            var infoWindow = new BMap.InfoWindow(site, opts);  // 创建信息窗口对象
-            marker.addEventListener("click", function () {
-                map.openInfoWindow(infoWindow, point); //开启信息窗口
-            });
-
-        } else {
-            sweetAlert(result.message);
-        }
-    })
 }
 
 //回显
-function loadEditUserForm(data) {
-    $('#name').val(data.cname);
-    $('#companyLegal').val(data.legal);
-    $('#serialnumber').val(data.serialnumber);
-    $('#contats').val(data.contats);
-    $('#contactnumber').val(data.contactnumber);
-    $('#site').val(data.site);
-    $('#type').val(data.type);
-    $('#lng').val(data.lng);
-    $('#lat').val(data.lat);
+function loadEditUserForm(data){
+	$('#name').val(data.name);
+	$('#phone').val(data.phone);
+	$('#address').val(data.address);
+	$('#contats').val(data.contats);
+	$('#description').val(data.description);
+	$('#lng').val(data.lng);
+	$('#lat').val(data.lat);
 }
 
 //点击返回，保存，修改按钮，清除editForm数据
 function clearData() {
     $('#editCompanyForm .dynamicClear').val('');
-    $('#container').data('cid', '');
+    $('#container').data('rowData', '');
 }
 
 //百度地图API功能
 var map = new BMap.Map("allmap");
 map.enableScrollWheelZoom();
 map.enableContinuousZoom();
-map.centerAndZoom(point, 12);
+map.centerAndZoom(point, 15);
 
 /*var comfordata = $('#lat').val();
 
@@ -151,7 +107,7 @@ myGeo.getPoint(comfordata, function(point){
 		map.centerAndZoom(point, 16);
 		map.addOverlay(new BMap.Marker(point));
 	}else{
-		alert("您选择地址没有解析到结果!");
+		sweetAlert("您选择地址没有解析到结果!");
 	}
 }, "三河市");
 
@@ -168,7 +124,7 @@ map.addEventListener("click", function (e) {
 
 function attribute() {
     var p = marker.getPosition();  //获取marker的位置
-    alert("marker的位置是" + p.lng + "," + p.lat);
+    sweetAlert("marker的位置是" + p.lng + "," + p.lat);
 }
 
 
