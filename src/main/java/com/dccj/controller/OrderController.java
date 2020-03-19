@@ -26,6 +26,7 @@ import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -76,10 +77,12 @@ public class OrderController {
 
     @RequestMapping("/queryOrder")
     @ResponseBody
-    public RespEntity queryOrder(@RequestParam Integer userId) {
+    public RespEntity queryOrder(@RequestParam(required = false) Integer userId,@RequestParam(required = false) Integer Id) {
         RespEntity respEntity = new RespEntity();
-        List<CarOrder> list = carOrderService.selectByUserIdOrderByCreateTimeDesc(userId.toString());
-        respEntity.putListData(list);
+        if(userId != null)
+            respEntity.putListData(carOrderService.selectByUserIdOrderByCreateTimeDesc(userId.toString()));
+        else
+            respEntity.setData(carOrderService.selectByPrimaryKey(Id));
         return respEntity;
     }
 
@@ -164,6 +167,7 @@ public class OrderController {
         if (carOrder.getStatus() >= 25)
             throw new AppException("订单已经支付成功");
         try {
+            carOrder.setOrderAmount(new BigDecimal("0.01"));
             Map<String, String> map = wxService.payBeforeByJSAPI(carOrder, carOrder.getOrderAmount());
             carOrder.setStatus(15);
             carOrderService.updateByPrimaryKeySelective(carOrder);
