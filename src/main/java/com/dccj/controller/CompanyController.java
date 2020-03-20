@@ -87,15 +87,15 @@ public class CompanyController {
 
     @RequestMapping("doSaveCompany")
     @ResponseBody
-    public JsonResult doSaveCompany(CompanyEntity entity) {
-        companyService.saveObject(entity);
+    public JsonResult doSaveCompany(CarStation entity) {
+        carStationService.insertSelective(entity);
         return new JsonResult();
     }
 
     @RequestMapping("doUpdateCompany")
     @ResponseBody
-    public JsonResult doUpdateCompany(CompanyEntity project) {
-        companyService.updateObject(project);
+    public JsonResult doUpdateCompany(CarStation project) {
+        carStationService.updateByPrimaryKeySelective(project);
         return new JsonResult();
     }
 

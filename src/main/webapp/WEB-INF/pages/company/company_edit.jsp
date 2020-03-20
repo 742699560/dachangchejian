@@ -7,7 +7,7 @@
 	<ul class="breadcrumb">
 		<li><i class="ace-icon fa fa-home home-icon"></i> <a
 			href="indexUI.do">主页</a></li>
-		<li><a href="#">企业管理</a></li>
+		<li><a href="#">车检所管理</a></li>
 	</ul>
 </div>
 
@@ -44,10 +44,10 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-sm-3 control-label">联系方式：</div>
+										<div class="col-sm-3 control-label"><font color="red">*</font>联系方式：</div>
 										<div class="col-sm-8">
 											<input type="text" name="phone" id="phone"
-												   class="form-control dynamicClear " placeholder="联系方式">
+												   class="form-control dynamicClear required " placeholder="联系方式">
 										</div>
 									</div>
 									<div class="form-group">
@@ -67,20 +67,20 @@
 									</div>
 
 									<div class="form-group">
-										<div class="col-sm-3 control-label">详细地址：</div>
+										<div class="col-sm-3 control-label"><font color="red">*</font>详细地址：</div>
 										<div class="col-sm-8">
 											<input type="text" name="address" id="address"
-											  class="form-control dynamicClear"	placeholder="详细地址">
+											  class="form-control dynamicClear required"	placeholder="详细地址" >
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-sm-3 control-label">
-											<font color="red">*</font>描述：
+											描述：
 										</div>
 										<div class="col-sm-8">
 											<input type="text" name="description" id="description"
 												placeholder="描述"
-												class="form-control dynamicClear required">
+												class="form-control dynamicClear ">
 										</div>
 									</div>
 
@@ -94,8 +94,12 @@
 									
 							</div>
 						</div>
-						<div></div>
-						<div></div>
+						<div class="form-group">
+							<div class="col-sm-3 control-label"></div>
+							<input type="button" class="btn btn-primary" id="btn_ok">
+							&nbsp;&nbsp; <input type="button" value="返回"
+												class="btn btn-warning" id="btn_return">
+						</div>
 					</div>
 				</div>
 			</div>
