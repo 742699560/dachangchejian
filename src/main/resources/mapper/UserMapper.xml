@@ -70,7 +70,9 @@
 			sys_users
 		set
 			username = #{entity.username},
-			password = #{entity.password},
+			<if test="entity!=null and entity.password!=null and entity.password!=''">
+				password = #{entity.password},
+			</if>
 			salt = #{entity.salt},
 			utype = #{entity.utype},
 			company = #{entity.company},
@@ -139,5 +141,6 @@
 			ur.user_id = #{id}
 		and 
 			type = 1
+		order by m.sort
 	</select>
 </mapper>

@@ -7,6 +7,7 @@ import com.dccj.dao.UserDao;
 import com.dccj.dao.UserRoleDao;
 import com.dccj.entity.User;
 import com.dccj.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
@@ -109,11 +110,13 @@ public class UserServiceImpl implements UserService {
 		if(user==null){
 			throw new NullPointerException("保存用户信息，用户对象不能为空！");
 		}
-		String saltStr = UUID.randomUUID().toString();   //生成盐值
-		ByteSource salt = ByteSource.Util.bytes(saltStr);
-		String pwd = new SimpleHash("MD5",user.getPassword(),salt).toString();
-		user.setPassword(pwd);
-		user.setSalt(saltStr);
+		if(!StringUtils.isEmpty(user.getPassword())) {
+			String saltStr = UUID.randomUUID().toString();   //生成盐值
+			ByteSource salt = ByteSource.Util.bytes(saltStr);
+			String pwd = new SimpleHash("MD5", user.getPassword(), salt, 1).toString();
+			user.setPassword(pwd);
+			user.setSalt(saltStr);
+		}
 		//更新用户信息
 		int i = userDao.updateObject(user);
 		if(i!=1){
@@ -168,4 +171,10 @@ public class UserServiceImpl implements UserService {
 		return userDao.menuList(user.getId());
 	}
 
+	public static void main(String[] args) {
+		String saltStr = UUID.randomUUID().toString();
+		ByteSource salt = ByteSource.Util.bytes(saltStr);
+		String pwd = new SimpleHash("MD5","123456",salt).toString();
+		System.out.println(pwd + "--------"+saltStr);
+	}
 }

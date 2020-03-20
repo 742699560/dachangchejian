@@ -15,7 +15,7 @@ function commitUserForm(){
 			return false;
 		}
 		var userId = $('#container').data('userId');
-		var userPwd = userId?$('#newPwd').val():$('#userPwd').val();
+		var userPwd = $('#userPwd').val();
 		params.password = userPwd;
 		params.id = userId;
 		var url = userId?'user/updateUser.do':'user/saveUser.do';
@@ -39,6 +39,7 @@ function getFormParams(){
 	var roleIdList = new Array();
 	var pernumber = $('#pernumber').val();
 	var realname = $('#realname').val();
+	var password = $('#userPwd').val();
 	var performer;
     
         if ($(".ace-switch-7").is(':checked')) {  
@@ -64,8 +65,8 @@ function getFormParams(){
 		'performer':performer,
 		'utype':utype,
 		'realname':realname,
-		'roleIdList':roleIdList
-		
+		'roleIdList':roleIdList,
+		'password':password
 	}
 	return params;
 }
@@ -140,8 +141,6 @@ function findUserById(userId){
 //回显
 function loadEditUserForm(user){
 	$('#userName').val(user.username);
-	$('#userPwd').val(user.password);
-	$('#newPwdDiv').css('display','block');
 	$('#company').val(user.company);
 	$('#pernumber').val(user.pernumber);
 	$('#realname').val(user.realname);

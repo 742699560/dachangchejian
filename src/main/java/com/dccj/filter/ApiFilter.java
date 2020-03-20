@@ -19,28 +19,29 @@ public class ApiFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         String salt = "35e5c1b47ce3";
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
-        HttpServletResponse response = (HttpServletResponse)servletResponse;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
         String sign = httpRequest.getParameter("sign");
 
         String timestamp = httpRequest.getParameter("timestamp");
-
-        if(StringUtils.isEmpty(sign) || StringUtils.isEmpty(timestamp)){
-            RespEntity res = new RespEntity();
-            res.setStatus(RespEntity.CODE_SIGN_ERROR);
-            HttpResponseUtil.writeResponse(httpRequest, response, res);
-            return;
+        if (!(httpRequest.getRequestURL().toString().indexOf("wxNotifyCallBack") >= 0)) {
+            if (StringUtils.isEmpty(sign) || StringUtils.isEmpty(timestamp)) {
+                RespEntity res = new RespEntity();
+                res.setStatus(RespEntity.CODE_SIGN_ERROR);
+                HttpResponseUtil.writeResponse(httpRequest, response, res);
+                return;
+            }
+            if (!MD5Util.md5(timestamp + salt).equals(sign)) {
+                RespEntity res = new RespEntity();
+                res.setStatus(RespEntity.CODE_SIGN_ERROR);
+                HttpResponseUtil.writeResponse(httpRequest, response, res);
+                return;
+            }
         }
-        if(!MD5Util.md5(timestamp + salt).equals(sign)){
-            RespEntity res = new RespEntity();
-            res.setStatus(RespEntity.CODE_SIGN_ERROR);
-            HttpResponseUtil.writeResponse(httpRequest, response, res);
-            return;
-        }
 
-        filterChain.doFilter(servletRequest,servletResponse);
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         System.out.println(MD5Util.md5("1" + "35e5c1b47ce3"));
     }
 }

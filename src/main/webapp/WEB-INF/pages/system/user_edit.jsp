@@ -32,20 +32,11 @@
 									</div>
 									<div class="form-group">
 										<div class="col-sm-2 control-label">
-											<font color="red">*</font>密码：
+											密码：
 										</div>
 										<div class="col-sm-4">
 											<input type="password" name="userPwd" id="userPwd"
-												placeholder="密码" class="form-control dynamicClear required">
-										</div>
-									</div>
-									<div class="form-group" id="newPwdDiv" style="display: none">
-										<div class="col-sm-2 control-label">
-											<font color="red">*</font>新密码：
-										</div>
-										<div class="col-sm-4">
-											<input type="password" name="newPwd" id="newPwd"
-												placeholder="请重新填写密码" class="form-control dynamicClear required">
+												placeholder="密码" class="form-control dynamicClear">
 										</div>
 									</div>
 									<div class="form-group">
@@ -66,28 +57,8 @@
 												placeholder="姓名" class="form-control dynamicClear required">
 										</div>
 									</div>
-									<div class="form-group">
-										<div class="col-sm-2 control-label">
-											<font color="red">*</font>是否为执法人员：
-										</div>
-										<div class="col-xs-3">
-											<label> <input name="switch-field-1" id="performer"
-												class="ace ace-switch ace-switch-7" type="checkbox" /> <span
-												class="lbl"></span>
-											</label>
-										</div>
-									</div>
-									
-									<div class="form-group">
-										<div class="col-sm-2 control-label">
-											执法证号：
-										</div>
-										<div class="col-sm-4">
-											<input type="text" name="pernumber" id="pernumber"
-												placeholder="执法人员证号" class="form-control dynamicClear">
-										</div>
-									</div>
-									
+
+
 									<div class="form-group">
 										<div class="col-sm-2 control-label"
 											style="margin-right: 12px;">

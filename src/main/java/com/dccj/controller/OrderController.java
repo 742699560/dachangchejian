@@ -189,6 +189,7 @@ public class OrderController {
     @RequestMapping(value = "/wxNotifyCallBack", consumes = "text/xml", produces = "text/xml", method = RequestMethod.POST)
     public WXPayNotifyResponse wxNotifyCallBack(@RequestBody WXPayNotifyRequest notify,
                                                 HttpServletRequest request, HttpServletResponse response) {
+        log.info("------------------------接受到微信支付回调通知{}---------------------------------------------",JSONObject.toJSONString(notify));
         WXPayNotifyResponse resXml = new WXPayNotifyResponse();
         resXml.setReturnCode("SUCCESS");
         resXml.setReturnMsg("处理成功");
@@ -210,6 +211,7 @@ public class OrderController {
             resXml.setReturnCode("ERROR");
             resXml.setReturnMsg(e.getMessage());
         }
+        log.info("------------------------微信支付回调处理结束{}---------------------------------------------",JSONObject.toJSONString(resXml));
         return resXml;
     }
 

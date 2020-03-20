@@ -15,6 +15,7 @@ import com.dccj.entity.CompanyPamEntity;
 import com.dccj.entity.ExamineForcomEntity;
 import com.dccj.service.CompanyService;
 import com.github.pagehelper.PageHelper;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,31 +31,10 @@ public class CompanyController {
     private CarStationService carStationService;
 
     @RequestMapping("companyUI")
+    @RequiresPermissions("company:view")
     public String comUI() {
         return "company/company_list";
     }
-
-    @RequestMapping("examinecomUI")
-    public String examinecomUI() {
-        return "company/examinecompany_list";
-    }
-
-    @RequestMapping("editrecordcomUI")
-    public String editrecordcomUI() {
-        return "company/recordcompany_list";
-    }
-
-    @RequestMapping("editrecordforcomUI")
-    public String editrecordforcomUI() {
-        return "company/recordeditcom_edit";
-    }
-
-    @RequestMapping("TravelcomforPamnumberUI")
-    public String TravelcomforPamnumberUI() {
-        return "company/pamcom_list";
-    }
-
-
     /**
      * 跳转到编辑页面
      */

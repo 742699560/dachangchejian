@@ -56,7 +56,7 @@ $(function(){
 			{name:'urid',index:'urid', editable: false , hidden: true ,editoptions:{readonly:true}},
 			{name:'ugid',index:'ugid', editable: false , hidden: true ,sortable:false,editoptions:{readonly:true}},
 			{label:'用户名',name:'username',index:'username',editable: true,editrules:{required : false}},
-			{label:'公司',name:'company',index:'company',editable: true},
+			{label:'车检所',name:'company',index:'company',editable: true},
 			{label:'类型',name:'utype',index:'utype',editable: false,formatter:userType},
 			{label:'状态',name:'valid',index:'valid',editable: false,formatter:userStatus},
 		], 

@@ -2,6 +2,7 @@ package com.dccj.controller;
 
 import javax.annotation.Resource;
 
+import com.dccj.exception.AppException;
 import com.dccj.uitl.JsonResult;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -40,10 +41,10 @@ public class LoginController {
         	 //登录认证 - 调用userRealm
                currentUser.login(token);
            }catch (IncorrectCredentialsException ice) {
-               throw new IncorrectCredentialsException("密码错误！");
+               throw new AppException("密码错误！");
            } 
            catch(AuthenticationException ae){
-        	   throw new AuthenticationException(ae.getMessage());
+        	   throw new AppException(ae.getMessage());
            }
 		}
 		return new JsonResult();
