@@ -48,5 +48,10 @@ public class CarTimeServiceImpl implements CarTimeService {
     public List<CarTime> selectByStationIdOrderByTimeSub(Integer stationId,String date) {
         return carTimeMapper.selectByStationIdOrderByTimeSub(stationId,date);
     }
+
+    @Override
+    public List<CarTime> selectAllByStationId(Integer stationId, String sord, String sidx) {
+        return carTimeMapper.selectAllByStationId(stationId, sord, sidx);
+    }
 }
 

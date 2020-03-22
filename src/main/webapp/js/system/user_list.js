@@ -20,10 +20,10 @@ function changeState(){
 	var url ='user/changeValid.do';
 	$.post(url,params,function(result){
 		if(result.state==SUCCESS){
-			alert("操作成功！");
+			sweetAlert("操作成功！");
 			criteriaDoGetObjects();
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 }
@@ -78,7 +78,7 @@ function doGetObjects(curPage){
 			 setTableRows(result.data.list);
 			 setPagination(result.data.pageObj);
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 }

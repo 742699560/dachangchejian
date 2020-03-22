@@ -11,7 +11,7 @@ function commitUserForm(){
 	if($('#editUserForm').valid()){  
 		var params = getFormParams();
 		if(params=='nochoose'){
-			alert('请选择用户角色！');
+			sweetAlert('请选择用户角色！');
 			return false;
 		}
 		var userId = $('#container').data('userId');
@@ -21,11 +21,11 @@ function commitUserForm(){
 		var url = userId?'user/updateUser.do':'user/saveUser.do';
 		$.post(url,params,function(result){
 			if(result.state==SUCCESS){
-				alert('操作成功！');
+				sweetAlert('操作成功！');
 				clearData();
 				$('#container').load('user/listUI.do');
 			}else{
-				alert(result.message);
+				sweetAlert(result.message);
 			}
 		})
 	}
@@ -40,6 +40,7 @@ function getFormParams(){
 	var pernumber = $('#pernumber').val();
 	var realname = $('#realname').val();
 	var password = $('#userPwd').val();
+	var stationId = $('#stationId').val();
 	var performer;
     
         if ($(".ace-switch-7").is(':checked')) {  
@@ -66,7 +67,8 @@ function getFormParams(){
 		'utype':utype,
 		'realname':realname,
 		'roleIdList':roleIdList,
-		'password':password
+		'password':password,
+		'stationId':stationId
 	}
 	return params;
 }
@@ -93,7 +95,7 @@ function loadRoleList(roleIdList){
 				}
 			}
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 }
@@ -123,6 +125,7 @@ function setBtnVal(){
 		$('#editTitle').text('新增');
 		//加载所有角色
 		loadRoleList();
+		loadStation();
 	}
 }
 
@@ -132,8 +135,9 @@ function findUserById(userId){
 	$.post(url,param,function(result){
 		if(result.state==SUCCESS){
 			loadEditUserForm(result.data);  //回显
+			loadStation(result.data);
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 }
@@ -159,4 +163,19 @@ function clearData(){
 	$('#newPwdDiv').css('display','none');
 	$('#roleList').empty();
 	$('#container').data('userId','');
+}
+
+
+function loadStation(data) {
+	if (!data)
+		data = {};
+	$.post("company/queryStation.do", {}, function (result) {
+		if (result.status == SUCCESS) {
+			for (var i = 0; i < result.data.list.length; i++) {
+				var item = result.data.list[i];
+				$("#stationId").append("<option value='" + item.id + "'>" + item.name + "</option>");
+			}
+			$("#carType option[value='"+data.stationId+"']").attr("selected", true);
+		}
+	});
 }

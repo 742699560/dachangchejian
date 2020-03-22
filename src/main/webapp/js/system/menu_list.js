@@ -109,7 +109,7 @@ function deleteMenu(){
 	debugger
 	var selected = $('#menuTable').bootstrapTreeTable('getSelections');
 	if (selected.length == 0) {
-        alert("请选择一条记录");
+		sweetAlert("请选择一条记录");
         return false;
     } 
 	var menuId = selected[0].id
@@ -117,10 +117,10 @@ function deleteMenu(){
 	var url = 'menu/deleteMenu.do';
 	$.post(url,param,function(result){
 		if(result.state==SUCCESS){
-			alert('删除成功！');
+			sweetAlert('删除成功！');
 			loadMenuTable();
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 }
@@ -129,7 +129,7 @@ function deleteMenu(){
 function showEditMenuPage(){
 	var selected = $('#menuTable').bootstrapTreeTable('getSelections');
 	if (selected.length == 0) {
-        alert("请选择一条记录");
+		sweetAlert("请选择一条记录");
         return false;
     } 
 	var menuId = selected[0].id

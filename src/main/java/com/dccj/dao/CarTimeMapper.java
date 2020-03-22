@@ -19,4 +19,5 @@ public interface CarTimeMapper {
 
     List<CarTime> selectByStationIdOrderByTimeSub(@Param("stationId")Integer stationId,@Param("date")String date);
 
+    List<CarTime> selectAllByStationId(@Param("stationId")Integer stationId, @Param("sord") String sord, @Param("sidx") String sidx);
 }

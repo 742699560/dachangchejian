@@ -77,9 +77,9 @@ public class OrderController {
 
     @RequestMapping("/queryOrder")
     @ResponseBody
-    public RespEntity queryOrder(@RequestParam(required = false) Integer userId,@RequestParam(required = false) Integer Id) {
+    public RespEntity queryOrder(@RequestParam(required = false) Integer userId, @RequestParam(required = false) Integer Id) {
         RespEntity respEntity = new RespEntity();
-        if(userId != null)
+        if (userId != null)
             respEntity.putListData(carOrderService.selectByUserIdOrderByCreateTimeDesc(userId.toString()));
         else
             respEntity.setData(carOrderService.selectByPrimaryKey(Id));
@@ -146,7 +146,7 @@ public class OrderController {
 
         String size = carCenter.getCarSize();
         String[] par = size.split("X");
-        CarPrice carPrice = carPriceService.selectByTypeIdAndHeightFromAndHeightEnd(carCenter.getCarType(), new BigDecimal(par[0]), new BigDecimal(par[1]));
+        CarPrice carPrice = carPriceService.selectByTypeIdAndHeightFromAndHeightEnd(carCenter.getCarType(), new BigDecimal(par[0]), new BigDecimal(par[1]), carOrder.getStationId());
         if (carPrice == null)
             throw new AppException("未查询到相关价格信息");
         carOrder.setMobile(carCenter.getMobile());
@@ -189,7 +189,7 @@ public class OrderController {
     @RequestMapping(value = "/wxNotifyCallBack", consumes = "text/xml", produces = "text/xml", method = RequestMethod.POST)
     public WXPayNotifyResponse wxNotifyCallBack(@RequestBody WXPayNotifyRequest notify,
                                                 HttpServletRequest request, HttpServletResponse response) {
-        log.info("------------------------接受到微信支付回调通知{}---------------------------------------------",JSONObject.toJSONString(notify));
+        log.info("------------------------接受到微信支付回调通知{}---------------------------------------------", JSONObject.toJSONString(notify));
         WXPayNotifyResponse resXml = new WXPayNotifyResponse();
         resXml.setReturnCode("SUCCESS");
         resXml.setReturnMsg("处理成功");
@@ -211,7 +211,7 @@ public class OrderController {
             resXml.setReturnCode("ERROR");
             resXml.setReturnMsg(e.getMessage());
         }
-        log.info("------------------------微信支付回调处理结束{}---------------------------------------------",JSONObject.toJSONString(resXml));
+        log.info("------------------------微信支付回调处理结束{}---------------------------------------------", JSONObject.toJSONString(resXml));
         return resXml;
     }
 

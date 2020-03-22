@@ -20,5 +20,7 @@ public interface CarTimeService {
     int updateByPrimaryKey(CarTime record);
 
     List<CarTime> selectByStationIdOrderByTimeSub(Integer stationId,String date);
+
+    List<CarTime> selectAllByStationId(Integer stationId, String sord, String sidx);
 }
 

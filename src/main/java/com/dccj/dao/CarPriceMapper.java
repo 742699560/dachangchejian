@@ -18,6 +18,10 @@ public interface CarPriceMapper {
 
     int updateByPrimaryKey(CarPrice record);
 
-    CarPrice selectByTypeIdAndHeightFromAndHeightEnd(@Param("carType")String carType,@Param("heightFrom")BigDecimal heightFrom,@Param("heightEnd")BigDecimal heightEnd);
+    CarPrice selectByTypeIdAndHeightFromAndHeightEnd(@Param("carType")String carType,@Param("heightFrom")BigDecimal heightFrom,@Param("heightEnd")BigDecimal heightEnd,@Param("stationId") Integer stationId);
+
+    List<CarPrice> selectByCarType(@Param("carType") String carType, @Param("sord") String sord, @Param("sidx") String sidx,@Param("stationId") Integer stationId);
+
+
 
 }

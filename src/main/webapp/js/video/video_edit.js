@@ -70,7 +70,7 @@ function doGetObjects(){
 		 setTableRows(result.data.list);
 		setPagination(result.data.pageObject);
 		}else{
-		 alert(result.message);	
+			 sweetAlert(result.message);
 		} 
 	  });
 	}
@@ -121,7 +121,7 @@ function commitUserForm(){
 				clearData();
 				$('#container').load('video/videoUI.do');
 			}else{
-				alert(result.message);
+				sweetAlert(result.message);
 			}
 		})
 	}
@@ -245,7 +245,7 @@ map.addEventListener("click",function(e){
 });
 function attribute(){
 	var p = marker.getPosition();  //获取marker的位置
-	alert("marker的位置是" + p.longitude + "," + p.latitude);    
+	sweetAlert("marker的位置是" + p.longitude + "," + p.latitude);
 }
 
 $(document).ready(function(){

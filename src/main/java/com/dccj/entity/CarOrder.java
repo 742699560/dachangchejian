@@ -151,4 +151,11 @@ public class CarOrder {
     private Date createTime;
 
     private Date updateTime;
+
+    private String statusStr;
+
+    private String stationName;
+
+    private String timeSub;
+
 }

@@ -2,20 +2,26 @@
          pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="basePath" value="${pageContext.request.contextPath}"></c:set>
+
 <script src="${basePath}/js/common/page.js"></script>
 <div class="breadcrumbs ace-save-state" id="breadcrumbs">
     <ul class="breadcrumb">
         <li><i class="ace-icon fa fa-home home-icon"></i> <a
                 href="indexUI.do">主页</a></li>
-        <li class="active">车检所管理</li>
+        <li class="active">价格管理</li>
     </ul>
 </div>
 <div class="page-content" style="padding: 0px;">
     <form class="form-horizontal col-md-12" id="searchform" style="padding-top: 20px;">
         <div class="form-group">
             <div class="col-md-12 col-lg-3">
-                <label class="col-md-2 col-lg-4">车检所名称: </label>
-				<input type="text"  id="search_tcarcode" name="search_tcarcode"  placeholder=""  style="height: 30px;" class="col-md-7">
+                <label class="col-md-6 col-lg-3">车辆类型: </label>
+                <div class="col-sm-8">
+                    <select name="carType" id="carType"
+                            class="chosen-select form-control dynamicClear tag-input-style required"
+                            data-placeholder="请选择车辆类型">
+                    </select>
+                </div>
             </div>
             <div class="col-md-12 col-lg-3">
                 <button type="button" onclick="search()"
@@ -83,17 +89,16 @@
             minView: 2
         });
         $(grid_selector).jqGrid({
-            url: 'company/findPageObjects.do',
+            url: 'carPrice/queryByCarType.do',
             datatype: "json",
             mtype: "post",
             colModel: [
                 {name: 'id', index: 'id', editable: false, hidden: true, editoptions: {readonly: true}},
-                {label: '车检所名称', name: 'name', index: 'name', editable: true, sortable: true},
-                {label: '联系人', name: 'contats', index: 'contats', editable: false},
-                {label: '联系电话', name: 'phone', index: 'phone', editable: true},
-                {label: '详细地址', name: 'address', index: 'address', editable: false},
-                {label: '纬度', name: 'lat', index: 'lat', editable: false},
-                {label: '经度', name: 'lng', index: 'lng', editable: true}
+                {name: 'stationId', index: 'station_id', hidden: true, editable: true, sortable: true},
+                {label: '车辆类型', name: 'carType', index: 'car_type', editable: true, sortable: true},
+                {label: '车身长度从(米)', name: 'heightFrom', index: 'height_from', editable: false},
+                {label: '车身长度至(米)', name: 'heightEnd', index: 'height_end', editable: true},
+                {label: '价格', name: 'price', index: 'price', editable: false}
             ],
             prmNames: {page: "page", rows: "pageSize"},
             viewrecords: true,
@@ -109,7 +114,6 @@
                     updatePagerIcons(table);
                 }, 0);
             },
-            /* caption: "企业列表", */
             rownumbers: true,
             shrinkToFit: true,
             autowidth: true,
@@ -154,18 +158,18 @@
             caption: "添加&ensp;",
             buttonicon: "ace-icon fa fa-plus-circle purple",
             onClickButton: function () {
-                showAddcompany();
+                showAddprice();
             },
             position: 'first',
-            title: "添加企业"
+            title: "添加"
         });
 
     })
 
 
-    function showAddcompany() {
+    function showAddprice() {
         $('#container').data('rowData', null);
-        var url = 'company/editCompanyUI.do';
+        var url = 'carPrice/carPriceEditUI.do';
         $('#container').load(url);
     }
 
@@ -177,8 +181,8 @@
         }
 
         var rowData = $(grid_selector).jqGrid('getRowData', id);
-        var param = {'cid': rowData.id};
-        var url = 'company/deleteCompany.do';
+        var param = {'id': rowData.id};
+        var url = 'carPrice/deleteCarPrice.do';
         swal({
             title: "是否确定删除",
             text: "将无法恢复该数据！",
@@ -188,7 +192,6 @@
             cancelButtonText: "取消！",
             closeOnConfirm: false
         }, function () {
-
             $.post(url, param, function (result) {
                 $(grid_selector).trigger("reloadGrid");
             })
@@ -204,14 +207,14 @@
         }
         var rowData = $(grid_selector).jqGrid('getRowData', cid);
         $('#container').data('rowData', rowData);
-        $('#container').load('company/editCompanyUI.do');
+        $('#container').load('carPrice/carPriceEditUI.do');
     }
 
 
     function search() {
         $(grid_selector).jqGrid('setGridParam', {
             postData: {
-                'name': $('#search_tcarcode').val()
+                'carType': $('#carType').val()
             }
 
         }).trigger("reloadGrid"); //重新载入
@@ -233,4 +236,19 @@
         })
     }
 
+
+    function loadCarType() {
+        var param = {'type': 'carType', 'timestamp': '1', 'sign': '78d88a8cb24785856d461ec7e4b6955d'};
+        $("#carType").append("<option selected value='' >请选择</option>");
+        $.post("api/dataDir.do", param, function (result) {
+            if (result.status == SUCCESS) {
+                for (var i = 0; i < result.data.list.length; i++) {
+                    var item = result.data.list[i];
+                    $("#carType").append("<option value='" + item.name + "'>" + item.name + "</option>");
+                }
+            }
+        });
+    }
+
+    loadCarType();
 </script>

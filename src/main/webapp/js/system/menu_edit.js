@@ -47,7 +47,7 @@ function findMenuById(menuId){
 		if(result.state ==SUCCESS){
 			loadEditMenuForm(result.data);
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 }
@@ -79,11 +79,11 @@ function commitMenuForm(){
 		params.id = menuId;
 		$.post(url,params,function(result){
 			if(result.state == SUCCESS){
-				alert('操作成功！');
+				sweetAlert('操作成功！');
 				clearEditMenuForm();
 				$('#container').load('menu/listUI.do');
 			}else{
-				alert(result.message);
+				sweetAlert(result.message);
 			}
 		})
 	}
@@ -144,7 +144,7 @@ function loadTreeData(){
 		if(result.state==SUCCESS){
 			ztree = $.fn.zTree.init($("#menuTree"), setting,result.data);
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 }

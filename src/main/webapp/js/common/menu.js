@@ -6,7 +6,7 @@ function loadMenuList(){
 		if(result.state==SUCCESS){
 			loadMenu(result.data);
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	});
 }

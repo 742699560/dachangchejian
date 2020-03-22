@@ -41,11 +41,13 @@
 									</div>
 									<div class="form-group">
 										<div class="col-sm-2 control-label">
-											<font color="red">*</font>公司：
+											<font color="red">*</font>车检所：
 										</div>
 										<div class="col-sm-4">
-											<input type="text" name="company" id="company"
-												placeholder="公司" class="form-control dynamicClear required">
+											<select name="stationId" id="stationId"
+													class="chosen-select form-control dynamicClear tag-input-style required"
+													id="form-field-select-4" data-placeholder="请选择车检所">
+											</select>
 										</div>
 									</div>
 									<div class="form-group">

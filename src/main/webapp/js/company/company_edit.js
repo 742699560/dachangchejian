@@ -18,7 +18,7 @@ function commitUserForm() {
         var data = $('#container').data('rowData');
         if(data)
             params.id = data.id;
-        var url = params.id ? 'company/doUpdateCompany.do' : 'company/doSaveCompany.do';
+        var url = params.id ? 'carPrice/doUpdateCompany.do' : 'company/doSaveCompany.do';
         $.post(url, params, function (result) {
             if (result.state == SUCCESS) {
                 sweetAlert('操作成功！');

@@ -14,7 +14,7 @@ function doGetObjectById(cid){
 		if(result.state==1){
 			doFillFormData(result.data);
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	});
 }
@@ -39,7 +39,7 @@ function doSaveOrUpdate(){
 			$("#modal-dialog").modal("hide");
 			doGetObjects();
 		}else{
-		   alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 	}

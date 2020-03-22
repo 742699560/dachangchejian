@@ -7,6 +7,7 @@ import com.dccj.entity.CarTime;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface CarOrderService {
 
@@ -32,6 +33,10 @@ public interface CarOrderService {
     List<CarOrder> selectByUserIdOrderByCreateTimeDesc(String userId);
 
     List<CarOrder> selectByCarId(Integer carId);
+
+    List<CarOrder> selectAllByStatusAndUsernameAndMobileAndCarNumAndStationId(String dateBegin, String dateEnd, Integer status, String username, String mobile, String carNum, Integer stationId, Integer type,String sord, String sidx);
+
+    List<Map> statisticsTopNum(String date);
 }
 
 

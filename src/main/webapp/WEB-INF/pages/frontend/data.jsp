@@ -843,7 +843,7 @@ function setfbChart(){
 			    bdary.get(districtName, function (rs) {       //获取行政区域
 			        var count = rs.boundaries.length; //行政区域的点有多少个
 			        if (count === 0) {
-			            alert('未能获取当前输入行政区域');
+                        sweetAlert('未能获取当前输入行政区域');
 			            return;
 			        }
 			        for (var i = 0; i < count; i++) {

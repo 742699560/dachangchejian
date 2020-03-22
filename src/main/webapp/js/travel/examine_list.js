@@ -14,7 +14,7 @@ function doGetObjectById(eid){
 		if(result.state==1){
 			doFillFormDatas(result.data);
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	});
 }
@@ -34,7 +34,7 @@ function doSaveOrUpdate(){
 			$("#modal-dialog").modal("hide");
 			docomExamineName();
 		}else{
-		   alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 	}

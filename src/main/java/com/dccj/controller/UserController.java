@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.dccj.entity.CarStation;
+import com.dccj.service.CarStationService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +23,10 @@ public class UserController {
 	
 	@Resource
 	private UserService userService;
-	
+
+	@Resource
+	private CarStationService carStationService;
+
 	/**
 	 * 用户列表页面
 	 */
@@ -68,6 +73,8 @@ public class UserController {
 	@RequestMapping("saveUser")
 	@ResponseBody
 	public JsonResult saveUser(User user,String roleIdList){
+		CarStation carStation = carStationService.selectByPrimaryKey(user.getStationId());
+		user.setCompany(carStation.getName());
 		userService.saveUser(user,roleIdList);
 		return new JsonResult();
 	}
@@ -88,6 +95,8 @@ public class UserController {
 	@RequestMapping("updateUser")
 	@ResponseBody
 	public JsonResult updateUser(User user,String roleIdList){
+		CarStation carStation = carStationService.selectByPrimaryKey(user.getStationId());
+		user.setCompany(carStation.getName());
 		userService.updateUser(user,roleIdList);
 		return new JsonResult();
 	}

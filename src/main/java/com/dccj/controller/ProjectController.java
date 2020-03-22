@@ -28,7 +28,7 @@ public class ProjectController {
 	}
 	@RequestMapping("projectParUI")
 	public String projectParUI(){
-		return "exigencymessage/exigencypam_list";
+		return "exigencymessage/exigencypam_list1";
 	}
 	
 	

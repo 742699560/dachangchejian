@@ -11,12 +11,14 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 import com.dccj.dao.CarOrderMapper;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,8 +41,14 @@ public class CarOrderServiceImpl implements CarOrderService {
     CarTimeService carTimeService;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int deleteByPrimaryKey(Integer id) {
-        return carOrderMapper.deleteByPrimaryKey(id);
+        List<CarOrderStep> list = carOrderStepService.selectByOrderId(id);
+        for (CarOrderStep carOrderStep : list) {
+            carOrderStepService.deleteByPrimaryKey(carOrderStep.getId());
+        }
+        int a = carOrderMapper.deleteByPrimaryKey(id);
+        return a;
     }
 
     @Override
@@ -200,6 +208,16 @@ public class CarOrderServiceImpl implements CarOrderService {
     @Override
     public List<CarOrder> selectByCarId(Integer carId) {
         return carOrderMapper.selectByCarId(carId);
+    }
+
+    @Override
+    public List<CarOrder> selectAllByStatusAndUsernameAndMobileAndCarNumAndStationId(String dateBegin, String dateEnd, Integer status, String username, String mobile, String carNum, Integer stationId, Integer type, String sord, String sidx) {
+        return carOrderMapper.selectAllByStatusAndUsernameAndMobileAndCarNumAndStationId(dateBegin, dateEnd, status, username, mobile, carNum, stationId, type, sord, sidx);
+    }
+
+    @Override
+    public List<Map> statisticsTopNum(String date) {
+        return carOrderMapper.statisticsTopNum(date);
     }
 }
 

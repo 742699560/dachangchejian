@@ -12,7 +12,7 @@ function doGetObjectByIds(eid){
 			doFillFormDatas(result.data);
 			$('#modal-dialog').data('vid','');
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	});
 }

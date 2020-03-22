@@ -26,7 +26,7 @@ function commitUserForm(){
 				clearData();
 				$('#container').load('travel/travelUI.do');
 			}else{
-				alert(result.message);
+				sweetAlert(result.message);
 			}
 		})
 	}
@@ -157,7 +157,7 @@ map.addEventListener("click",function(e){
 });
 function attribute(){
 	var p = marker.getPosition();  //获取marker的位置
-	alert("marker的位置是" + p.lng + "," + p.lat);    
+	sweetAlert("marker的位置是" + p.lng + "," + p.lat);
 }
 
 

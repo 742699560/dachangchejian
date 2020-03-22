@@ -16,7 +16,7 @@ function deleteRole(){
 	
 	var selectedOption = getCheckedId();
 	if(!selectedOption){
-		alert('请选择要删除的选项！');
+		sweetAlert('请选择要删除的选项！');
 		return;
 	}
 	
@@ -24,10 +24,10 @@ function deleteRole(){
 	var url = 'role/deleteRole.do';
 	$.post(url,param,function(result){
 		if(result.state==SUCCESS){
-			alert('删除成功！');
+			sweetAlert('删除成功！');
 			criteriaDoGetObjects();
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 }
@@ -36,7 +36,7 @@ function deleteRole(){
 function showEditRolePage(){
 	var selectedOption = getCheckedId();
 	if(!selectedOption){
-		alert('请选择要修改的选项！');
+		sweetAlert('请选择要修改的选项！');
 		return;
 	}
 	$('#container').data('roleId',selectedOption);
@@ -67,7 +67,7 @@ function doGetObjects(curPage){
 			 setTableRows(result.data.list);
 			 setPagination(result.data.pageObj);
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 }

@@ -39,7 +39,7 @@ public class CompanyController {
      * 跳转到编辑页面
      */
     @RequestMapping("editCompanyUI")
-    public String editUser() {
+    public String editCompanyUI() {
         return "company/company_edit";
     }
 
@@ -58,11 +58,12 @@ public class CompanyController {
     /**
      * 根据id查询信息，用于回显
      */
-    @RequestMapping("findCompanyById")
+    @RequestMapping("queryStation")
     @ResponseBody
-    public JsonResult findUserById(Integer cid) {
-        Map<String, Object> map = companyService.findComopanyById(cid);
-        return new JsonResult(map);
+    public RespEntity queryStation() {
+        RespEntity respEntity = new RespEntity();
+        respEntity.putListData(carStationService.selectAllByNameLike(""));
+        return respEntity;
     }
 
     @RequestMapping("doSaveCompany")
@@ -82,7 +83,7 @@ public class CompanyController {
     @RequestMapping("deleteCompany")
     @ResponseBody
     public JsonResult deleteCompany(Integer cid) {
-        companyService.deletObject(cid);
+        carStationService.deleteByPrimaryKey(cid);
         return new JsonResult();
     }
 

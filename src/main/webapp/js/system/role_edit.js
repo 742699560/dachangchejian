@@ -46,7 +46,7 @@ function findRoleById(roleId){
 		if(result.state == SUCCESS){
 			loadEditRoleForm(result.data);
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 }
@@ -64,7 +64,7 @@ function commitRoleForm(){
 	if($('#editRoleForm').valid()){
 		var params = getParams();
 		if(params=='nochoose'){
-			alert('请选择授权！');
+			sweetAlert('请选择授权！');
 			return false;
 		}
 		var roleId = $('#container').data('roleId');
@@ -72,11 +72,11 @@ function commitRoleForm(){
 		params.id = roleId;
 		$.post(url,params,function(result){
 			if(result.state ==SUCCESS){
-				alert('操作成功！');
+				sweetAlert('操作成功！');
 				clearData();
 				$('#container').load('role/listUI.do');
 			}else{
-				alert(result.message);
+				sweetAlert(result.message);
 			}
 		})
 	}
@@ -135,7 +135,7 @@ function loadTreeData(menuIdList){
 				}
 			}
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 }

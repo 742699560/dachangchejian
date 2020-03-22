@@ -43,7 +43,7 @@ function docomExamineName(){
 			setExamineName(result.data);
 			$('.chosen-select').chosen({width: "100%",height:"50px;",max_selected_options: 2})
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 }
@@ -73,7 +73,7 @@ function commitUserForm(){
 			clearData();
 			$('#container').load('travel/travelUI.do');
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 

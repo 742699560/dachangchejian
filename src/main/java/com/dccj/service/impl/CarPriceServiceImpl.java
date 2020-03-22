@@ -7,6 +7,7 @@ import com.dccj.dao.CarPriceMapper;
 import com.dccj.service.CarPriceService;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class CarPriceServiceImpl implements CarPriceService {
@@ -45,8 +46,13 @@ public class CarPriceServiceImpl implements CarPriceService {
     }
 
     @Override
-    public CarPrice selectByTypeIdAndHeightFromAndHeightEnd(String  carType, BigDecimal heightFrom, BigDecimal heightEnd) {
-        return carPriceMapper.selectByTypeIdAndHeightFromAndHeightEnd(carType, heightFrom, heightEnd);
+    public CarPrice selectByTypeIdAndHeightFromAndHeightEnd(String  carType, BigDecimal heightFrom, BigDecimal heightEnd,Integer stationId) {
+        return carPriceMapper.selectByTypeIdAndHeightFromAndHeightEnd(carType, heightFrom, heightEnd,stationId);
+    }
+
+    @Override
+    public List<CarPrice> selectByCarType(String carType, String sord, String sidx,Integer stationId ) {
+        return carPriceMapper.selectByCarType(carType, sord, sidx,stationId);
     }
 }
 

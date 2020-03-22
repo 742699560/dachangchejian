@@ -17,10 +17,10 @@ public class User implements Serializable {
 	private String createdUser;
 	private String modifiedUser;
 	private Date modifiedTime;
-	private String performer;//执法者
-	private int pernumber;//执法者编号
+	private String performer;
+	private int pernumber;
 	private String realname;
-	
+	private Integer stationId;
 	private int page;
 	private int total;
 	private int rows;
@@ -83,7 +83,14 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	
+	public Integer getStationId() {
+		return stationId;
+	}
+
+	public void setStationId(Integer stationId) {
+		this.stationId = stationId;
+	}
+
 	public String getUtype() {
 		return utype;
 	}

@@ -39,7 +39,7 @@ function docomExamineName(){
 			setExamineName(result.data);
 			$('.chosen-select').chosen({width: "100%",max_selected_options: 2})
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 }
@@ -69,7 +69,7 @@ function commitUserForm(){
 			clearData();
 			$('#container').load('company/companyUI.do');
 		}else{
-			alert(result.message);
+			sweetAlert(result.message);
 		}
 	})
 

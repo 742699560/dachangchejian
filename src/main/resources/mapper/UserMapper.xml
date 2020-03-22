@@ -10,7 +10,8 @@
 			performer,
 			pernumber,
 			realname,
-			valid
+			valid,
+			station_id stationId
 		from
 			sys_users
 		<where>
@@ -22,6 +23,9 @@
 			</if>
 			<if test="entity!=null and entity.company!=null and entity.company!=''">
 				company LIKE CONCAT('%',#{entity.company},'%')
+			</if>
+			<if test="entity!=null and entity.stationId!=null ">
+				station_id = #{entity.stationId,jdbcType=INTEGER}
 			</if>
 		</where>
 		<if test="pageObject!=null and pageObject.pageSize != 0">
@@ -40,16 +44,19 @@
 			<if test="entity!=null and entity.company!=null and entity.company!=''">
 				company LIKE CONCAT('%',#{entity.company},'%')
 			</if>
+			<if test="entity!=null and entity.stationId!=null ">
+				station_id = #{entity.stationId,jdbcType=INTEGER}
+			</if>
 		</where>
 	</select>
 	<insert id="save" parameterType="com.dccj.entity.User" useGeneratedKeys="true" keyProperty="entity.id">
 		insert into
 			sys_users
 			(username,password,salt,utype,company,valid,createdTime,modifiedTime,performer,
-			pernumber,createdUser,modifiedUser,realname)
+			pernumber,createdUser,modifiedUser,realname,station_id)
 		values
 			(#{entity.username},#{entity.password},#{entity.salt},#{entity.utype},#{entity.company},
-			1,NOW(),NOW(),#{entity.performer},#{entity.pernumber},#{entity.createdUser},#{entity.modifiedUser},#{entity.realname});
+			1,NOW(),NOW(),#{entity.performer},#{entity.pernumber},#{entity.createdUser},#{entity.modifiedUser},#{entity.realname},#{entity.stationId,jdbcType=INTEGER});
 	</insert>
 	<select id="findObjectById" parameterType="java.lang.Integer" resultType="map">
 		select
@@ -59,7 +66,8 @@
 			performer,
 			pernumber,
 			realname,
-			company
+			company,
+			station_id stationId
 		from
 			sys_users
 		where
@@ -80,7 +88,8 @@
 			pernumber = #{entity.pernumber},
 			modifiedTime = NOW(),
 			modifiedUser = #{entity.modifiedUser},
-			realname = #{entity.realname}
+			realname = #{entity.realname},
+			station_id = #{entity.stationId,jdbcType=INTEGER}
 		where
 			id = #{entity.id}
 	</update>
@@ -105,7 +114,8 @@
 			performer,
 			pernumber,
 			company,
-			realname
+			realname,
+			station_id stationId
 		from
 			sys_users
 		where

@@ -7,30 +7,10 @@
     <ul class="breadcrumb">
         <li><i class="ace-icon fa fa-home home-icon"></i> <a
                 href="indexUI.do">主页</a></li>
-        <li class="active">车检所管理</li>
+        <li class="active">预约时间管理</li>
     </ul>
 </div>
 <div class="page-content" style="padding: 0px;">
-    <form class="form-horizontal col-md-12" id="searchform" style="padding-top: 20px;">
-        <div class="form-group">
-            <div class="col-md-12 col-lg-3">
-                <label class="col-md-2 col-lg-4">车检所名称: </label>
-				<input type="text"  id="search_tcarcode" name="search_tcarcode"  placeholder=""  style="height: 30px;" class="col-md-7">
-            </div>
-            <div class="col-md-12 col-lg-3">
-                <button type="button" onclick="search()"
-                        class="btn btn-xs btn-primary"
-                        style="margin-left: 5px; padding: 3px 5px; outline: 0">
-                    <i class="ace-icon fa fa-search align-top bigger-125"></i>搜索
-                </button>
-                <button type="reset" onclick="searchRset()"
-                        class="btn btn-xs btn-danger"
-                        style="margin-left: 5px; padding: 3px 5px; outline: 0">
-                    <i class="ace-icon fa fa-trash  align-top bigger-125"></i>清空
-                </button>
-            </div>
-        </div>
-    </form>
 
     <div class="col-md-12">
         <table id="grid-table">
@@ -83,17 +63,14 @@
             minView: 2
         });
         $(grid_selector).jqGrid({
-            url: 'company/findPageObjects.do',
+            url: 'carTime/queryCarTime.do',
             datatype: "json",
             mtype: "post",
             colModel: [
                 {name: 'id', index: 'id', editable: false, hidden: true, editoptions: {readonly: true}},
-                {label: '车检所名称', name: 'name', index: 'name', editable: true, sortable: true},
-                {label: '联系人', name: 'contats', index: 'contats', editable: false},
-                {label: '联系电话', name: 'phone', index: 'phone', editable: true},
-                {label: '详细地址', name: 'address', index: 'address', editable: false},
-                {label: '纬度', name: 'lat', index: 'lat', editable: false},
-                {label: '经度', name: 'lng', index: 'lng', editable: true}
+                { name: 'stationId', index: 'station_id', hidden: true,editable: true, sortable: true},
+                {label: '时间从至', name: 'timeSub', index: 'time_sub', editable: true, sortable: true},
+                {label: '可预约人数', name: 'timeNum', index: 'time_num', editable: false}
             ],
             prmNames: {page: "page", rows: "pageSize"},
             viewrecords: true,
@@ -109,7 +86,6 @@
                     updatePagerIcons(table);
                 }, 0);
             },
-            /* caption: "企业列表", */
             rownumbers: true,
             shrinkToFit: true,
             autowidth: true,
@@ -138,7 +114,7 @@
                 caption: "修改&ensp;",
                 buttonicon: "ace-icon fa fa-pencil blue",
                 onClickButton: function () {
-                    showEditcompany();
+                    showEditPrice();
                 },
                 position: 'first',
                 title: "修改信息"
@@ -146,7 +122,7 @@
             caption: "删除&ensp;",
             buttonicon: "ace-icon fa fa-trash red",
             onClickButton: function () {
-                deletecompany();
+                deleteTime();
             },
             position: 'first',
             title: "删除信息"
@@ -154,22 +130,22 @@
             caption: "添加&ensp;",
             buttonicon: "ace-icon fa fa-plus-circle purple",
             onClickButton: function () {
-                showAddcompany();
+                showAddTime();
             },
             position: 'first',
-            title: "添加企业"
+            title: "添加"
         });
 
     })
 
 
-    function showAddcompany() {
+    function showAddTime() {
         $('#container').data('rowData', null);
-        var url = 'company/editCompanyUI.do';
+        var url = 'carTime/carTimeEditUI.do';
         $('#container').load(url);
     }
 
-    function deletecompany() {
+    function deleteTime() {
         var id = $(grid_selector).jqGrid('getGridParam', 'selrow');
         if (id == "" || id == null) {
             swal("错误", "请选择要删除的选项！");
@@ -177,8 +153,8 @@
         }
 
         var rowData = $(grid_selector).jqGrid('getRowData', id);
-        var param = {'cid': rowData.id};
-        var url = 'company/deleteCompany.do';
+        var param = {'id': rowData.id};
+        var url = 'carTime/deleteCarTime.do';
         swal({
             title: "是否确定删除",
             text: "将无法恢复该数据！",
@@ -188,7 +164,6 @@
             cancelButtonText: "取消！",
             closeOnConfirm: false
         }, function () {
-
             $.post(url, param, function (result) {
                 $(grid_selector).trigger("reloadGrid");
             })
@@ -196,7 +171,7 @@
         });
     }
 
-    function showEditcompany() {
+    function showEditPrice() {
         var cid = $(grid_selector).jqGrid('getGridParam', 'selrow');
         if (cid == "" || cid == null) {
             swal("错误", "请选择要修改的选项！");
@@ -204,14 +179,14 @@
         }
         var rowData = $(grid_selector).jqGrid('getRowData', cid);
         $('#container').data('rowData', rowData);
-        $('#container').load('company/editCompanyUI.do');
+        $('#container').load('carTime/carTimeEditUI.do');
     }
 
 
     function search() {
         $(grid_selector).jqGrid('setGridParam', {
             postData: {
-                'name': $('#search_tcarcode').val()
+                'carType': $('#carType').val()
             }
 
         }).trigger("reloadGrid"); //重新载入
