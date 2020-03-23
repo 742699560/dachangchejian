@@ -27,6 +27,7 @@ import com.dccj.uitl.ObjectUtil;
 @Slf4j
 public class BaseController {
 
+	
 	protected Map<String, String> getParamMap(HttpServletRequest req) {
 		Map<String, String> map = new HashMap<String, String>();
 		Enumeration<String> tenum = req.getParameterNames();
